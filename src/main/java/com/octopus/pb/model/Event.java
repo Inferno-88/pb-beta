@@ -19,7 +19,7 @@ public class Event {
     private LocalDateTime endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "field_id")
     private Field field;
     
 }

@@ -15,7 +15,8 @@ public class Rating {
     private int positive;
     private int negative;
 
-    @OneToOne(mappedBy = "rating")
+    @OneToOne
+    @JoinColumn(name = "field_id")
     private Field field;
 
 }

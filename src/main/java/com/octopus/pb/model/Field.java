@@ -18,13 +18,19 @@ public class Field {
     private String name;
     private String address;
     private int capacity;
-    private List<BufferedImage> imageList;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "field")
     private Rating rating;
 
-    @OneToOne(mappedBy = "field")
-    private Event event;
-    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "field")
+    private List<Event> eventList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "field_photos",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<Photo> photoList;
+
 }

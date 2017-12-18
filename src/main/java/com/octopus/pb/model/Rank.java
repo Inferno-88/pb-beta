@@ -14,7 +14,8 @@ public class Rank {
     private int id;
     private String name;
 
-    @OneToOne(mappedBy = "rank")
+    @OneToOne
+    @JoinColumn(name = "player_id")
     private Player player;
 
 }
