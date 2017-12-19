@@ -1,6 +1,5 @@
 package com.octopus.pb.model;
 
-import com.octopus.pb.enums.PhotoType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,8 +15,13 @@ public class Player {
     private int id;
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "player")
+    @OneToOne
+    @JoinColumn(name = "rank_id")
     private Rank rank;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -27,7 +31,4 @@ public class Player {
     )
     private List<Photo> photoList;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
 }

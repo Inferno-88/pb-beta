@@ -1,9 +1,7 @@
 package com.octopus.pb.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 @Data
@@ -19,10 +17,10 @@ public class Field {
     private String address;
     private int capacity;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "field")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "field", orphanRemoval = true)
     private Rating rating;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "field")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "field")
     private List<Event> eventList;
 
     @OneToMany(cascade = CascadeType.ALL)

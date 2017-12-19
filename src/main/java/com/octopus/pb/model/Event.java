@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,8 +19,16 @@ public class Event {
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "field_id")
     private Field field;
-    
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "team_photos",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<Photo> photoList;
+
 }
