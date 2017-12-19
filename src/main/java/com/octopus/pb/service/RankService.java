@@ -2,7 +2,7 @@ package com.octopus.pb.service;
 
 
 
-public interface RankingService {
+public interface RankService {
 
     String getPlayerRank (String playerId);
     String setPlayerRank (String playerId);

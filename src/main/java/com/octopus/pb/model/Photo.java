@@ -11,10 +11,11 @@ import javax.persistence.*;
 public class Photo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String path;
+
+    @Enumerated(EnumType.STRING)
     private PhotoType photoType;
 
 }

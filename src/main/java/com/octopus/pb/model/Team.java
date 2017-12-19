@@ -14,7 +14,7 @@ import java.util.Set;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
@@ -28,8 +28,8 @@ public class Team {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "team_photos",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id")
+            joinColumns = @JoinColumn(name = "team_id"),
+            inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     private List<Photo> photoList;
 

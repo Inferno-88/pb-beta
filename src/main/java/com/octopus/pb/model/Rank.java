@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Rank {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 

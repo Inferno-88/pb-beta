@@ -10,13 +10,12 @@ import javax.persistence.*;
 public class Rating {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int positive;
     private int negative;
 
-    @OneToOne
-    @JoinColumn(name = "field_id")
+    @OneToOne(mappedBy = "rating")
     private Field field;
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
@@ -26,8 +26,8 @@ public class Player {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "player_photos",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id")
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     private List<Photo> photoList;
 

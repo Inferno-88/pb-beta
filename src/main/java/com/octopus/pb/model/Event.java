@@ -13,7 +13,7 @@ import java.util.List;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private LocalDateTime beginDate;
@@ -25,9 +25,9 @@ public class Event {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "team_photos",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id")
+            name = "event_photos",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     private List<Photo> photoList;
 
