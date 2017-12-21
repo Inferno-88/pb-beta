@@ -15,15 +15,15 @@ public class Player {
     private int id;
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "rank_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rank_id", foreignKey = @ForeignKey(name = "players_to_ranks"))
     private Rank rank;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "players_to_teams"))
     private Team team;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "player_photos",
             joinColumns = @JoinColumn(name = "player_id"),

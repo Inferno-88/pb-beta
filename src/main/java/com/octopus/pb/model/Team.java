@@ -18,30 +18,19 @@ public class Team {
     private int id;
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "rank_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rank_id", foreignKey = @ForeignKey(name = "teams_to_ranks"))
     private Rank rank;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private Set<Player> playerList = new HashSet<>();
+    @OneToMany(mappedBy = "team")
+    private Set<Player> playerSet = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "team_photos",
             joinColumns = @JoinColumn(name = "team_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id")
     )
     private List<Photo> photoList;
-
-    //Utility methods
-    private void addPlayer(Player player) {
-        playerList.add(player);
-        player.setTeam(this);
-    }
-
-    private void removePlayer(Player player) {
-        playerList.remove(player);
-        player.setTeam(null);
-    }
 
 }

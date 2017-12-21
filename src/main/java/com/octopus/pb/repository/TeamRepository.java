@@ -1,6 +1,6 @@
 package com.octopus.pb.repository;
 
-import com.octopus.pb.model.Player;
+import com.octopus.pb.model.Team;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,18 +8,18 @@ import java.util.List;
 
 
 @Repository
-public interface PlayerRepository extends CrudRepository<Player, Long> {
+public interface TeamRepository extends CrudRepository<Team, Long> {
 
     @Override
-    Player save(Player player);
+    Team save(Team team);
 
     @Override
-    void delete(Player entity);
+    void delete(Team team);
 
     @Override
-    Player findOne(Long id);
+    Team findOne(Long id);
 
     @Override
-    List<Player> findAll();
+    List<Team> findAll();
 
 }

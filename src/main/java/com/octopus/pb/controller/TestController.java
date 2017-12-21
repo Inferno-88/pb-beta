@@ -1,7 +1,10 @@
 package com.octopus.pb.controller;
 
 
+import com.octopus.pb.model.Photo;
 import com.octopus.pb.model.Player;
+import com.octopus.pb.model.Rank;
+import com.octopus.pb.model.Team;
 import com.octopus.pb.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +20,24 @@ public class TestController {
     @GetMapping("/test")
     private void test() {
 
+        Rank rank = new Rank();
+        rank.setName("First");
+
+        Rank rank2 = new Rank();
+        rank2.setName("TeamRank");
+
         Player player = new Player();
-        player.setName("lol");
+        player.setName("Player1");
+
+        Team team = new Team();
+        team.setName("lolz");
+        team.setRank(rank2);
+
+        player.setTeam(team);
+        player.setRank(rank);
 
         playerRepository.save(player);
+
     }
 
 }

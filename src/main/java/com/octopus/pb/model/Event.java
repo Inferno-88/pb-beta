@@ -23,7 +23,7 @@ public class Event {
     @JoinColumn(name = "field_id")
     private Field field;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "event_photos",
             joinColumns = @JoinColumn(name = "event_id"),

@@ -3,6 +3,8 @@ package com.octopus.pb.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -14,10 +16,10 @@ public class Rank {
     private int id;
     private String name;
 
-    @OneToOne(mappedBy = "rank")
-    private Player player;
+    @OneToMany(mappedBy = "rank")
+    private Set<Player> playerSet = new HashSet<>();
 
-    @OneToOne(mappedBy = "rank")
-    private Team team;
+    @OneToMany(mappedBy = "rank")
+    private Set<Team> teamSet = new HashSet<>();
 
 }

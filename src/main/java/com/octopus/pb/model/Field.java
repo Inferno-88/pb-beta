@@ -19,14 +19,14 @@ public class Field {
     private String address;
     private int capacity;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rating_id")
     private Rating rating;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "field")
+    @OneToMany(mappedBy = "field")
     private Set<Event> eventList = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "field_photos",
             joinColumns = @JoinColumn(name = "field_id"),
