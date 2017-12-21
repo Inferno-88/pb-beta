@@ -20,6 +20,13 @@ ALTER TABLE ONLY players
 ALTER TABLE ONLY players
   ADD CONSTRAINT players_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY players
+  ADD CONSTRAINT players_to_ranks FOREIGN KEY (rank_id) REFERENCES ranks(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY players
+  ADD CONSTRAINT players_to_teams FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE RESTRICT;
+
+
 --Fields
 CREATE TABLE fields (
   id        INTEGER NOT NULL,
@@ -42,6 +49,10 @@ ALTER TABLE ONLY fields
 
 ALTER TABLE ONLY fields
   ADD CONSTRAINT fields_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY fields
+  ADD CONSTRAINT fields_to_ratings FOREIGN KEY (rating_id) REFERENCES ratings(id) ON DELETE RESTRICT;
+
 
 --Events
 CREATE TABLE events (
@@ -66,6 +77,10 @@ ALTER TABLE ONLY events
 ALTER TABLE ONLY events
   ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY events
+  ADD CONSTRAINT events_to_fields FOREIGN KEY (field_id) REFERENCES fields(id) ON DELETE RESTRICT;
+
+
 --Teams
 CREATE TABLE teams (
   id      INTEGER NOT NULL,
@@ -87,6 +102,10 @@ ALTER TABLE ONLY teams
 ALTER TABLE ONLY teams
   ADD CONSTRAINT teams_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY teams
+  ADD CONSTRAINT teams_to_ranks FOREIGN KEY (rank_id) REFERENCES ranks(id) ON DELETE RESTRICT;
+
+
 --Ranks
 CREATE TABLE ranks (
   id   INTEGER NOT NULL,
@@ -107,7 +126,8 @@ ALTER TABLE ONLY ranks
 ALTER TABLE ONLY ranks
   ADD CONSTRAINT ranks_pkey PRIMARY KEY (id);
 
---Ranks
+
+--Ratings
 CREATE TABLE ratings (
   id       INTEGER NOT NULL,
   positive INTEGER,
@@ -127,6 +147,7 @@ ALTER TABLE ONLY ratings
 
 ALTER TABLE ONLY ratings
   ADD CONSTRAINT ratings_pkey PRIMARY KEY (id);
+
 
 --Photos
 CREATE TABLE photos (
@@ -156,11 +177,25 @@ CREATE TABLE player_photos (
   photo_id INTEGER
 );
 
+ALTER TABLE ONLY player_photos
+  ADD CONSTRAINT player_photos_to_players FOREIGN KEY (player_id) REFERENCES players(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY player_photos
+  ADD CONSTRAINT player_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
+
+
 --Team_Photos
 CREATE TABLE team_photos (
   team_id INTEGER,
   photo_id INTEGER
 );
+
+ALTER TABLE ONLY team_photos
+  ADD CONSTRAINT team_photos_to_teams FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY team_photos
+  ADD CONSTRAINT team_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
+
 
 --Field_Photos
 CREATE TABLE field_photos (
@@ -168,11 +203,24 @@ CREATE TABLE field_photos (
   photo_id INTEGER
 );
 
+ALTER TABLE ONLY field_photos
+  ADD CONSTRAINT field_photos_to_fields FOREIGN KEY (field_id) REFERENCES fields(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY field_photos
+  ADD CONSTRAINT field_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
+
+
 --Event_Photos
 CREATE TABLE event_photos (
   event_id INTEGER,
   photo_id INTEGER
 );
+
+ALTER TABLE ONLY event_photos
+  ADD CONSTRAINT event_photos_to_events FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY event_photos
+  ADD CONSTRAINT event_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
 
 
 
