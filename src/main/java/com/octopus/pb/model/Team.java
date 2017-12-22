@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -32,6 +31,6 @@ public class Team {
             inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "team_photos_to_photos")),
             uniqueConstraints = @UniqueConstraint(name = "team_photos_unique", columnNames = {"team_id", "photo_id"})
     )
-    private List<Photo> photoList;
+    private Set<Photo> photoList = new HashSet<>();
 
 }

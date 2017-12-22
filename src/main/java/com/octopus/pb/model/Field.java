@@ -3,7 +3,6 @@ package com.octopus.pb.model;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -33,6 +32,6 @@ public class Field {
             inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "field_photos_to_photos")),
             uniqueConstraints = @UniqueConstraint(name = "field_photos_unique", columnNames = {"field_id", "photo_id"})
     )
-    private List<Photo> photoList;
+    private Set<Photo> photoList = new HashSet<>();
 
 }

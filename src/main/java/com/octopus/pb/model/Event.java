@@ -19,7 +19,7 @@ public class Event {
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 

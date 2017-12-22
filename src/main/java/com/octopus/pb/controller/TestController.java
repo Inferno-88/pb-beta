@@ -1,6 +1,8 @@
 package com.octopus.pb.controller;
 
 
+import com.octopus.pb.enums.PhotoType;
+import com.octopus.pb.model.Photo;
 import com.octopus.pb.model.Player;
 import com.octopus.pb.model.Rank;
 import com.octopus.pb.model.Team;
@@ -34,6 +36,12 @@ public class TestController {
 
         player.setTeam(team);
         player.setRank(rank);
+
+        Photo playerPhoto = new Photo();
+        playerPhoto.setPhotoType(PhotoType.PLAYER);
+        playerPhoto.setPath("Some player photo path");
+
+        player.getPhotoList().add(playerPhoto);
 
         playerRepository.save(player);
 
