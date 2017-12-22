@@ -25,11 +25,12 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private Set<Player> playerSet = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "team_photos",
-            joinColumns = @JoinColumn(name = "team_id"),
-            inverseJoinColumns = @JoinColumn(name = "photo_id")
+            joinColumns = @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "team_photos_to_teams")),
+            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "team_photos_to_photos")),
+            uniqueConstraints = @UniqueConstraint(name = "team_photos_unique", columnNames = {"team_id", "photo_id"})
     )
     private List<Photo> photoList;
 

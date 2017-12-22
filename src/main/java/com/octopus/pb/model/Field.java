@@ -20,17 +20,18 @@ public class Field {
     private int capacity;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "rating_id")
+    @JoinColumn(name = "rating_id", foreignKey = @ForeignKey(name = "fields_to_ratings"))
     private Rating rating;
 
     @OneToMany(mappedBy = "field")
     private Set<Event> eventList = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "field_photos",
-            joinColumns = @JoinColumn(name = "field_id"),
-            inverseJoinColumns = @JoinColumn(name = "photo_id")
+            joinColumns = @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "field_photos_to_fields")),
+            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "field_photos_to_photos")),
+            uniqueConstraints = @UniqueConstraint(name = "field_photos_unique", columnNames = {"field_id", "photo_id"})
     )
     private List<Photo> photoList;
 

@@ -183,6 +183,9 @@ ALTER TABLE ONLY player_photos
 ALTER TABLE ONLY player_photos
   ADD CONSTRAINT player_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
 
+ALTER TABLE ONLY player_photos
+  ADD CONSTRAINT player_photos_unique UNIQUE (player_id, photo_id);
+
 
 --Team_Photos
 CREATE TABLE team_photos (
@@ -195,6 +198,9 @@ ALTER TABLE ONLY team_photos
 
 ALTER TABLE ONLY team_photos
   ADD CONSTRAINT team_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY team_photos
+  ADD CONSTRAINT team_photos_unique UNIQUE (team_id, photo_id);
 
 
 --Field_Photos
@@ -209,6 +215,9 @@ ALTER TABLE ONLY field_photos
 ALTER TABLE ONLY field_photos
   ADD CONSTRAINT field_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
 
+ALTER TABLE ONLY field_photos
+  ADD CONSTRAINT field_photos_unique UNIQUE (field_id, photo_id);
+
 
 --Event_Photos
 CREATE TABLE event_photos (
@@ -221,6 +230,9 @@ ALTER TABLE ONLY event_photos
 
 ALTER TABLE ONLY event_photos
   ADD CONSTRAINT event_photos_to_photos FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY event_photos
+  ADD CONSTRAINT event_photos_unique UNIQUE (event_id, photo_id);
 
 
 

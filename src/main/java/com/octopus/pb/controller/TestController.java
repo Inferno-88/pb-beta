@@ -1,7 +1,6 @@
 package com.octopus.pb.controller;
 
 
-import com.octopus.pb.model.Photo;
 import com.octopus.pb.model.Player;
 import com.octopus.pb.model.Rank;
 import com.octopus.pb.model.Team;

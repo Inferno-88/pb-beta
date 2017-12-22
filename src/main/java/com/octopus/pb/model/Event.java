@@ -20,15 +20,16 @@ public class Event {
     private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "field_id")
+    @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "event_photos",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "photo_id")
+            joinColumns = @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "event_photos_to_events")),
+            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "event_photos_to_photos")),
+            uniqueConstraints = @UniqueConstraint(name = "event_photos_unique", columnNames = {"event_id", "photo_id"})
     )
     private List<Photo> photoList;
-
+    
 }
