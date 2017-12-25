@@ -23,6 +23,9 @@ public class Event {
     @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 
+    @OneToMany
+
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "event_photos",
@@ -31,5 +34,5 @@ public class Event {
             uniqueConstraints = @UniqueConstraint(name = "event_photos_unique", columnNames = {"event_id", "photo_id"})
     )
     private List<Photo> photoList;
-    
+
 }
