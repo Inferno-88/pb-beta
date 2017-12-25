@@ -31,6 +31,14 @@ public class Team {
             inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "team_photos_to_photos")),
             uniqueConstraints = @UniqueConstraint(name = "team_photos_unique", columnNames = {"team_id", "photo_id"})
     )
-    private Set<Photo> photoList = new HashSet<>();
+    private Set<Photo> photoSet = new HashSet<>();
+
+    public Team() {
+
+    }
+
+    public Team(String name) {
+        this.name = name;
+    }
 
 }

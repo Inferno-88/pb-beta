@@ -26,11 +26,29 @@ public class Player {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
+            name = "player_groups",
+            joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_groups_to_players")),
+            inverseJoinColumns = @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "player_groups_to_groups")),
+            uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"player_id", "group_id"})
+    )
+    private Set<Group> groupSet = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
             name = "player_photos",
             joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_photos_to_players")),
             inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "player_photos_to_photos")),
             uniqueConstraints = @UniqueConstraint(name = "player_photos_unique", columnNames = {"player_id", "photo_id"})
     )
-    private Set<Photo> photoList = new HashSet<>();
+    private Set<Photo> photoSet = new HashSet<>();
+
+
+    public Player() {
+
+    }
+
+    public Player(String name) {
+        this.name = name;
+    }
 
 }
