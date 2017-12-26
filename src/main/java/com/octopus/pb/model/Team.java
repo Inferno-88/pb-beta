@@ -2,12 +2,14 @@ package com.octopus.pb.model;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude = "playerSet")
 @Entity
 @Table(name = "teams")
 public class Team {
@@ -21,7 +23,7 @@ public class Team {
     @JoinColumn(name = "rank_id", foreignKey = @ForeignKey(name = "teams_to_ranks"))
     private Rank rank;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Player> playerSet = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -39,6 +41,16 @@ public class Team {
 
     public Team(String name) {
         this.name = name;
+    }
+
+    public void addPlayer(Player player) {
+        playerSet.add(player);
+        player.setTeam(this);
+    }
+
+    public void removePlayer(Player player) {
+        player.setTeam(null);
+        playerSet.remove(player);
     }
 
 }

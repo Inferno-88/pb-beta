@@ -1,11 +1,14 @@
 package com.octopus.pb.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude = "eventList")
 @Entity
 @Table(name = "fields")
 public class Field {

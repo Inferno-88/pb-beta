@@ -3,6 +3,7 @@ package com.octopus.pb.model;
 
 import com.octopus.pb.enums.GroupType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
+@EqualsAndHashCode(exclude = "groupSet")
 @Entity
 @Table(name = "events")
 public class Event {
@@ -25,11 +27,12 @@ public class Event {
     private LocalDateTime endDate;
     private boolean isActive;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    @MapKey(name="groupType")
     @MapKeyEnumerated(EnumType.STRING)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Map<GroupType, Group> groupSet = new HashMap<>();
