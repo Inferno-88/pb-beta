@@ -11,19 +11,19 @@ import java.util.List;
 @Repository
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
-    @Override
-    Player save(Player player);
-
-    @Override
-    <S extends Player> Iterable<S> save(Iterable<S> players);
-
-    @Override
-    void delete(Player entity);
-
-    @Override
-    Player findOne(Long id);
-
-    @Override
-    List<Player> findAll();
+//    @Override
+//    Player save(Player player);
+//
+//    @Override
+//    <S extends Player> Iterable<S> save(Iterable<S> players);
+//
+//    @Override
+//    void delete(Player entity);
+//
+//    @Override
+//    Player findOne(Long id);
+//
+//    @Override
+//    List<Player> findAll();
 
 }

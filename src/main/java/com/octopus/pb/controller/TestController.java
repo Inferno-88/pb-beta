@@ -96,6 +96,7 @@ public class TestController {
         teamRepository.save(team1);
         teamRepository.save(team2);
 
+
 //        group1.getPlayerSet().add(player1);
 //        group1.getPlayerSet().add(player2);
 //        group1.getPlayerSet().add(player3);
