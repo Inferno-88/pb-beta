@@ -1,7 +1,10 @@
 package com.octopus.pb.repository;
 
 import com.octopus.pb.model.Rank;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +24,9 @@ public interface RankRepository extends CrudRepository<Rank, Long> {
 
     @Override
     List<Rank> findAll();
+
+    @Modifying
+    @Query("UPDATE Ranks ranks SET ranks.name = :name WHERE ranks.id = :id")
+    int setName(@Param("name") Integer name, @Param("id") Long id);
 
 }

@@ -18,10 +18,18 @@ public class Rank {
     private int id;
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private String rankType;
+
     @OneToMany(mappedBy = "rank")
     private Set<Player> playerSet = new HashSet<>();
 
     @OneToMany(mappedBy = "rank")
     private Set<Team> teamSet = new HashSet<>();
+
+    public Rank(String name, String rankType) {
+        this.name = name;
+        this.rankType = rankType;
+    }
 
 }

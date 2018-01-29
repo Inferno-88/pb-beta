@@ -1,3 +1,4 @@
+
 --Ranks
 CREATE TABLE ranks (
   id   BIGINT NOT NULL,
