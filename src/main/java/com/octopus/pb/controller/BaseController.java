@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class BaseController {
 
 
     @Autowired
@@ -30,8 +30,6 @@ public class MainController {
 
         //TODO something
 
-        eventList = eventService.getEventList();
-
         return eventList;
     }
 
@@ -40,7 +38,6 @@ public class MainController {
         String response = "Created event: ";
 
         //TODO create event logic
-        eventService.createEvent();
 
         return response;
     }

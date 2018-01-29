@@ -11,7 +11,12 @@ import java.util.List;
 public class BaseEventService implements EventService {
 
     @Override
-    public String createEvent() {
+    public Event saveEvent(Event event) {
+        return null;
+    }
+
+    @Override
+    public Event getEvent(Event event) {
         return null;
     }
 

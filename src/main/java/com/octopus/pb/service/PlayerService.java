@@ -10,6 +10,8 @@ public interface PlayerService {
 
     Player getPlayer(Player player);
 
+    void deletePlayer(Player player);
+
     List<Player> getPlayerList();
 
 }
