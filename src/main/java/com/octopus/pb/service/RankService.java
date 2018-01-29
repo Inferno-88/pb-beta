@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface RankService {
 
+    //Core methods
+
+
+    //Repository methods
     Rank saveRank(Rank rank);
 
     Rank getRank(String rankId);

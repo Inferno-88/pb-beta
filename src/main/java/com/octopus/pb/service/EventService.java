@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface EventService {
 
+    //Core methods
+
+
+    //Repository methods
     Event saveEvent(Event event);
 
     Event getEvent(Event event);

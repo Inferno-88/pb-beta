@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface TeamService {
 
+    //Core methods
+
+
+    //Repository methods
     Team saveTeam(Team player);
 
     Team getTeam(Team player);

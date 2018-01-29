@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface PlayerService {
 
+    //Core methods
+
+
+    //Repository methods
     Player savePlayer(Player player);
 
     Player getPlayer(Player player);

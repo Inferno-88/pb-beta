@@ -35,7 +35,7 @@ public class Event {
     @MapKey(name="groupType")
     @MapKeyEnumerated(EnumType.STRING)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Map<GroupType, Group> groupSet = new HashMap<>();
+    private Map<GroupType, Group> groupMap = new HashMap<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
