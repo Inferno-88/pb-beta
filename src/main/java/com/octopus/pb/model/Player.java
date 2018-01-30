@@ -1,12 +1,14 @@
 package com.octopus.pb.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude = "groupSet, photoSet")
 @Entity
 @Table(name = "players")
 public class Player {
@@ -49,6 +51,16 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+    }
+
+    public void addGroup(Group group) {
+        groupSet.add(group);
+        group.getPlayerSet().add(this);
+    }
+
+    public void removeGroup(Group group) {
+        group.getPlayerSet().remove(this);
+        groupSet.remove(group);
     }
 
 }

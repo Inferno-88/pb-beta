@@ -3,6 +3,7 @@ package com.octopus.pb.controller;
 
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.enums.PhotoType;
+import com.octopus.pb.enums.RankType;
 import com.octopus.pb.model.*;
 import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.repository.GroupRepository;
@@ -11,6 +12,9 @@ import com.octopus.pb.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -33,31 +37,23 @@ public class TestController {
     @GetMapping("/test")
     private void test() {
 
-        Rank rank = new Rank();
-        rank.setName("First");
+        Rank playerRank = new Rank("First", RankType.PLAYER);
+        Rank teamRank = new Rank("TeamRank", RankType.PLAYER);
 
-        Rank rank2 = new Rank();
-        rank2.setName("TeamRank");
+        Player player = new Player("Player1");
 
-        Player player = new Player();
-        player.setName("Player1");
-
-        Team team = new Team();
-        team.setName("lolz");
-        team.setRank(rank2);
+        Team team = new Team("Team1");
+        team.setRank(teamRank);
 
         player.setTeam(team);
-        player.setRank(rank);
+        player.setRank(playerRank);
 
-        Photo playerPhoto = new Photo();
-        playerPhoto.setPhotoType(PhotoType.PLAYER);
-        playerPhoto.setPath("Some player photo path");
+        Photo playerPhoto = new Photo("Photo/URL/1", PhotoType.PLAYER);
 
         player.getPhotoSet().add(playerPhoto);
 
         playerRepository.save(player);
 
-        //test1
     }
 
     @GetMapping("/group")
@@ -69,14 +65,14 @@ public class TestController {
         Player player4 = new Player("Four");
         Player player5 = new Player("Five");
 
-//        List<Player> playerList = new ArrayList<>();
-//        playerList.add(new Player("One"));
-//        playerList.add(new Player("Two"));
-//        playerList.add(new Player("Three"));
-//        playerList.add(new Player("Four"));
-//        playerList.add(new Player("Five"));
-//
-//        playerRepository.save(playerList);
+        List<Player> playerList = new ArrayList<>();
+        playerList.add(new Player("One"));
+        playerList.add(new Player("Two"));
+        playerList.add(new Player("Three"));
+        playerList.add(new Player("Four"));
+        playerList.add(new Player("Five"));
+
+        playerRepository.save(playerList);
 
         Team team1 = new Team("FirstTeam");
         Team team2 = new Team("SecondTeam");
@@ -96,19 +92,18 @@ public class TestController {
         teamRepository.save(team1);
         teamRepository.save(team2);
 
+        group1.addPlayer(player1);
+        group1.addPlayer(player2);
+        group1.addPlayer(player3);
+        group2.addPlayer(player4);
+        group2.addPlayer(player5);
 
-//        group1.getPlayerSet().add(player1);
-//        group1.getPlayerSet().add(player2);
-//        group1.getPlayerSet().add(player3);
-//        group2.getPlayerSet().add(player4);
-//        group2.getPlayerSet().add(player5);
-//
-//        event1.getGroupSet().put(group1.getGroupType(), group1);
-//        event1.getGroupSet().put(group2.getGroupType(), group2);
-//
-//        event1.setField(field1);
-//
-//        eventRepository.save(event1);
+        event1.getGroupSet().put(group1.getGroupType(), group1);
+        event1.getGroupSet().put(group2.getGroupType(), group2);
+
+        event1.setField(field1);
+
+        eventRepository.save(event1);
     }
 
 }

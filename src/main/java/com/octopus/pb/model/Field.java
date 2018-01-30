@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(exclude = "eventList")
+@EqualsAndHashCode(exclude = "eventSet, photoSet")
 @Entity
 @Table(name = "fields")
 public class Field {
@@ -26,7 +26,7 @@ public class Field {
     private Rating rating;
 
     @OneToMany(mappedBy = "field")
-    private Set<Event> eventList = new HashSet<>();
+    private Set<Event> eventSet = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(

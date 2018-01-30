@@ -1,5 +1,6 @@
 package com.octopus.pb.model;
 
+import com.octopus.pb.enums.RankType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +20,7 @@ public class Rank {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private String rankType;
+    private RankType rankType;
 
     @OneToMany(mappedBy = "rank")
     private Set<Player> playerSet = new HashSet<>();
@@ -27,7 +28,7 @@ public class Rank {
     @OneToMany(mappedBy = "rank")
     private Set<Team> teamSet = new HashSet<>();
 
-    public Rank(String name, String rankType) {
+    public Rank(String name, RankType rankType) {
         this.name = name;
         this.rankType = rankType;
     }

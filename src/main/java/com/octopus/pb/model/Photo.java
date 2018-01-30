@@ -18,4 +18,9 @@ public class Photo {
     @Enumerated(EnumType.STRING)
     private PhotoType photoType;
 
+    public Photo(String path, PhotoType photoType) {
+        this.path = path;
+        this.photoType = photoType;
+    }
+
 }

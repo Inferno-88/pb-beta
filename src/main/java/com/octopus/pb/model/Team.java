@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(exclude = "playerSet")
+@EqualsAndHashCode(exclude = "playerSet, photoSet")
 @Entity
 @Table(name = "teams")
 public class Team {
@@ -36,7 +36,6 @@ public class Team {
     private Set<Photo> photoSet = new HashSet<>();
 
     public Team() {
-
     }
 
     public Team(String name) {

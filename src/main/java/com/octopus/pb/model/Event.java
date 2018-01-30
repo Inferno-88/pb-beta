@@ -10,11 +10,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Data
-@EqualsAndHashCode(exclude = "groupSet")
+@EqualsAndHashCode(exclude = "groupMap, photoSet")
 @Entity
 @Table(name = "events")
 public class Event {
@@ -44,10 +44,9 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "event_photos_to_photos")),
             uniqueConstraints = @UniqueConstraint(name = "event_photos_unique", columnNames = {"event_id", "photo_id"})
     )
-    private List<Photo> photoList;
+    private Set<Photo> photoSet;
 
     public Event() {
-
     }
 
     public Event(String name) {
