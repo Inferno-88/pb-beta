@@ -82,20 +82,22 @@ public class TestController {
         List<Group> groupList = new ArrayList<>();
         Group group1 = new Group(GroupType.RED, event1);
         Group group2 = new Group(GroupType.BLUE, event1);
-        groupList.add(group1);
-        groupList.add(group2);
+//        groupList.add(group1);
+//        groupList.add(group2);
+
+//        event1.addGroupList(groupList);
 
         event1.addGroupList(groupList);
 
-        group1.addPlayerList(playerList1);
-        group2.addPlayerList(playerList2);
+        //group1.addPlayerList(playerList1);
+        //group2.addPlayerList(playerList2);
 
         groupRepository.save(groupList);
-
-        Field field1 = new Field("FirstField");
-        event1.setField(field1);
-
-        eventRepository.save(event1);
+//
+//        Field field1 = new Field("FirstField");
+//        event1.setField(field1);
+//
+//        eventRepository.save(event1);
     }
 
 }
