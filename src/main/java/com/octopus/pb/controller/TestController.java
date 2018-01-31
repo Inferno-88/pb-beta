@@ -33,7 +33,6 @@ public class TestController {
     GroupRepository groupRepository;
 
 
-
     @GetMapping("/test")
     private void test() {
 
@@ -54,9 +53,11 @@ public class TestController {
 
         playerRepository.save(player);
 
+        playerRank.equals(playerRepository.findOne(1L).getName());
+
     }
 
-    @GetMapping("/group")
+    @GetMapping("/event")
     private void testGroup() {
 
         Player player1 = new Player("One");
@@ -77,13 +78,6 @@ public class TestController {
         Team team1 = new Team("FirstTeam");
         Team team2 = new Team("SecondTeam");
 
-        Event event1 = new Event("FirstEvent");
-
-        Group group1 = new Group(GroupType.RED, event1);
-        Group group2 = new Group(GroupType.BLUE, event1);
-
-        Field field1 = new Field("FirstField");
-
         team1.addPlayer(player1);
         team1.addPlayer(player2);
         team2.addPlayer(player3);
@@ -91,6 +85,13 @@ public class TestController {
 
         teamRepository.save(team1);
         teamRepository.save(team2);
+
+        Event event1 = new Event("FirstEvent");
+
+        Group group1 = new Group(GroupType.RED, event1);
+        Group group2 = new Group(GroupType.BLUE, event1);
+
+        Field field1 = new Field("FirstField");
 
         group1.addPlayer(player1);
         group1.addPlayer(player2);

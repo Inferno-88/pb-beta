@@ -53,4 +53,14 @@ public class Event {
         this.name = name;
     }
 
+    public void addGroup(Group group) {
+        groupMap.put(group.getGroupType(), group);
+        group.setEvent(this);
+    }
+
+    public void removeGroup(Group group) {
+        group.setEvent(null);
+        groupMap.remove(group.getGroupType());
+    }
+
 }

@@ -14,6 +14,9 @@ public interface TeamRepository extends CrudRepository<Team, Long> {
     Team save(Team team);
 
     @Override
+    <S extends Team> Iterable<S> save(Iterable<S> teams);
+
+    @Override
     void delete(Team team);
 
     @Override

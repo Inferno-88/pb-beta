@@ -40,14 +40,4 @@ public class Group {
         this.event = event;
     }
 
-    public void addPlayer(Player player) {
-        playerSet.add(player);
-        player.getGroupSet().add(this);
-    }
-
-    public void removePlayer(Player player) {
-        player.getGroupSet().remove(this);
-        playerSet.remove(player);
-    }
-
 }
