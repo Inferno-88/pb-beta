@@ -26,7 +26,7 @@ public interface RankRepository extends CrudRepository<Rank, Long> {
     List<Rank> findAll();
 
     @Modifying
-    @Query("UPDATE Ranks ranks SET ranks.name = :name WHERE ranks.id = :id")
-    int setName(@Param("name") Integer name, @Param("id") Long id);
+    @Query("UPDATE Rank rank SET rank.name = :name WHERE rank.id = :id")
+    int setName(@Param("name") String name, @Param("id") Long id);
 
 }

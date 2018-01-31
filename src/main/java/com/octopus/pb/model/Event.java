@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -56,6 +57,13 @@ public class Event {
     public void addGroup(Group group) {
         groupMap.put(group.getGroupType(), group);
         group.setEvent(this);
+    }
+
+    public void addGroupList(List<Group> groupList) {
+        groupList.forEach(g -> {
+            groupMap.put(g.getGroupType(), g);
+            g.setEvent(this);
+        });
     }
 
     public void removeGroup(Group group) {

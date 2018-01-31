@@ -7,7 +7,10 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import static sun.audio.AudioPlayer.player;
 
 @Data
 @EqualsAndHashCode(exclude = "playerSet")
@@ -40,4 +43,21 @@ public class Group {
         this.event = event;
     }
 
+    public void addPlayer(Player player) {
+        playerSet.add(player);
+        player.getGroupSet().add(this);
+    }
+
+    public void addPlayerList(List<Player> playerList) {
+        playerList.forEach(p -> {
+            playerSet.add(p);
+            p.getGroupSet().add(this);
+        });
+    }
+
+    public void removePlayer(Player player) {
+        player.getGroupSet().remove(this);
+        playerSet.remove(player);
+    }
+    
 }

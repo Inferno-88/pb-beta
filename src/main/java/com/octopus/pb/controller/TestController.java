@@ -36,8 +36,8 @@ public class TestController {
     @GetMapping("/test")
     private void test() {
 
-        Rank playerRank = new Rank("First", RankType.PLAYER);
-        Rank teamRank = new Rank("TeamRank", RankType.PLAYER);
+        Rank playerRank = new Rank("PlayerRank", RankType.PLAYER);
+        Rank teamRank = new Rank("TeamRank", RankType.TEAM);
 
         Player player = new Player("Player1");
 
@@ -53,55 +53,46 @@ public class TestController {
 
         playerRepository.save(player);
 
-        playerRank.equals(playerRepository.findOne(1L).getName());
-
+        //playerRank.equals(playerRepository.findOne(1L).getName());
     }
 
     @GetMapping("/event")
     private void testGroup() {
 
-        Player player1 = new Player("One");
-        Player player2 = new Player("Two");
-        Player player3 = new Player("Three");
-        Player player4 = new Player("Four");
-        Player player5 = new Player("Five");
+        List<Player> playerList1 = new ArrayList<>();
+        playerList1.add(new Player("One"));
+        playerList1.add(new Player("Two"));
+        playerList1.add(new Player("Three"));
 
-        List<Player> playerList = new ArrayList<>();
-        playerList.add(new Player("One"));
-        playerList.add(new Player("Two"));
-        playerList.add(new Player("Three"));
-        playerList.add(new Player("Four"));
-        playerList.add(new Player("Five"));
+        List<Player> playerList2 = new ArrayList<>();
+        playerList2.add(new Player("Four"));
+        playerList2.add(new Player("Five"));
 
-        playerRepository.save(playerList);
+        playerRepository.save(playerList1);
+        playerRepository.save(playerList2);
 
-        Team team1 = new Team("FirstTeam");
-        Team team2 = new Team("SecondTeam");
+        List<Team> teamList = new ArrayList<>();
+        teamList.add(new Team("FirstTeam"));
+        teamList.add(new Team("SecondTeam"));
 
-        team1.addPlayer(player1);
-        team1.addPlayer(player2);
-        team2.addPlayer(player3);
-        team2.addPlayer(player4);
-
-        teamRepository.save(team1);
-        teamRepository.save(team2);
+        teamRepository.save(teamList);
 
         Event event1 = new Event("FirstEvent");
 
+        List<Group> groupList = new ArrayList<>();
         Group group1 = new Group(GroupType.RED, event1);
         Group group2 = new Group(GroupType.BLUE, event1);
+        groupList.add(group1);
+        groupList.add(group2);
+
+        event1.addGroupList(groupList);
+
+        group1.addPlayerList(playerList1);
+        group2.addPlayerList(playerList2);
+
+        groupRepository.save(groupList);
 
         Field field1 = new Field("FirstField");
-
-        group1.addPlayer(player1);
-        group1.addPlayer(player2);
-        group1.addPlayer(player3);
-        group2.addPlayer(player4);
-        group2.addPlayer(player5);
-
-        event1.getGroupSet().put(group1.getGroupType(), group1);
-        event1.getGroupSet().put(group2.getGroupType(), group2);
-
         event1.setField(field1);
 
         eventRepository.save(event1);
