@@ -26,13 +26,14 @@ public class Player {
     @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "players_to_teams"))
     private Team team;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "player_groups",
-            joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_groups_to_players")),
-            inverseJoinColumns = @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "player_groups_to_groups")),
-            uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"player_id", "group_id"})
-    )
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @JoinTable(
+//            name = "player_groups",
+//            joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_groups_to_players")),
+//            inverseJoinColumns = @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "player_groups_to_groups")),
+//            uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"player_id", "group_id"})
+//    )
+    @ManyToMany(mappedBy = "playerSet")
     private Set<Group> groupSet = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)

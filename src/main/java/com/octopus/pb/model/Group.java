@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static sun.audio.AudioPlayer.player;
 
 @Data
 @EqualsAndHashCode(exclude = "playerSet")
@@ -29,7 +28,7 @@ public class Group {
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "groups_to_events"))
     private Event event;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "player_groups",
             joinColumns = @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "player_groups_to_groups")),
@@ -59,5 +58,5 @@ public class Group {
         player.getGroupSet().remove(this);
         playerSet.remove(player);
     }
-    
+
 }

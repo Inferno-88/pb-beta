@@ -57,7 +57,7 @@ public class TestController {
     }
 
     @GetMapping("/event")
-    private void testGroup() {
+    private void testEvent() {
 
         List<Player> playerList1 = new ArrayList<>();
         playerList1.add(new Player("One"));
@@ -71,21 +71,13 @@ public class TestController {
         playerRepository.save(playerList1);
         playerRepository.save(playerList2);
 
-        List<Team> teamList = new ArrayList<>();
-        teamList.add(new Team("FirstTeam"));
-        teamList.add(new Team("SecondTeam"));
-
-        teamRepository.save(teamList);
-
         Event event1 = new Event("FirstEvent");
 
         List<Group> groupList = new ArrayList<>();
         Group group1 = new Group(GroupType.RED, event1);
         Group group2 = new Group(GroupType.BLUE, event1);
-//        groupList.add(group1);
-//        groupList.add(group2);
-
-//        event1.addGroupList(groupList);
+        groupList.add(group1);
+        groupList.add(group2);
 
         event1.addGroupList(groupList);
 
@@ -98,6 +90,24 @@ public class TestController {
 //        event1.setField(field1);
 //
 //        eventRepository.save(event1);
+    }
+
+    @GetMapping("/group")
+    public void testGroup() {
+
+//        List<Player> playerList1 = new ArrayList<>();
+//        playerList1.add(new Player("One"));
+//        playerList1.add(new Player("Two"));
+//        playerList1.add(new Player("Three"));
+
+        //playerRepository.save(playerList1);
+
+        Player player1 = new Player("One");
+
+        Group group1 = new Group(GroupType.RED, new Event("FirstEvent"));
+        group1.addPlayer(player1);
+        
+        groupRepository.save(group1);
     }
 
 }
