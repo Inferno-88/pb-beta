@@ -1,14 +1,14 @@
 package com.octopus.pb.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(exclude = "groupSet, photoSet")
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = {"groupSet", "photoSet"})
 @Entity
 @Table(name = "players")
 public class Player {
@@ -25,15 +25,8 @@ public class Player {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "players_to_teams"))
     private Team team;
-
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinTable(
-//            name = "player_groups",
-//            joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_groups_to_players")),
-//            inverseJoinColumns = @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "player_groups_to_groups")),
-//            uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"player_id", "group_id"})
-//    )
-    @ManyToMany(mappedBy = "playerSet")
+    
+    @ManyToMany(mappedBy = "playerSet", cascade = CascadeType.ALL)
     private Set<Group> groupSet = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -45,9 +38,11 @@ public class Player {
     )
     private Set<Photo> photoSet = new HashSet<>();
 
+    @OneToOne(mappedBy = "player")
+    private User user;
+
 
     public Player() {
-
     }
 
     public Player(String name) {

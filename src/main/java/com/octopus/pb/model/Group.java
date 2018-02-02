@@ -2,8 +2,7 @@ package com.octopus.pb.model;
 
 
 import com.octopus.pb.enums.GroupType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,7 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = "playerSet")
 @Entity
 @Table(name = "groups")
@@ -36,6 +36,10 @@ public class Group {
             uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"player_id", "group_id"})
     )
     private Set<Player> playerSet = new HashSet<>();
+
+    public Group(GroupType groupType) {
+        this.groupType = groupType;
+    }
 
     public Group(GroupType groupType, Event event) {
         this.groupType = groupType;

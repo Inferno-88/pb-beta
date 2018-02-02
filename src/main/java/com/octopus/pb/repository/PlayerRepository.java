@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Repository
-public interface PlayerRepository extends CrudRepository<Player, Long> {
+public interface PlayerRepository extends CrudRepository<Player, Integer> {
 
     @Override
     Player save(Player player);
@@ -23,7 +23,7 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
     void delete(Player entity);
 
     @Override
-    Player findOne(Long id);
+    Player findOne(Integer id);
 
     @Override
     List<Player> findAll();

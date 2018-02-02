@@ -120,6 +120,9 @@ ALTER TABLE ONLY players
 ALTER TABLE ONLY players
   ADD CONSTRAINT players_to_teams FOREIGN KEY (team_id) REFERENCES teams (id) ON DELETE RESTRICT;
 
+INSERT INTO players (name, rank_id, team_id)
+VALUES ('noob', null, null);
+
 --Events
 CREATE TABLE events (
   id         BIGINT NOT NULL,

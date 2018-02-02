@@ -2,8 +2,7 @@ package com.octopus.pb.model;
 
 
 import com.octopus.pb.enums.GroupType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -14,8 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(exclude = "groupMap, photoSet")
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 @Entity
 @Table(name = "events")
 public class Event {
