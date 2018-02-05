@@ -1,7 +1,6 @@
 package com.octopus.pb.model;
 
 import com.octopus.pb.enums.PhotoType;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,6 @@
 package com.octopus.pb.model;
 
 import com.octopus.pb.enums.RankType;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "playerSet, teamSet")
+@EqualsAndHashCode(exclude = {"playerSet", "teamSet"})
 @Entity
 @Table(name = "ranks")
 public class Rank {

@@ -1,6 +1,5 @@
 package com.octopus.pb.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "eventSet, photoSet")
+@EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
 @Entity
 @Table(name = "fields")
 public class Field {

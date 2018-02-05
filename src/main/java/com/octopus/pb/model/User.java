@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "player")
 @Entity
 @Table(name = "users")
 public class User {
@@ -25,5 +24,12 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
+
+    public User(String login, String password, String email, Player player) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.player = player;
+    }
 
 }

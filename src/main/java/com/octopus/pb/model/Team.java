@@ -1,7 +1,6 @@
 package com.octopus.pb.model;
 
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "playerSet, photoSet")
+@EqualsAndHashCode(exclude = {"playerSet", "photoSet"})
 @Entity
 @Table(name = "teams")
 public class Team {

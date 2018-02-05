@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"groupSet", "photoSet"})
+@EqualsAndHashCode(exclude = {"groupSet", "photoSet", "user"})
 @Entity
 @Table(name = "players")
 public class Player {
@@ -25,7 +25,7 @@ public class Player {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "players_to_teams"))
     private Team team;
-    
+
     @ManyToMany(mappedBy = "playerSet", cascade = CascadeType.ALL)
     private Set<Group> groupSet = new HashSet<>();
 
