@@ -7,7 +7,7 @@ import com.octopus.pb.model.Player;
 import java.util.List;
 
 
-public interface GroupAssembleService {
+public interface GroupAssemblerService {
 
     //Core methods
     List<Player> getPlayersFromGroup(Group group);

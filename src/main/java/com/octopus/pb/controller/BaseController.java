@@ -2,7 +2,7 @@ package com.octopus.pb.controller;
 
 import com.octopus.pb.model.Event;
 import com.octopus.pb.service.EventService;
-import com.octopus.pb.service.GroupAssembleService;
+import com.octopus.pb.service.GroupAssemblerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class BaseController {
     EventService eventService;
 
     @Autowired
-    GroupAssembleService assemblerService;
+    GroupAssemblerService assemblerService;
 
 
     @GetMapping("/events/getAll")

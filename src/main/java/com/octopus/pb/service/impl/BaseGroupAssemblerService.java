@@ -3,13 +3,13 @@ package com.octopus.pb.service.impl;
 
 import com.octopus.pb.model.Group;
 import com.octopus.pb.model.Player;
-import com.octopus.pb.service.GroupAssembleService;
+import com.octopus.pb.service.GroupAssemblerService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service("groupAssembleService")
-public class BaseGroupAssembleService implements GroupAssembleService {
+public class BaseGroupAssemblerService implements GroupAssemblerService {
 
     @Override
     public List<Player> getPlayersFromGroup(Group group) {
