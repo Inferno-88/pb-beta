@@ -26,6 +26,9 @@ public class Player {
     @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "players_to_teams"))
     private Team team;
 
+    @OneToOne(mappedBy = "player")
+    private User user;
+
     @ManyToMany(mappedBy = "playerSet", cascade = CascadeType.ALL)
     private Set<Group> groupSet = new HashSet<>();
 
@@ -37,10 +40,6 @@ public class Player {
             uniqueConstraints = @UniqueConstraint(name = "player_photos_unique", columnNames = {"player_id", "photo_id"})
     )
     private Set<Photo> photoSet = new HashSet<>();
-
-    @OneToOne(mappedBy = "player")
-    private User user;
-
 
     public Player() {
     }

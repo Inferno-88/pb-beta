@@ -81,8 +81,8 @@ public class TestController {
 
         event1.addGroupList(groupList);
 
-//        group1.addPlayerList(playerList1);
-//        group2.addPlayerList(playerList2);
+        group1.addPlayerList(playerList1);
+        group2.addPlayerList(playerList2);
 
         groupRepository.save(groupList);
 //
