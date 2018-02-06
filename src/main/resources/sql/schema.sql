@@ -252,6 +252,21 @@ ALTER TABLE ONLY event_photos
 ALTER TABLE ONLY event_photos
   ADD CONSTRAINT event_photos_unique UNIQUE (event_id, photo_id);
 
+--Player_Groups
+CREATE TABLE player_groups (
+  group_id BIGINT,
+  player_id BIGINT
+);
+
+ALTER TABLE ONLY player_groups
+  ADD CONSTRAINT player_groups_to_groups FOREIGN KEY (group_id) REFERENCES groups (id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY player_groups
+  ADD CONSTRAINT player_groups_to_players FOREIGN KEY (player_id) REFERENCES players (id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY player_groups
+  ADD CONSTRAINT player_groups_unique UNIQUE (group_id, player_id);
+
 --Users
 CREATE TABLE users (
   id BIGINT,
@@ -281,6 +296,7 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY users
   ADD CONSTRAINT users_to_players FOREIGN KEY (player_id) REFERENCES players (id) ON DELETE RESTRICT;
+
 
 
 

@@ -29,16 +29,10 @@ public class Player {
     @OneToOne(mappedBy = "player")
     private User user;
 
-    @ManyToMany(mappedBy = "playerSet", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Group> groupSet = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "player_photos",
-            joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_photos_to_players")),
-            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "player_photos_to_photos")),
-            uniqueConstraints = @UniqueConstraint(name = "player_photos_unique", columnNames = {"player_id", "photo_id"})
-    )
+    @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Photo> photoSet = new HashSet<>();
 
     public Player() {

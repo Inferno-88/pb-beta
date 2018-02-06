@@ -19,7 +19,9 @@ public class Rating {
     private int positive;
     private int negative;
 
-    //Parameters with 1 to 5 stars, e.g. playing field quality, etc.
+    //TODO
+    //Main parameters with 1 to 5 stars, e.g. surface quality, cover quality, cover amount, shooting distances, field paint quality, price
+    //Sub parameters with 1 to 5 stars, e.g. rental equipment quality, infrastructure, staff
 
     @OneToOne(mappedBy = "rating")
     private Field field;

@@ -33,7 +33,7 @@ public class Group {
             name = "player_groups",
             joinColumns = @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "player_groups_to_groups")),
             inverseJoinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_groups_to_players")),
-            uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"player_id", "group_id"})
+            uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"group_id", "player_id"})
     )
     private Set<Player> playerSet = new HashSet<>();
 
