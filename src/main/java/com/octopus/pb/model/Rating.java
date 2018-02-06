@@ -19,6 +19,8 @@ public class Rating {
     private int positive;
     private int negative;
 
+    //Parameters with 1 to 5 stars, e.g. playing field quality, etc.
+
     @OneToOne(mappedBy = "rating")
     private Field field;
 

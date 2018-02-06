@@ -1,6 +1,7 @@
 package com.octopus.pb.repository;
 
 import com.octopus.pb.model.Player;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -27,5 +28,8 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
 
     @Override
     List<Player> findAll();
+
+    @Query("SELECT MAX(id) FROM Player")
+    Player findMax(Integer id);
 
 }
