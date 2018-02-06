@@ -29,10 +29,10 @@ public class Player {
     @OneToOne(mappedBy = "player")
     private User user;
 
-    @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "playerSet")
     private Set<Group> groupSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "playerSet")
     private Set<Photo> photoSet = new HashSet<>();
 
     public Player() {
