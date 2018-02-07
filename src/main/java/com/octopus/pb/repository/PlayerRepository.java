@@ -15,7 +15,7 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
     Player save(Player player);
 
     @Override
-    <S extends Player> Iterable<S> save(Iterable<S> players);
+    <S extends Player> List<S> save(Iterable<S> players);
 
     @Override
     void delete(Iterable<? extends Player> entities);

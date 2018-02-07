@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Repository
-public interface RankRepository extends CrudRepository<Rank, Long> {
+public interface RankRepository extends CrudRepository<Rank, Integer> {
 
     @Override
     Rank save(Rank rank);
@@ -20,13 +20,13 @@ public interface RankRepository extends CrudRepository<Rank, Long> {
     void delete(Rank rank);
 
     @Override
-    Rank findOne(Long id);
+    Rank findOne(Integer id);
 
     @Override
     List<Rank> findAll();
 
     @Modifying
     @Query("UPDATE Rank rank SET rank.name = :name WHERE rank.id = :id")
-    int setName(@Param("name") String name, @Param("id") Long id);
+    int setName(@Param("name") String name, @Param("id") Integer id);
 
 }

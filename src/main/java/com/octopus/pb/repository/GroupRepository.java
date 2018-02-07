@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface GroupRepository extends CrudRepository<Group, Long> {
+public interface GroupRepository extends CrudRepository<Group, Integer> {
 
     @Override
     Group save(Group group);
@@ -20,7 +20,7 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
     void delete(Group group);
 
     @Override
-    Group findOne(Long id);
+    Group findOne(Integer id);
 
     @Override
     List<Group> findAll();

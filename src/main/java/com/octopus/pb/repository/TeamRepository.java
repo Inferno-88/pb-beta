@@ -8,19 +8,22 @@ import java.util.List;
 
 
 @Repository
-public interface TeamRepository extends CrudRepository<Team, Long> {
+public interface TeamRepository extends CrudRepository<Team, Integer> {
 
     @Override
     Team save(Team team);
 
     @Override
-    <S extends Team> Iterable<S> save(Iterable<S> teams);
+    <S extends Team> List<S> save(Iterable<S> teams);
 
     @Override
     void delete(Team team);
 
     @Override
-    Team findOne(Long id);
+    void delete(Iterable<? extends Team> entities);
+
+    @Override
+    Team findOne(Integer id);
 
     @Override
     List<Team> findAll();

@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"groupSet", "photoSet", "user"})
+@EqualsAndHashCode(exclude = {"user", "groupSet", "photoSet"})
 @Entity
 @Table(name = "players")
 public class Player {
