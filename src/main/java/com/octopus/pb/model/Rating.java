@@ -26,4 +26,11 @@ public class Rating {
     @OneToOne(mappedBy = "rating")
     private Field field;
 
+    public Rating() {
+    }
+
+    public Rating(Field field) {
+        this.field = field;
+    }
+
 }

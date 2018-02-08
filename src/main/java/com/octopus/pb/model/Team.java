@@ -28,13 +28,7 @@ public class Team {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Player> playerSet = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "team_photos",
-            joinColumns = @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "team_photos_to_teams")),
-            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "team_photos_to_photos")),
-            uniqueConstraints = @UniqueConstraint(name = "team_photos_unique", columnNames = {"team_id", "photo_id"})
-    )
+    @ManyToMany(mappedBy = "teamSet")
     private Set<Photo> photoSet = new HashSet<>();
 
     public Team() {

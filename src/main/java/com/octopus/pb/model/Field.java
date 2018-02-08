@@ -30,13 +30,7 @@ public class Field {
     @OneToMany(mappedBy = "field")
     private Set<Event> eventSet = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "field_photos",
-            joinColumns = @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "field_photos_to_fields")),
-            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "field_photos_to_photos")),
-            uniqueConstraints = @UniqueConstraint(name = "field_photos_unique", columnNames = {"field_id", "photo_id"})
-    )
+    @ManyToMany(mappedBy = "fieldSet")
     private Set<Photo> photoSet = new HashSet<>();
 
     public Field() {
@@ -45,6 +39,16 @@ public class Field {
 
     public Field(String name) {
         this.name = name;
+    }
+
+    public void addRating(Rating rating) {
+        setRating(rating);
+        rating.setField(this);
+    }
+
+    public void removeRating(Rating rating) {
+        setRating(null);
+        rating.setField(null);
     }
 
 }

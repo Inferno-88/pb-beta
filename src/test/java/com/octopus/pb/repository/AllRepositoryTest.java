@@ -40,9 +40,6 @@ public class AllRepositoryTest {
     @Autowired
     private GroupRepository groupRepository;
 
-    @Autowired
-    private RankRepository rankRepository;
-
 
     @Test
     public void testContextLoader() {
@@ -113,8 +110,34 @@ public class AllRepositoryTest {
     }
 
     @Test
-    public void testRankRepo() {
-        //Constraints tests
+    public void testGroupSave() {
+
+        Group group1 = new Group(GroupType.BLUE);
+        Group group2 = new Group(GroupType.RED);
+        Group group3 = new Group(GroupType.YELLOW);
+
+        Group savedGroup1 = groupRepository.save(group1);
+        Group savedGroup2 = groupRepository.save(group2);
+        Group savedGroup3 = groupRepository.save(group3);
+
+        assertEquals("savedGroup1 name does not match", savedGroup1.getGroupType().toString(), "BLUE");
+        assertEquals("savedGroup1 name does not match", savedGroup2.getGroupType().toString(), "RED");
+        assertEquals("savedGroup1 name does not match", savedGroup3.getGroupType().toString(), "YELLOW");
+    }
+
+    @Test
+    public void testCascadeSave() {
+
+        Rank playerRank1 = new Rank("Knight", RankType.PLAYER);
+        Rank playerRank2 = new Rank("Marshal", RankType.PLAYER);
+
+        Rank teamRank1 = new Rank("Bronze", RankType.TEAM);
+        Rank teamRank2 = new Rank("Silver", RankType.TEAM);
+        Rank teamRank3 = new Rank("Gold", RankType.TEAM);
+
+        Rating fieldRating1 = new Rating();
+        Rating fieldRating2 = new Rating();
+
     }
 
 }

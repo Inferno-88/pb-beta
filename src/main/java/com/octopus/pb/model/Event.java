@@ -38,13 +38,7 @@ public class Event {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Map<GroupType, Group> groupMap = new HashMap<>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "event_photos",
-            joinColumns = @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "event_photos_to_events")),
-            inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "event_photos_to_photos")),
-            uniqueConstraints = @UniqueConstraint(name = "event_photos_unique", columnNames = {"event_id", "photo_id"})
-    )
+    @ManyToMany(mappedBy = "eventSet")
     private Set<Photo> photoSet;
 
     public Event() {
