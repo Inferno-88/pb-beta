@@ -26,7 +26,7 @@ public class Player {
     @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "players_to_teams"))
     private Team team;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
     private User user;
 
     @ManyToMany(mappedBy = "playerSet")

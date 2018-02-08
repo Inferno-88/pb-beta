@@ -48,6 +48,13 @@ public class Event {
         this.name = name;
     }
 
+    public Event(String name, LocalDateTime beginDate, LocalDateTime endDate, boolean isActive) {
+        this.name = name;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.isActive = isActive;
+    }
+
     public void addGroup(Group group) {
         groupMap.put(group.getGroupType(), group);
         group.setEvent(this);
@@ -63,6 +70,16 @@ public class Event {
     public void removeGroup(Group group) {
         group.setEvent(null);
         groupMap.remove(group.getGroupType());
+    }
+
+    public void addField(Field field) {
+        setField(field);
+        field.getEventSet().add(this);
+    }
+
+    public void removeField(Field field) {
+        setField(null);
+        field.getEventSet().remove(this);
     }
 
 }

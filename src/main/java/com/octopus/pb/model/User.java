@@ -25,11 +25,20 @@ public class User {
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
 
-    public User(String login, String password, String email, Player player) {
+    public User(String login, String password, String email) {
         this.login = login;
         this.password = password;
         this.email = email;
-        this.player = player;
+    }
+
+    public void addPlayer(Player player) {
+        setPlayer(player);
+        player.setUser(this);
+    }
+
+    public void removePlayer(Player player) {
+        setPlayer(null);
+        player.setUser(null);
     }
 
 }

@@ -41,6 +41,12 @@ public class Field {
         this.name = name;
     }
 
+    public Field(String name, String address, int capacity) {
+        this.name = name;
+        this.address = address;
+        this.capacity = capacity;
+    }
+
     public void addRating(Rating rating) {
         setRating(rating);
         rating.setField(this);

@@ -127,6 +127,7 @@ public class AllRepositoryTest {
 
     @Test
     public void testCascadeSave() {
+        log.info("testCascadeSave is invoked");
 
         Rank playerRank1 = new Rank("Knight", RankType.PLAYER);
         Rank playerRank2 = new Rank("Marshal", RankType.PLAYER);
@@ -138,6 +139,41 @@ public class AllRepositoryTest {
         Rating fieldRating1 = new Rating();
         Rating fieldRating2 = new Rating();
 
+        Field field1 = new Field("Sport");
+        Field field2 = new Field("Forest");
+        field1.addRating(fieldRating1);
+        field2.addRating(fieldRating2);
+
+        Player player1 = new Player("Captain Geek++");
+        Player player2 = new Player("Newbie");
+        player1.setRank(playerRank1);
+        player2.setRank(playerRank2);
+
+        Team team1 = new Team("Brazilian Trucker Cleave");
+        Team team2 = new Team("The Void");
+        Team team3 = new Team("MVP");
+        team1.setRank(teamRank1);
+        team2.setRank(teamRank2);
+        team3.setRank(teamRank3);
+        team1.addPlayer(player1);
+        team2.addPlayer(player2);
+
+        User user1 = new User("someUser1", "somePassword1", "someemail1@email.com");
+        User user2 = new User("someUser2", "somePassword2", "someemail2@email.com");
+        user1.addPlayer(player1);
+        user2.addPlayer(player2);
+
+        Group group1 = new Group(GroupType.RED);
+        Group group2 = new Group(GroupType.BLUE);
+        group1.addPlayer(player1);
+        group2.addPlayer(player2);
+
+        Event event1 = new Event("BPM");
+        event1.addField(field1);
+        event1.addGroup(group1);
+        event1.addGroup(group2);
+
+        eventRepository.save(event1);
     }
 
 }
