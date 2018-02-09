@@ -58,6 +58,9 @@ public class Photo {
     )
     private Set<Event> eventSet;
 
+    public Photo() {
+    }
+
     public Photo(String path, PhotoType photoType) {
         this.path = path;
         this.photoType = photoType;

@@ -37,6 +37,9 @@ public class Group {
     )
     private Set<Player> playerSet = new HashSet<>();
 
+    public Group() {
+    }
+
     public Group(GroupType groupType) {
         this.groupType = groupType;
     }

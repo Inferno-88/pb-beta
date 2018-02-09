@@ -30,6 +30,10 @@ public class Rank {
     @OneToMany(mappedBy = "rank")
     private Set<Team> teamSet = new HashSet<>();
 
+    public Rank() {
+
+    }
+
     public Rank(String name, RankType rankType) {
         this.name = name;
         this.rankType = rankType;

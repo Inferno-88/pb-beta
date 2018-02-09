@@ -40,6 +40,9 @@ public class AllRepositoryTest {
     @Autowired
     private GroupRepository groupRepository;
 
+    @Autowired
+    private RankRepository rankRepository;
+
 
     @Test
     public void testContextLoader() {
@@ -60,6 +63,9 @@ public class AllRepositoryTest {
 
         List<Player> savedList1 = playerRepository.save(playerList1);
         List<Player> savedList2 = playerRepository.save(playerList2);
+
+        savedList1.forEach(p -> log.info("List1 ID: " + p.getId()));
+        savedList2.forEach(p -> log.info("List2 ID: " + p.getId()));
 
         assertTrue("SavedList1 size is not 3", savedList1.size() == 3);
         assertTrue("SavedList2 size is not 2", savedList2.size() == 2);
@@ -120,15 +126,15 @@ public class AllRepositoryTest {
         Group savedGroup2 = groupRepository.save(group2);
         Group savedGroup3 = groupRepository.save(group3);
 
-        assertEquals("savedGroup1 name does not match", savedGroup1.getGroupType().toString(), "BLUE");
-        assertEquals("savedGroup1 name does not match", savedGroup2.getGroupType().toString(), "RED");
-        assertEquals("savedGroup1 name does not match", savedGroup3.getGroupType().toString(), "YELLOW");
+        assertEquals("SavedGroup1 name does not match", savedGroup1.getGroupType().toString(), "BLUE");
+        assertEquals("SavedGroup1 name does not match", savedGroup2.getGroupType().toString(), "RED");
+        assertEquals("SavedGroup1 name does not match", savedGroup3.getGroupType().toString(), "YELLOW");
     }
 
     @Test
     public void testCascadeSave() {
-        log.info("testCascadeSave is invoked");
 
+        log.info("Save data in DB");
         Rank playerRank1 = new Rank("Knight", RankType.PLAYER);
         Rank playerRank2 = new Rank("Marshal", RankType.PLAYER);
 
@@ -174,6 +180,15 @@ public class AllRepositoryTest {
         event1.addGroup(group2);
 
         eventRepository.save(event1);
+
+        log.info("Get data from DB");
+        List<Rank> savedRankList = rankRepository.findAll();
+
+        assertTrue("SavedRankList does not contain playerRank1", savedRankList.contains(playerRank1));
+        assertTrue("SavedRankList does not contain playerRank2", savedRankList.contains(playerRank2));
+
+
+
     }
 
 }

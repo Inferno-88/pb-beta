@@ -25,6 +25,9 @@ public class User {
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
 
+    public User() {
+    }
+
     public User(String login, String password, String email) {
         this.login = login;
         this.password = password;
