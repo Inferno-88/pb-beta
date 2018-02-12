@@ -39,4 +39,24 @@ public class Rank {
         this.rankType = rankType;
     }
 
+    public void addPlayer(Player player) {
+        playerSet.add(player);
+        player.setRank(this);
+    }
+
+    public void removePlayer(Player player) {
+        player.setRank(null);
+        playerSet.remove(player);
+    }
+
+    public void addTeam(Team team) {
+        teamSet.add(team);
+        team.setRank(this);
+    }
+
+    public void removeTeam(Team team) {
+        team.setRank(null);
+        teamSet.remove(team);
+    }
+
 }

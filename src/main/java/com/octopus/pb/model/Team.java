@@ -48,4 +48,8 @@ public class Team {
         playerSet.remove(player);
     }
 
+    public void setRankAddTeam(Rank rank) {
+        rank.addTeam(this);
+    }
+
 }

@@ -52,4 +52,8 @@ public class Player {
         groupSet.remove(group);
     }
 
+    public void setRankAddPlayer(Rank rank) {
+        rank.addPlayer(this);
+    }
+
 }

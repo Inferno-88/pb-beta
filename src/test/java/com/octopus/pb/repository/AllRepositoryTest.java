@@ -17,9 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 @SpringBootTest
@@ -42,6 +40,9 @@ public class AllRepositoryTest {
 
     @Autowired
     private RankRepository rankRepository;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
 
     @Test
@@ -140,27 +141,28 @@ public class AllRepositoryTest {
 
         Rank teamRank1 = new Rank("Bronze", RankType.TEAM);
         Rank teamRank2 = new Rank("Silver", RankType.TEAM);
-        Rank teamRank3 = new Rank("Gold", RankType.TEAM);
+        Rank teamRank3 = new Rank("Gold", RankType.TEAM); //won't be added by eventRepository cascade save
 
         Rating fieldRating1 = new Rating();
-        Rating fieldRating2 = new Rating();
+        Rating fieldRating2 = new Rating(); //won't be added by eventRepository cascade save
 
         Field field1 = new Field("Sport");
-        Field field2 = new Field("Forest");
+        Field field2 = new Field("Forest"); //won't be added by eventRepository cascade save
         field1.addRating(fieldRating1);
         field2.addRating(fieldRating2);
 
         Player player1 = new Player("Captain Geek++");
         Player player2 = new Player("Newbie");
-        player1.setRank(playerRank1);
-        player2.setRank(playerRank2);
+        player1.setRankAddPlayer(playerRank1);
+        player2.setRankAddPlayer(playerRank2);
 
         Team team1 = new Team("Brazilian Trucker Cleave");
         Team team2 = new Team("The Void");
-        Team team3 = new Team("MVP");
-        team1.setRank(teamRank1);
-        team2.setRank(teamRank2);
-        team3.setRank(teamRank3);
+        Team team3 = new Team("MVP"); //won't be added by eventRepository cascade save
+        team1.setRankAddTeam(teamRank1);
+        team2.setRankAddTeam(teamRank2);
+        team3.setRankAddTeam(teamRank3);
+
         team1.addPlayer(player1);
         team2.addPlayer(player2);
 
@@ -182,12 +184,20 @@ public class AllRepositoryTest {
         eventRepository.save(event1);
 
         log.info("Get data from DB");
-        List<Rank> savedRankList = rankRepository.findAll();
 
+        List<Rank> savedRankList = rankRepository.findAll();
         assertTrue("SavedRankList does not contain playerRank1", savedRankList.contains(playerRank1));
         assertTrue("SavedRankList does not contain playerRank2", savedRankList.contains(playerRank2));
+        assertTrue("SavedRankList does not contain teamRank1", savedRankList.contains(teamRank1));
+        assertTrue("SavedRankList does not contain teamRank2", savedRankList.contains(teamRank2));
+        assertFalse("SavedRankList contains teamRank3", savedRankList.contains(teamRank3));
 
+        List<Rating> savedRatingList = ratingRepository.findAll();
+        assertTrue("SavedRatingList does not contain fieldRating1", savedRatingList.contains(fieldRating1));
+        assertFalse("SavedRatingList contains fieldRating2", savedRatingList.contains(fieldRating2));
 
+        List<Team> savedTeamList = teamRepository.findAll();
+        assertTrue("SavedTeamList does not contain team1", savedTeamList.contains(team1));
 
     }
 
