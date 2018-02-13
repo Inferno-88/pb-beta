@@ -56,4 +56,9 @@ public class Player {
         rank.addPlayer(this);
     }
 
+    public void removeRankRemovePlayer() {
+        this.rank.getPlayerSet().remove(this);
+        setRank(null);
+    }
+
 }

@@ -27,22 +27,28 @@ import static org.junit.Assert.*;
 public class AllRepositoryTest {
 
     @Autowired
+    private RankRepository rankRepository;
+
+    @Autowired
+    private RatingRepository ratingRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private PlayerRepository playerRepository;
 
     @Autowired
     private TeamRepository teamRepository;
 
     @Autowired
-    private EventRepository eventRepository;
+    private FieldRepository fieldRepository;
 
     @Autowired
     private GroupRepository groupRepository;
 
     @Autowired
-    private RankRepository rankRepository;
-
-    @Autowired
-    private RatingRepository ratingRepository;
+    private EventRepository eventRepository;
 
 
     @Test
@@ -153,6 +159,7 @@ public class AllRepositoryTest {
 
         Player player1 = new Player("Captain Geek++");
         Player player2 = new Player("Newbie");
+        Player player3 = new Player("LoL");
         player1.setRankAddPlayer(playerRank1);
         player2.setRankAddPlayer(playerRank2);
 
@@ -177,6 +184,7 @@ public class AllRepositoryTest {
         group2.addPlayer(player2);
 
         Event event1 = new Event("BPM");
+        Event event2 = new Event("OPM");
         event1.addField(field1);
         event1.addGroup(group1);
         event1.addGroup(group2);
@@ -198,6 +206,29 @@ public class AllRepositoryTest {
 
         List<Team> savedTeamList = teamRepository.findAll();
         assertTrue("SavedTeamList does not contain team1", savedTeamList.contains(team1));
+        assertTrue("SavedTeamList does not contain team2", savedTeamList.contains(team2));
+        assertFalse("SavedTeamList contains team3", savedTeamList.contains(team3));
+
+        List<Player> savedPlayerList = playerRepository.findAll();
+        assertTrue("SavedPlayerList does not contain player1", savedPlayerList.contains(player1));
+        assertTrue("SavedPlayerList does not contain player2", savedPlayerList.contains(player2));
+        assertFalse("SavedPlayerList contains player3", savedPlayerList.contains(player3));
+
+        List<User> savedUserList = userRepository.findAll();
+        assertTrue("SavedUserList does not contain user1", savedUserList.contains(user1));
+        assertTrue("SavedUserList does not contain user2", savedUserList.contains(user2));
+
+        List<Group> savedGroupList = groupRepository.findAll();
+        assertTrue("SavedGroupList does not contain group1", savedGroupList.contains(group1));
+        assertTrue("SavedGroupList does not contain group1", savedGroupList.contains(group2));
+
+        List<Field> savedFieldList = fieldRepository.findAll();
+        assertTrue("SavedFieldList does not contain field1", savedFieldList.contains(field1));
+        assertFalse("SavedFieldList contains field2", savedFieldList.contains(field2));
+
+        List<Event> savedEventList = eventRepository.findAll();
+        assertTrue("SavedEventList does not contain event1", savedEventList.contains(event1));
+        assertFalse("SavedEventList contains event2", savedEventList.contains(event2));
 
     }
 

@@ -5,9 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "users")
 public class User {

@@ -12,10 +12,10 @@ import java.util.List;
 public interface PlayerRepository extends CrudRepository<Player, Integer> {
 
     @Override
-    Player save(Player player);
+    Player save(Player entity);
 
     @Override
-    <S extends Player> List<S> save(Iterable<S> players);
+    <S extends Player> List<S> save(Iterable<S> entities);
 
     @Override
     void delete(Iterable<? extends Player> entities);
