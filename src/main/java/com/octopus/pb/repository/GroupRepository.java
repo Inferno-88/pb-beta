@@ -14,7 +14,7 @@ public interface GroupRepository extends CrudRepository<Group, Integer> {
     Group save(Group group);
 
     @Override
-    <S extends Group> Iterable<S> save(Iterable<S> entities);
+    <S extends Group> Iterable<S> save(Iterable<S> groups);
 
     @Override
     void delete(Group group);

@@ -32,7 +32,7 @@ public class Player {
     @ManyToMany(mappedBy = "playerSet")
     private Set<Group> groupSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "playerSet")
+    @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Photo> photoSet = new HashSet<>();
 
     public Player() {
@@ -56,7 +56,7 @@ public class Player {
         rank.addPlayer(this);
     }
 
-    public void removeRankRemovePlayer() {
+    public void unsetRankRemovePlayer() {
         this.rank.getPlayerSet().remove(this);
         setRank(null);
     }

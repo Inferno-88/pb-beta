@@ -20,7 +20,7 @@ public interface TeamRepository extends CrudRepository<Team, Integer> {
     void delete(Team team);
 
     @Override
-    void delete(Iterable<? extends Team> entities);
+    void delete(Iterable<? extends Team> teams);
 
     @Override
     Team findOne(Integer id);

@@ -8,16 +8,16 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Override
-    User save(User users);
+    User save(User user);
 
     @Override
     <S extends User> List<S> save(Iterable<S> users);
 
     @Override
-    void delete(Iterable<? extends User> entities);
+    void delete(Iterable<? extends User> users);
 
     @Override
-    void delete(User entity);
+    void delete(User user);
 
     @Override
     User findOne(Integer id);

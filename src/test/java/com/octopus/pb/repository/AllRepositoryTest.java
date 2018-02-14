@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -49,6 +50,9 @@ public class AllRepositoryTest {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private PhotoRepository photoRepository;
 
 
     @Test
@@ -184,10 +188,20 @@ public class AllRepositoryTest {
         group2.addPlayer(player2);
 
         Event event1 = new Event("BPM");
-        Event event2 = new Event("OPM");
+        Event event2 = new Event("OPM"); //won't be added by eventRepository cascade save
         event1.addField(field1);
         event1.addGroup(group1);
         event1.addGroup(group2);
+
+        Photo playerPhoto1 = new Photo("/path/playerPhoto1", PhotoType.PLAYER);
+        Photo playerPhoto2 = new Photo("/path/playerPhoto2", PhotoType.PLAYER); //won't be added by eventRepository cascade save
+        Photo teamPhoto1 = new Photo("/path/teamPhoto1", PhotoType.TEAM);
+        Photo fieldPhoto1 = new Photo("/path/fieldPhoto1", PhotoType.FIELD);
+        Photo eventPhoto1 = new Photo("/path/eventPhoto1", PhotoType.EVENT);
+        playerPhoto1.addPlayer(player1);
+        teamPhoto1.addTeam(team1);
+        fieldPhoto1.addField(field1);
+        eventPhoto1.addEvent(event1);
 
         eventRepository.save(event1);
 
@@ -230,6 +244,12 @@ public class AllRepositoryTest {
         assertTrue("SavedEventList does not contain event1", savedEventList.contains(event1));
         assertFalse("SavedEventList contains event2", savedEventList.contains(event2));
 
+        List<Photo> savedPhotoList = photoRepository.findAll();
+        assertTrue("SavedPhotoList does not contant playerPhoto1", savedPhotoList.contains(playerPhoto1));
+        assertTrue("SavedPhotoList does not contant teamPhoto1", savedPhotoList.contains(teamPhoto1));
+        assertTrue("SavedPhotoList does not contant fieldPhoto1", savedPhotoList.contains(fieldPhoto1));
+        assertTrue("SavedPhotoList does not contant eventPhoto1", savedPhotoList.contains(eventPhoto1));
+        assertFalse("SavedPhotoList contains playerPhoto2", savedPhotoList.contains(playerPhoto2));
     }
 
 }

@@ -72,6 +72,7 @@ ALTER TABLE ONLY fields
 CREATE TABLE teams (
   id      BIGINT NOT NULL,
   name    CHARACTER VARYING(255),
+  short_name CHARACTER VARYING(5),
   rank_id BIGINT
 );
 

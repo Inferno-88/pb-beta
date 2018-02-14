@@ -20,6 +20,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String short_name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rank_id", foreignKey = @ForeignKey(name = "teams_to_ranks"))
@@ -28,7 +29,7 @@ public class Team {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Player> playerSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "teamSet")
+    @ManyToMany(mappedBy = "teamSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Photo> photoSet = new HashSet<>();
 
     public Team() {

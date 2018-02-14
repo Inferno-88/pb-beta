@@ -30,7 +30,7 @@ public class Field {
     @OneToMany(mappedBy = "field")
     private Set<Event> eventSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "fieldSet")
+    @ManyToMany(mappedBy = "fieldSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Photo> photoSet = new HashSet<>();
 
     public Field() {

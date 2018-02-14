@@ -1,6 +1,7 @@
 package com.octopus.pb.model;
 
 import com.octopus.pb.enums.PhotoType;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = {"playerSet", "teamSet", "fieldSet", "eventSet"})
 @Entity
 @Table(name = "photos")
 public class Photo {
@@ -56,7 +58,7 @@ public class Photo {
             inverseJoinColumns = @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "event_photos_to_photos")),
             uniqueConstraints = @UniqueConstraint(name = "event_photos_unique", columnNames = {"event_id", "photo_id"})
     )
-    private Set<Event> eventSet;
+    private Set<Event> eventSet = new HashSet<>();
 
     public Photo() {
     }
@@ -64,6 +66,46 @@ public class Photo {
     public Photo(String path, PhotoType photoType) {
         this.path = path;
         this.photoType = photoType;
+    }
+
+    public void addPlayer(Player player) {
+        playerSet.add(player);
+        player.getPhotoSet().add(this);
+    }
+
+    public void removePlayer(Player player) {
+        player.getPhotoSet().remove(this);
+        playerSet.remove(player);
+    }
+
+    public void addTeam(Team team) {
+        teamSet.add(team);
+        team.getPhotoSet().add(this);
+    }
+
+    public void removeTeam(Team team) {
+        team.getPhotoSet().remove(this);
+        teamSet.remove(team);
+    }
+
+    public void addField(Field field) {
+        fieldSet.add(field);
+        field.getPhotoSet().add(this);
+    }
+
+    public void removeField(Field field) {
+        field.getPhotoSet().remove(this);
+        fieldSet.remove(field);
+    }
+
+    public void addEvent(Event event) {
+        eventSet.add(event);
+        event.getPhotoSet().add(this);
+    }
+
+    public void removeEvent(Event event) {
+        event.getPhotoSet().remove(this);
+        eventSet.remove(event);
     }
 
 }

@@ -8,10 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -38,8 +35,8 @@ public class Event {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Map<GroupType, Group> groupMap = new HashMap<>();
 
-    @ManyToMany(mappedBy = "eventSet")
-    private Set<Photo> photoSet;
+    @ManyToMany(mappedBy = "eventSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Photo> photoSet = new HashSet<>();
 
     public Event() {
     }
