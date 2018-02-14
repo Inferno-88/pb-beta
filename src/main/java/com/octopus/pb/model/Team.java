@@ -20,7 +20,8 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String short_name;
+    private String shortName;
+    private String teamInfo;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rank_id", foreignKey = @ForeignKey(name = "teams_to_ranks"))

@@ -44,6 +44,7 @@ ALTER TABLE ONLY ratings
 CREATE TABLE fields (
   id        BIGINT NOT NULL,
   name      CHARACTER VARYING(255),
+  field_info CHARACTER VARYING(4000),
   address   CHARACTER VARYING(255),
   capacity  BIGINT NOT NULL,
   rating_id BIGINT,
@@ -73,6 +74,7 @@ CREATE TABLE teams (
   id      BIGINT NOT NULL,
   name    CHARACTER VARYING(255),
   short_name CHARACTER VARYING(5),
+  team_info CHARACTER VARYING(4000),
   rank_id BIGINT
 );
 
@@ -125,6 +127,8 @@ ALTER TABLE ONLY players
 CREATE TABLE events (
   id         BIGINT NOT NULL,
   name       CHARACTER VARYING(255),
+  event_info CHARACTER VARYING(4000),
+  gameRules CHARACTER VARYING(4000),
   begin_date TIMESTAMP WITHOUT TIME ZONE,
   end_date   TIMESTAMP WITHOUT TIME ZONE,
   field_id   BIGINT NOT NULL

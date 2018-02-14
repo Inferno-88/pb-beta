@@ -252,4 +252,10 @@ public class AllRepositoryTest {
         assertFalse("SavedPhotoList contains playerPhoto2", savedPhotoList.contains(playerPhoto2));
     }
 
+    @Test
+    public void testCascadeDelete() {
+
+        //TODO
+    }
+
 }

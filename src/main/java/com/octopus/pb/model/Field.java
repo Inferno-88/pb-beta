@@ -20,6 +20,7 @@ public class Field {
     private int id;
 
     private String name;
+    private String fieldInfo; //TODO fieldDetails object with fieldInfo, capacity, size, type, etc.
     private String address;
     private int capacity;
 
