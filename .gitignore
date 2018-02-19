@@ -1,7 +1,9 @@
 .gradle/
 .idea/
+.DS_Store
 gradle/
 gradlew
 gradlew.bat
 build/
 out/
+node_modules/
