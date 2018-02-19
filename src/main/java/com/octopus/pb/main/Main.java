@@ -6,7 +6,7 @@
 //import java.util.Optional;
 //
 //public class Main {
-////    public static void main(String[] args) {
+////    public view void main(String[] args) {
 ////
 //////        String s = "Hello world";
 //////
@@ -60,7 +60,7 @@
 ////
 ////    }
 ////
-////    public static class SampleClass {
+////    public view class SampleClass {
 ////        public Long id;
 ////        public Optional<String> name;
 ////

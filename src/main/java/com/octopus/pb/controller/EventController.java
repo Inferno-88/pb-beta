@@ -19,10 +19,17 @@ public class EventController {
 
 
     @PostMapping("/create")
-    public @ResponseBody String createEvent(@RequestParam String json) {
+    public @ResponseBody String createEvent() {
+
         String response = "Created event: ??";
 
-        //TODO needs logic
+        return response;
+    }
+
+    @GetMapping("/get")
+    public @ResponseBody String getEvent() {
+
+        String response = "Get event: ??";
 
         return response;
     }
@@ -31,8 +38,6 @@ public class EventController {
     public @ResponseBody List<Event> getEventList() {
 
         List<Event> eventList = new ArrayList<>();
-
-        //TODO something
 
         return eventList;
     }

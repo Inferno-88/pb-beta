@@ -1,4 +1,4 @@
-package com.octopus.processor;
+package com.octopus.pb.processor;
 
 
 import org.springframework.stereotype.Component;
