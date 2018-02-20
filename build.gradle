@@ -1,9 +1,9 @@
 group 'com.octopus.pb'
-version '1.0-SNAPSHOT'
+version '0.2'
 
 buildscript {
     ext {
-        springBootVersion = "1.5.8.RELEASE"
+        springBootVersion = "1.5.10.RELEASE"
     }
     repositories {
         mavenCentral()
@@ -12,6 +12,9 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
+
+apply plugin: 'application'
+mainClassName = 'com.octopus.pb.Application'
 
 apply plugin: 'idea'
 apply plugin: 'java'
@@ -31,5 +34,11 @@ dependencies {
     compile("org.projectlombok:lombok:+")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    
+}
+
+
+jar {
+    into('static') {
+        from ('frontend/build')
+    }
 }

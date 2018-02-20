@@ -15,15 +15,15 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-//    @Bean
-//    WebMvcConfigurer configurer() {
-//        return new WebMvcConfigurerAdapter() {
-//            @Override
-//            public void addResourceHandlers (ResourceHandlerRegistry registry) {
-//                registry.addResourceHandler("/events/**").
-//                        addResourceLocations("classpath:/static/events/");
-//            }
-//        };
-//    }
+    @Bean
+    WebMvcConfigurer configurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addResourceHandlers (ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/events/**").
+                        addResourceLocations("classpath:/static/events/");
+            }
+        };
+    }
 
 }

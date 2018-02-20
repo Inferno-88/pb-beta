@@ -1,10 +1,9 @@
-.gradle/
-.idea/
 .DS_Store
-gradle/
-gradlew
-gradlew.bat
-build/
 !frontend/build/
-out/
 node_modules/
+!gradle-wrapper.jar
+/.gradle/
+/.idea/
+/gradle/
+/out/
+/build/

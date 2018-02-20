@@ -12,5 +12,5 @@ spring:
     properties:
       hibernate:
         default_schema: public
-
-
+server:
+  port: 8181

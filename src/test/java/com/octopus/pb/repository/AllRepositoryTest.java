@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import view org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 
 @SpringBootTest
