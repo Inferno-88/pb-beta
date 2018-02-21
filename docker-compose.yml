@@ -1,0 +1,14 @@
+version: '1'
+
+services:
+  postgres:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - 11002:5432
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: pbdb
+      POSTGRES_USER: d.diallo
+      POSTGRES_PASSWORD: pass
