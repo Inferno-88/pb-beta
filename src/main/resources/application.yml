@@ -1,17 +1,17 @@
-spring:
-  datasource:
-    url: "jdbc:postgresql://localhost:5432/pbdb"
-    username: "d.diallo"
-    password: ""
-    driverClassName: "org.postgresql.Driver"
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
-    properties:
-      hibernate:
-        default_schema: public
+#spring:
+#  datasource:
+#    url: "jdbc:postgresql://localhost:5432/pbdb"
+#    username: "d.diallo"
+#    password: ""
+#    driverClassName: "org.postgresql.Driver"
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      ddl-auto: create-drop
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        default_schema: public
 server:
   port: 8181
 logging:
