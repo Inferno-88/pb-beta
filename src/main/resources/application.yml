@@ -14,3 +14,6 @@ spring:
         default_schema: public
 server:
   port: 8181
+logging:
+  level:
+    org.springframework.web: DEBUG
