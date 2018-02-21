@@ -5,10 +5,9 @@ node_modules/
 
 #BACKEND
 .DS_Store
-!gradle-wrapper.jar
+!gradle/wrapper/
 .gradle/
 .idea/
-gradle/
 out/
-build/
-!build/libs/
+/build/
+
