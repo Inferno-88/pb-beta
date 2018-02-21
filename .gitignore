@@ -9,5 +9,6 @@ node_modules/
 .gradle/
 .idea/
 out/
-/build/
+build/
+postgres/
 
