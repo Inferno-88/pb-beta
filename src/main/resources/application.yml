@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:11002/pbdb"
-    username: "d.diallo"
-    password: "pass"
+    url: "jdbc:postgresql://localhost:11008/pbdb"
+    username: "pbdb_user"
+    password: "pbdb_pass"
     driverClassName: "org.postgresql.Driver"
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect

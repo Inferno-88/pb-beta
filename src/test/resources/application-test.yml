@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/pbdbtest"
-    username: "d.diallo"
-    password: ""
+    url: "jdbc:postgresql://localhost:11010/pbdbtest"
+    username: "pbdb_user"
+    password: "pbdb_pass"
     driverClassName: "org.postgresql.Driver"
     data: "classpath:/sql/data-test.sql"
   jpa:
@@ -10,7 +10,4 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    properties:
-      hibernate:
-        default_schema: test
 
