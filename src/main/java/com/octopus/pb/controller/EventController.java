@@ -36,7 +36,7 @@ public class EventController {
 
         Group redGroup = new Group(GroupType.RED);
         Group blueGroup = new Group(GroupType.BLUE);
-        
+
         Event event1 = Event.builder()
                 .name("Event1")
                 .eventInfo("Info about event1")
