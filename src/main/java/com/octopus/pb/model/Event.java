@@ -1,6 +1,7 @@
 package com.octopus.pb.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.octopus.pb.enums.GroupType;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -13,8 +14,10 @@ import java.util.*;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
+@AllArgsConstructor
 @Entity
 @Table(name = "events")
+@Builder
 public class Event {
 
     @Id
@@ -31,14 +34,16 @@ public class Event {
     @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     @MapKey(name="groupType")
     @MapKeyEnumerated(EnumType.STRING)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Map<GroupType, Group> groupMap = new HashMap<>();
+    private final Map<GroupType, Group> groupMap = new HashMap<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "eventSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Photo> photoSet = new HashSet<>();
+    private final Set<Photo> photoSet = new HashSet<>();
 
     public Event() {
     }

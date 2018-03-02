@@ -30,10 +30,10 @@ public class Player {
     private User user;
 
     @ManyToMany(mappedBy = "playerSet")
-    private Set<Group> groupSet = new HashSet<>();
+    private final Set<Group> groupSet = new HashSet<>();
 
     @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Photo> photoSet = new HashSet<>();
+    private final Set<Photo> photoSet = new HashSet<>();
 
     public Player() {
     }

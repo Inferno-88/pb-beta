@@ -12,7 +12,7 @@ public interface EventService {
     //Repository methods
     Event saveEvent(Event event);
 
-    Event getEvent(Event event);
+    Event getEvent(int id);
 
     List<Event> getEventList();
 

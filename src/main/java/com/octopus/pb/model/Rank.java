@@ -25,10 +25,10 @@ public class Rank {
     private RankType rankType;
 
     @OneToMany(mappedBy = "rank")
-    private Set<Player> playerSet = new HashSet<>();
+    private final Set<Player> playerSet = new HashSet<>();
 
     @OneToMany(mappedBy = "rank")
-    private Set<Team> teamSet = new HashSet<>();
+    private final Set<Team> teamSet = new HashSet<>();
 
     public Rank() {
 

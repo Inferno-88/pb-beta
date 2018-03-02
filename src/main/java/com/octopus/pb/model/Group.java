@@ -1,6 +1,7 @@
 package com.octopus.pb.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.octopus.pb.enums.GroupType;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Group {
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "groups_to_events"))
     private Event event;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "player_groups",
@@ -35,7 +37,7 @@ public class Group {
             inverseJoinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "player_groups_to_players")),
             uniqueConstraints = @UniqueConstraint(name = "player_groups_unique", columnNames = {"group_id", "player_id"})
     )
-    private Set<Player> playerSet = new HashSet<>();
+    private final Set<Player> playerSet = new HashSet<>();
 
     public Group() {
     }

@@ -28,10 +28,10 @@ public class Team {
     private Rank rank;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private Set<Player> playerSet = new HashSet<>();
+    private final Set<Player> playerSet = new HashSet<>();
 
     @ManyToMany(mappedBy = "teamSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Photo> photoSet = new HashSet<>();
+    private final Set<Photo> photoSet = new HashSet<>();
 
     public Team() {
     }

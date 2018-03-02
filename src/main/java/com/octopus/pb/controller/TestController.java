@@ -3,18 +3,10 @@ package com.octopus.pb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TestController {
-
-//    @RequestMapping("/")
-//    public String getIndex() {
-//
-//        System.out.println("LOL INIT");
-//
-//        return "forward:index.html";
-//    }
 
     @RequestMapping("/page")
     public String getPage() {
@@ -55,5 +47,4 @@ public class TestController {
 
         return "players/players.html";
     }
-
 }

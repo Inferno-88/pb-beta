@@ -1,8 +1,7 @@
 package com.octopus.pb.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,8 +10,10 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
+@AllArgsConstructor
 @Entity
 @Table(name = "fields")
+@Builder
 public class Field {
 
     @Id
@@ -28,11 +29,13 @@ public class Field {
     @JoinColumn(name = "rating_id", foreignKey = @ForeignKey(name = "fields_to_ratings"))
     private Rating rating;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "field")
-    private Set<Event> eventSet = new HashSet<>();
+    private final Set<Event> eventSet = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "fieldSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Photo> photoSet = new HashSet<>();
+    private final Set<Photo> photoSet = new HashSet<>();
 
     public Field() {
 
