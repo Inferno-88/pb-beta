@@ -2,7 +2,7 @@ package com.octopus.pb.repository;
 
 
 import com.octopus.pb.enums.*;
-import com.octopus.pb.model.*;
+import com.octopus.pb.entity.*;
 
 import lombok.extern.slf4j.Slf4j;
 

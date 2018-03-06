@@ -1,6 +1,6 @@
 package com.octopus.pb.service;
 
-import com.octopus.pb.model.Team;
+import com.octopus.pb.entity.Team;
 
 import java.util.List;
 

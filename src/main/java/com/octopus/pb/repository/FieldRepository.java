@@ -2,7 +2,7 @@ package com.octopus.pb.repository;
 
 
 
-import com.octopus.pb.model.Field;
+import com.octopus.pb.entity.Field;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

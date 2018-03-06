@@ -1,4 +1,4 @@
-package com.octopus.pb.model;
+package com.octopus.pb.entity;
 
 import com.octopus.pb.enums.PhotoType;
 import lombok.EqualsAndHashCode;

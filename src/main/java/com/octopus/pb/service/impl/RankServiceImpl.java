@@ -1,12 +1,12 @@
 package com.octopus.pb.service.impl;
 
 
-import com.octopus.pb.model.Rank;
+import com.octopus.pb.entity.Rank;
 import com.octopus.pb.service.RankService;
 
 import java.util.List;
 
-public class BaseRankService implements RankService {
+public class RankServiceImpl implements RankService {
 
     @Override
     public Rank saveRank(Rank rank) {

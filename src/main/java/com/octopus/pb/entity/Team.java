@@ -1,4 +1,4 @@
-package com.octopus.pb.model;
+package com.octopus.pb.entity;
 
 
 import lombok.EqualsAndHashCode;

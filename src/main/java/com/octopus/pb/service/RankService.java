@@ -1,7 +1,7 @@
 package com.octopus.pb.service;
 
 
-import com.octopus.pb.model.Rank;
+import com.octopus.pb.entity.Rank;
 import java.util.List;
 
 public interface RankService {

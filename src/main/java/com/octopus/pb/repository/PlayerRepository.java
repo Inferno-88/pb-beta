@@ -1,6 +1,6 @@
 package com.octopus.pb.repository;
 
-import com.octopus.pb.model.Player;
+import com.octopus.pb.entity.Player;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

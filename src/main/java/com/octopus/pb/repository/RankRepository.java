@@ -1,6 +1,6 @@
 package com.octopus.pb.repository;
 
-import com.octopus.pb.model.Rank;
+import com.octopus.pb.entity.Rank;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

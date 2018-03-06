@@ -1,15 +1,15 @@
 package com.octopus.pb.service.impl;
 
 
-import com.octopus.pb.model.Group;
-import com.octopus.pb.model.Player;
-import com.octopus.pb.service.GroupAssemblerService;
+import com.octopus.pb.entity.Group;
+import com.octopus.pb.entity.Player;
+import com.octopus.pb.service.GroupService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("groupAssembleService")
-public class BaseGroupAssemblerService implements GroupAssemblerService {
+@Service("groupAssemblerService")
+public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<Player> getPlayersFromGroup(Group group) {

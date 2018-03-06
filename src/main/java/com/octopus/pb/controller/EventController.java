@@ -1,10 +1,9 @@
 package com.octopus.pb.controller;
 
 import com.octopus.pb.enums.GroupType;
-import com.octopus.pb.model.Event;
-import com.octopus.pb.model.Field;
-import com.octopus.pb.model.Group;
-import com.octopus.pb.model.Player;
+import com.octopus.pb.entity.Event;
+import com.octopus.pb.entity.Field;
+import com.octopus.pb.entity.Group;
 import com.octopus.pb.service.EventService;
 
 import org.springframework.beans.factory.annotation.Autowired;

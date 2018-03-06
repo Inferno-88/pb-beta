@@ -1,6 +1,6 @@
 package com.octopus.pb.repository;
 
-import com.octopus.pb.model.User;
+import com.octopus.pb.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

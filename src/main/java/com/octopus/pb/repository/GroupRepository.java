@@ -1,7 +1,7 @@
 package com.octopus.pb.repository;
 
 
-import com.octopus.pb.model.Group;
+import com.octopus.pb.entity.Group;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

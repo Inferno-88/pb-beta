@@ -1,7 +1,7 @@
 package com.octopus.pb.service;
 
 
-import com.octopus.pb.model.User;
+import com.octopus.pb.entity.User;
 
 public interface UserService {
 

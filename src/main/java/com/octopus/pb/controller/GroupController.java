@@ -1,8 +1,8 @@
 package com.octopus.pb.controller;
 
 
-import com.octopus.pb.model.Player;
-import com.octopus.pb.service.GroupAssemblerService;
+import com.octopus.pb.entity.Player;
+import com.octopus.pb.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 public class GroupController {
 
     @Autowired
-    GroupAssemblerService groupAssemblerService;
+    GroupService groupAssemblerService;
 
 
     @PostMapping("/addplayer")

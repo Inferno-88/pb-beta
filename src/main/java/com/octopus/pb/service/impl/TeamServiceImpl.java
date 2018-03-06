@@ -1,11 +1,11 @@
 package com.octopus.pb.service.impl;
 
-import com.octopus.pb.model.Team;
+import com.octopus.pb.entity.Team;
 import com.octopus.pb.service.TeamService;
 
 import java.util.List;
 
-public class BaseTeamService implements TeamService {
+public class TeamServiceImpl implements TeamService {
 
     @Override
     public Team saveTeam(Team player) {

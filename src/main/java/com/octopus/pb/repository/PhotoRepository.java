@@ -1,6 +1,6 @@
 package com.octopus.pb.repository;
 
-import com.octopus.pb.model.Photo;
+import com.octopus.pb.entity.Photo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

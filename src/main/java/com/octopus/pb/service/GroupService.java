@@ -1,13 +1,13 @@
 package com.octopus.pb.service;
 
 
-import com.octopus.pb.model.Group;
-import com.octopus.pb.model.Player;
+import com.octopus.pb.entity.Group;
+import com.octopus.pb.entity.Player;
 
 import java.util.List;
 
 
-public interface GroupAssemblerService {
+public interface GroupService {
 
     //Core methods
     List<Player> getPlayersFromGroup(Group group);
