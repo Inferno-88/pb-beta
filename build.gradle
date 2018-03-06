@@ -20,6 +20,7 @@ apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -30,12 +31,10 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
 
     compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
-
     compile("org.projectlombok:lombok:+")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
-
 
 jar {
     into('static') {
