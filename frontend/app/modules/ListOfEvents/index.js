@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import style from './index.css';
 import ListItem from '../ListItem/index';
 
 class ListOfEvents extends React.Component {
@@ -13,7 +13,7 @@ class ListOfEvents extends React.Component {
 		});
 
 		return (
-			<div className='list_of_events'>
+			<div className={style.listEvent}>
 				<ul>
 					{ events }
 				</ul>
