@@ -1,6 +1,8 @@
-const React = require('react');
-const ListOfEvents = require('./ListOfEvents');
-const EventDescription = require('./EventDescription');
+import React from 'react';
+import ListOfEvents from './ListOfEvents/index';
+import EventDescription from './EventDescription';
+import { listOfEvents, detailOfEvent } from '../mockdata.js';
+
 
 class Layout extends React.Component {
 	constructor (props) {
@@ -8,25 +10,10 @@ class Layout extends React.Component {
 		this.state = {
 			currentEvent: null,
 		};
-		this.events = [{
-			name: 'game1',
-			id: '0'
-		}, {
-			name: 'game2',
-			id: '2'
-		}];
-
-		this.detailEvent=[{
-			id:0,
-			description: 'greate Event',
-		},{},{
-			id:2,
-			description: 'GOOOoooood',
-		}];
 	}
 
 	hendlerOpenEvent (e) {
-		const discr = this.detailEvent[e.target.dataset.id];
+		const discr = detailOfEvent[e.currentTarget.dataset.id];
 		this.setState({
 			currentEvent: discr,
 		});
@@ -35,11 +22,11 @@ class Layout extends React.Component {
 	render () {
 		return (
 			<div>
-				<ListOfEvents events={this.events} onClick={this.hendlerOpenEvent.bind(this)} />
+				<ListOfEvents events={listOfEvents} onClick={this.hendlerOpenEvent.bind(this)} />
 				<EventDescription event={this.state.currentEvent} />
 			</div>
 		);
 	}
 }
 
-module.exports = Layout;
+export default Layout;
