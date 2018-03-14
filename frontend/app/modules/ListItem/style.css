@@ -1,7 +1,30 @@
+@import '../../constants.css';
+
 .listItem {
-	background-color: cornflowerblue;
+	padding: 10px 10px 10px 20px;
+	border: 1px solid rgba(0,0,0,0.4);
 }
 
-.name {
-	background-color: wheat;
+.listItem .name {
+	margin: 0;
+	overflow: hidden;
+	font-size: var(--h3-size);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: normal;
+}
+
+.descriptionRow {
+	font-weight: lighter;
+	font-size: var(--text-main-size);
+}
+
+.descriptionRow .date {
+	padding-right: 10px;
+	border-right: 1px solid rgba(0,0,0,0.4);
+
+}
+
+.descriptionRow .peopleCount {
+	padding: 0 10px;
 }

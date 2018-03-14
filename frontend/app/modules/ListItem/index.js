@@ -9,12 +9,12 @@ class ListItem extends React.Component {
 				<h3 className={style.name}>
 					{this.props.name}
 				</h3>
-				<div className='b-list_item__description'>
-					<span className='b-list_item__description__date'>
+				<div className={style.descriptionRow}>
+					<span className={style.date}>
 						{this.props.date}
 					</span>
-					<span className='b-list_item__description__count'>
-						{this.props.peopleCount}
+					<span className={style.peopleCount}>
+						{this.props.peopleCount} чел.
 					</span>
 				</div>
 			</li>
