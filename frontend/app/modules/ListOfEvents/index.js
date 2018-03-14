@@ -14,7 +14,7 @@ class ListOfEvents extends React.Component {
 
 		return (
 			<div className={style.listEvent}>
-				<ul>
+				<ul className='name'>
 					{ events }
 				</ul>
 			</div>

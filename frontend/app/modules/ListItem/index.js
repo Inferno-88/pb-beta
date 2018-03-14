@@ -1,12 +1,12 @@
 import React from 'react';
-import style from './index.css';
+import style from './style.css';
 
 class ListItem extends React.Component {
 
 	render () {
 		return (
 			<li onClick={this.props.onClick} className={style.listItem} data-id={this.props.dataId}>
-				<h3 className='b-list_item__name'>
+				<h3 className={style.name}>
 					{this.props.name}
 				</h3>
 				<div className='b-list_item__description'>
