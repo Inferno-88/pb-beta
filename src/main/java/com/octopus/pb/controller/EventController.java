@@ -67,6 +67,8 @@ public class EventController {
 
     @GetMapping("/getAllPreview")
     public @ResponseBody List<EventPreviewDto> getEventPreviewList() {
+        eventService.buildEvent();
+
         return eventService.getEventPreviewList();
     }
 
