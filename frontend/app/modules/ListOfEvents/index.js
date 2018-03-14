@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './index.css';
+import style from './style.css';
 import ListItem from '../ListItem/index';
 
 class ListOfEvents extends React.Component {
