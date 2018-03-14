@@ -14,6 +14,21 @@ export const listOfEvents =[
 		name: 'З.О.Н.А.: Ветер свободы',
 		date: '13.08.2018',
 		peopleCount: '85',
+	},{
+		id: 3,
+		name: 'БПМ',
+		date: '22.04.2018',
+		peopleCount: '3000',
+	},{
+		id: 4,
+		name: 'Красная капелла: Ответный удар',
+		date: '07.06.2018',
+		peopleCount: '200',
+	},{
+		id: 5,
+		name: 'З.О.Н.А.: Ветер свободы',
+		date: '13.08.2018',
+		peopleCount: '85',
 	}
 ];
 

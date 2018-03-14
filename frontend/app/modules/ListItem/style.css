@@ -1,8 +1,10 @@
 @import '../../constants.css';
 
 .listItem {
-	padding: 10px 10px 10px 20px;
+	padding: 10px 15px 10px 20px;
 	border: 1px solid rgba(0,0,0,0.4);
+	box-sizing: border-box;
+	height: 60px;
 }
 
 .listItem .name {
@@ -22,7 +24,6 @@
 .descriptionRow .date {
 	padding-right: 10px;
 	border-right: 1px solid rgba(0,0,0,0.4);
-
 }
 
 .descriptionRow .peopleCount {
