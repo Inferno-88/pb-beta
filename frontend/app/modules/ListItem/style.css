@@ -1,0 +1,31 @@
+@import '../../constants.css';
+
+.listItem {
+	padding: 10px 15px 10px 20px;
+	border: 1px solid rgba(0,0,0,0.4);
+	box-sizing: border-box;
+	height: 60px;
+}
+
+.listItem .name {
+	margin: 0;
+	overflow: hidden;
+	font-size: var(--h3-size);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: normal;
+}
+
+.descriptionRow {
+	font-weight: lighter;
+	font-size: var(--text-main-size);
+}
+
+.descriptionRow .date {
+	padding-right: 10px;
+	border-right: 1px solid rgba(0,0,0,0.4);
+}
+
+.descriptionRow .peopleCount {
+	padding: 0 10px;
+}
