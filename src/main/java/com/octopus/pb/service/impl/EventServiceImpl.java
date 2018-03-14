@@ -43,7 +43,7 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<EventPreviewDto> getEventPreviewList() {
-        return eventRepository.findAll().stream()
+        return getEventList().stream()
                 .map(e -> eventPreviewMapper.entityToDto(e))
                 .collect(Collectors.toList());
     }
@@ -62,7 +62,7 @@ public class EventServiceImpl implements EventService {
         Group blueGroup = new Group(GroupType.BLUE);
 
         Event event1 = Event.builder()
-                .name("Event1")
+                .name("Event3")
                 .eventInfo("Info about event1")
                 .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
                 .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))

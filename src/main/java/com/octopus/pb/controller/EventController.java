@@ -55,14 +55,19 @@ public class EventController {
         return responseList;
     }
 
-    @GetMapping
-    public @ResponseBody List<EventPreviewDto> getEventPreviewList() {
-        return eventService.getEventPreviewList();
-    }
-
     @PostMapping("/create")
     public @ResponseBody String createEvent() {
         return "Created event: ??";
+    }
+
+    @GetMapping("/getPreview/{id}")
+    public @ResponseBody EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
+        return eventService.getEventPreview(id);
+    }
+
+    @GetMapping("/getAllPreview")
+    public @ResponseBody List<EventPreviewDto> getEventPreviewList() {
+        return eventService.getEventPreviewList();
     }
 
     @GetMapping("/get/{id}")
