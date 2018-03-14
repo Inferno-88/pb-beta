@@ -62,8 +62,8 @@ public class EventServiceImpl implements EventService {
         Group blueGroup = new Group(GroupType.BLUE);
 
         Event event1 = Event.builder()
-                .name("Event3")
-                .eventInfo("Info about event1")
+                .name("Some Event")
+                .eventInfo("Info about event")
                 .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
                 .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))
                 .build();

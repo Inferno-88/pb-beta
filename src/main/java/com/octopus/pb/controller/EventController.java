@@ -24,40 +24,40 @@ public class EventController {
     EventService eventService;
 
 
-    @GetMapping("/test/{id}")
-    public @ResponseBody List<?> test(@PathVariable("id") int id) {
+//    @GetMapping("/test/{id}")
+//    public @ResponseBody List<?> test(@PathVariable("id") int id) {
+//
+//        Field field1 = Field.builder()
+//                .name("Field1")
+//                .fieldInfo("Info about field1")
+//                .address("City, Street, Building")
+//                .capacity(100)
+//                .build();
+//
+//        Group redGroup = new Group(GroupType.RED);
+//        Group blueGroup = new Group(GroupType.BLUE);
+//
+//        Event event1 = Event.builder()
+//                .name("Event1")
+//                .eventInfo("Info about event1")
+//                .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
+//                .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))
+//                .build();
+//        event1.addField(field1);
+//        event1.addGroup(redGroup);
+//        event1.addGroup(blueGroup);
+//
+//        List<Object> responseList = new ArrayList<>();
+//        responseList.add("You entered ID: " + id);
+//        responseList.add(redGroup);
+//        responseList.add(blueGroup);
+//
+//        return responseList;
+//    }
 
-        Field field1 = Field.builder()
-                .name("Field1")
-                .fieldInfo("Info about field1")
-                .address("City, Street, Building")
-                .capacity(100)
-                .build();
-
-        Group redGroup = new Group(GroupType.RED);
-        Group blueGroup = new Group(GroupType.BLUE);
-
-        Event event1 = Event.builder()
-                .name("Event1")
-                .eventInfo("Info about event1")
-                .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
-                .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))
-                .build();
-        event1.addField(field1);
-        event1.addGroup(redGroup);
-        event1.addGroup(blueGroup);
-
-        List<Object> responseList = new ArrayList<>();
-        responseList.add("You entered ID: " + id);
-        responseList.add(redGroup);
-        responseList.add(blueGroup);
-
-        return responseList;
-    }
-
-    @PostMapping("/create")
-    public @ResponseBody String createEvent() {
-        return "Created event: ??";
+    @GetMapping("/create")
+    public @ResponseBody int createEvent() {
+        return eventService.buildEvent().getId();
     }
 
     @GetMapping("/getPreview/{id}")
@@ -67,8 +67,6 @@ public class EventController {
 
     @GetMapping("/getAllPreview")
     public @ResponseBody List<EventPreviewDto> getEventPreviewList() {
-        eventService.buildEvent();
-
         return eventService.getEventPreviewList();
     }
 
