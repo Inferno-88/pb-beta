@@ -29,6 +29,10 @@ public class EventServiceImpl implements EventService {
         log.info("************** Preparing {} **************", EventService.class);
     }
 
+    private Class getInterface() {
+        return this.getClass().getInterfaces()[0];
+    }
+
     //Custom methods
     public Event buildEvent() {
 
@@ -52,9 +56,7 @@ public class EventServiceImpl implements EventService {
         event1.addGroup(redGroup);
         event1.addGroup(blueGroup);
 
-
-        return (Event) mediator.getRepository(this.getClass().getInterfaces()[0])
-                .save(event1);
+        return (Event) mediator.getRepository(getInterface()).save(event1);
     }
 
     @Override

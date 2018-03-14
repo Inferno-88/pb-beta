@@ -4,12 +4,14 @@ version '0.3'
 buildscript {
     ext {
         springBootVersion = "1.5.10.RELEASE"
+//        aptVersion = "0.15"
     }
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//        classpath "net.ltgt.gradle:gradle-apt-plugin:${aptVersion}"
     }
 }
 
@@ -19,6 +21,7 @@ mainClassName = 'com.octopus.pb.Application'
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+//apply plugin: "net.ltgt.apt"
 
 sourceCompatibility = 1.8
 
@@ -31,13 +34,15 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
 
     compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+    compile group: 'org.mapstruct', name: 'mapstruct-jdk8', version: '1.2.0.Final'
+    compile group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.2.0.Final'
     compile("org.projectlombok:lombok:+")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-jar {
-    into('static') {
-        from ('frontend/build')
-    }
-}
+//jar {
+//    into('static') {
+//        from('frontend/build')
+//    }
+//}

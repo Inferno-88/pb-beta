@@ -27,16 +27,16 @@ public class MediatorImpl implements Mediator {
     private final UserRepository userRepository;
 
     @Override
-    public <T extends CrudRepository, R> T getRepository(Class<R> className) {
+    public <T extends CrudRepository, R> T getRepository(Class<R> clazz) {
 
-        switch (className.getSimpleName()) {
+        switch (clazz.getSimpleName()) {
             case "EventService" :
             return (T) eventRepository;
 
             case "GroupService" :
             return (T) groupRepository;
 
-            default : throw new IllegalArgumentException("Repository not found. Incorrect interface name");
+            default : throw new IllegalArgumentException("Repository not found. Incorrect interface name.");
         }
     }
 
