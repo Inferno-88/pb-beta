@@ -41,8 +41,8 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-jar {
-    into('static') {
-        from('frontend/build')
-    }
-}
+//jar {
+//    into('static') {
+//        from('frontend/build')
+//    }
+//}
