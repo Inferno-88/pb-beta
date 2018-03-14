@@ -6,3 +6,6 @@ FAQ:
 2. From root dir 'docker-compose up'
 3. From root dir 'gradle build'
 4. From root dir 'java -jar build/libs/test-project-0.3.jar'
+
+
+Event preview URL: http://localhost:8181/event/getAllPreview
