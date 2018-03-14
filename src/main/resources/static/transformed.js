@@ -10148,6 +10148,21 @@ const listOfEvents = [{
 	name: 'З.О.Н.А.: Ветер свободы',
 	date: '13.08.2018',
 	peopleCount: '85'
+}, {
+	id: 3,
+	name: 'БПМ',
+	date: '22.04.2018',
+	peopleCount: '3000'
+}, {
+	id: 4,
+	name: 'Красная капелла: Ответный удар',
+	date: '07.06.2018',
+	peopleCount: '200'
+}, {
+	id: 5,
+	name: 'З.О.Н.А.: Ветер свободы',
+	date: '13.08.2018',
+	peopleCount: '85'
 }];
 /* harmony export (immutable) */ __webpack_exports__["b"] = listOfEvents;
 
@@ -10243,20 +10258,70 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+//TODO все константы стилей запихнуть в props и определить их в defaultProps
+
 class ListOfEvents extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			showCount: props.showCount ? props.showCount : 4,
+			itemCount: props.events.length,
+			currentPosition: 0
+		};
+		this.onClickDown = this.onClickDown.bind(this);
+		this.onClickUp = this.onClickUp.bind(this);
+	}
+
+	onClickUp() {
+		let cur = this.state.currentPosition;
+		if (cur > 0) {
+			cur--;
+		}
+		this.setState({
+			currentPosition: cur
+		});
+	}
+
+	onClickDown() {
+		let cur = this.state.currentPosition;
+		if (cur < this.state.itemCount - this.state.showCount) {
+			cur++;
+		}
+		this.setState({
+			currentPosition: cur
+		});
+	}
 
 	render() {
 		let events = this.props.events.map(item => {
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ListItem_index__["a" /* default */], _extends({ onClick: this.props.onClick, dataId: item.id, key: item.id }, item));
 		});
 
+		const notShowUp = this.state.currentPosition === 0;
+		const notShowDown = this.state.currentPosition === this.state.itemCount - this.state.showCount;
+
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			'div',
 			{ className: __WEBPACK_IMPORTED_MODULE_1__style_css___default.a.listEvent },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				'ul',
-				{ className: 'name' },
-				events
+				'div',
+				{ className: __WEBPACK_IMPORTED_MODULE_1__style_css___default.a.up, onClick: this.onClickUp, style: { opacity: notShowUp ? 0 : 1 } },
+				'^'
+			),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				'div',
+				{ className: __WEBPACK_IMPORTED_MODULE_1__style_css___default.a.listWrapper },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'ul',
+					{ style: { top: this.state.currentPosition * -60 + 'px' } },
+					events
+				)
+			),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				'div',
+				{ className: __WEBPACK_IMPORTED_MODULE_1__style_css___default.a.down, onClick: this.onClickDown, style: { opacity: notShowDown ? 0 : 1 } },
+				'v'
 			)
 		);
 	}
@@ -11221,7 +11286,7 @@ exports = module.exports = __webpack_require__(33)(false);
 exports.i(__webpack_require__(92), "");
 
 // module
-exports.push([module.i, ".style__listItem___22aLv {\n\tpadding: 10px 10px 10px 20px;\n\tborder: 1px solid rgba(0,0,0,0.4);\n}\n\n.style__listItem___22aLv .style__name___3O3K4 {\n\tmargin: 0;\n\toverflow: hidden;\n\tfont-size: var(--h3-size);\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\tfont-weight: normal;\n}\n\n.style__descriptionRow___1QKqL {\n\tfont-weight: lighter;\n\tfont-size: var(--text-main-size);\n}\n\n.style__descriptionRow___1QKqL .style__date___34puy {\n\tpadding-right: 10px;\n\tborder-right: 1px solid rgba(0,0,0,0.4);\n\n}\n\n.style__descriptionRow___1QKqL .style__peopleCount___1f6h0 {\n\tpadding: 0 10px;\n}\n", ""]);
+exports.push([module.i, ".style__listItem___22aLv {\n\tpadding: 10px 15px 10px 20px;\n\tborder: 1px solid rgba(0,0,0,0.4);\n\tbox-sizing: border-box;\n\theight: 60px;\n}\n\n.style__listItem___22aLv .style__name___3O3K4 {\n\tmargin: 0;\n\toverflow: hidden;\n\tfont-size: var(--h3-size);\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\tfont-weight: normal;\n}\n\n.style__descriptionRow___1QKqL {\n\tfont-weight: lighter;\n\tfont-size: var(--text-main-size);\n}\n\n.style__descriptionRow___1QKqL .style__date___34puy {\n\tpadding-right: 10px;\n\tborder-right: 1px solid rgba(0,0,0,0.4);\n}\n\n.style__descriptionRow___1QKqL .style__peopleCount___1f6h0 {\n\tpadding: 0 10px;\n}\n", ""]);
 
 // exports
 exports.locals = {
@@ -11241,11 +11306,14 @@ exports = module.exports = __webpack_require__(33)(false);
 
 
 // module
-exports.push([module.i, ".style__listEvent___2cs1a {\n\twidth: 30%;\n\toverflow: hidden;\n}\n\n.style__listEvent___2cs1a ul {\n\tlist-style: none;\n\tpadding: 0;\n\tmargin: 0;\n}", ""]);
+exports.push([module.i, ".style__listEvent___2cs1a {\n\tposition: relative;\n\twidth: 30%;\n\toverflow: hidden;\n}\n\n.style__listWrapper___2P4tD {\n\tposition: relative;\n\theight: 240px; /*TODO добавить внизу туман*/\n\toverflow: hidden;\n\tbox-sizing: border-box;\n}\n\n.style__listWrapper___2P4tD ul {\n\tposition: absolute;\n\tlist-style: none;\n\theight: 100%;\n\twidth: 100%;\n\ttop: 0;\n\tpadding: 0;\n\tmargin: 0;\n\ttransition: top 1s;\n}\n\n.style__up___25WCE, .style__down___G7_N7 {\n\tcursor: pointer;\n\tbackground-color: rgba(0,0,0,0.2);\n\ttext-align: center;\n\ttransition: opacity 1s;\n}\n\n\n\n", ""]);
 
 // exports
 exports.locals = {
-	"listEvent": "style__listEvent___2cs1a"
+	"listEvent": "style__listEvent___2cs1a",
+	"listWrapper": "style__listWrapper___2P4tD",
+	"up": "style__up___25WCE",
+	"down": "style__down___G7_N7"
 };
 
 /***/ }),
