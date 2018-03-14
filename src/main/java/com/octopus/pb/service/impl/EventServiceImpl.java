@@ -1,27 +1,35 @@
 package com.octopus.pb.service.impl;
 
-import com.octopus.pb.enums.GroupType;
+import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.entity.Event;
 import com.octopus.pb.entity.Field;
 import com.octopus.pb.entity.Group;
+import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.manager.Mediator;
+import com.octopus.pb.mapper.EventMapper;
+import com.octopus.pb.mapper.EventPreviewMapper;
+import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.service.EventService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("eventService")
 @Slf4j
+@RequiredArgsConstructor
 public class EventServiceImpl implements EventService {
 
-    @Autowired
-    private Mediator mediator;
+    private final Mediator mediator;
+    private final EventMapper eventMapper;
+    private final EventPreviewMapper eventPreviewMapper;
+    private final EventRepository eventRepository;
 
 
     @PostConstruct
@@ -29,8 +37,15 @@ public class EventServiceImpl implements EventService {
         log.info("************** Preparing {} **************", EventService.class);
     }
 
-    private Class getInterface() {
-        return this.getClass().getInterfaces()[0];
+
+    public EventPreviewDto getEventPreview(int id) {
+        return eventPreviewMapper.entityToDto(getEvent(id));
+    }
+
+    public List<EventPreviewDto> getEventPreviewList() {
+        return eventRepository.findAll().stream()
+                .map(e -> eventPreviewMapper.entityToDto(e))
+                .collect(Collectors.toList());
     }
 
     //Custom methods
@@ -56,23 +71,22 @@ public class EventServiceImpl implements EventService {
         event1.addGroup(redGroup);
         event1.addGroup(blueGroup);
 
-        return (Event) mediator.getRepository(getInterface()).save(event1);
+        return saveEvent(event1);
     }
 
     @Override
     public Event saveEvent(Event event) {
-        return null;
+        return eventRepository.save(event);
     }
 
     @Override
     public Event getEvent(int id) {
-//        return eventRepository.findOne(id);
-        return null;
+        return eventRepository.findOne(id);
     }
 
     @Override
     public List<Event> getEventList() {
-        return null;
+        return eventRepository.findAll();
     }
 
 }

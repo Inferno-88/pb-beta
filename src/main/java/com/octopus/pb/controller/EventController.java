@@ -1,5 +1,6 @@
 package com.octopus.pb.controller;
 
+import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.entity.Event;
 import com.octopus.pb.entity.Field;
@@ -54,28 +55,24 @@ public class EventController {
         return responseList;
     }
 
+    @GetMapping
+    public @ResponseBody List<EventPreviewDto> getEventPreviewList() {
+        return eventService.getEventPreviewList();
+    }
+
     @PostMapping("/create")
     public @ResponseBody String createEvent() {
-
-        String response = "Created event: ??";
-
-        return response;
+        return "Created event: ??";
     }
 
     @GetMapping("/get/{id}")
     public @ResponseBody Event getEvent(@PathVariable("id") int id) {
-
-        Event eventResponse = eventService.getEvent(id);
-
-        return eventResponse;
+        return eventService.getEvent(id);
     }
 
     @GetMapping("/getAll")
     public @ResponseBody List<Event> getEventList() {
-
-        List<Event> eventList = new ArrayList<>();
-
-        return eventList;
+        return eventService.getEventList();
     }
 
 }

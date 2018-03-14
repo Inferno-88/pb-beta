@@ -12,10 +12,9 @@ public class EventDto {
     private String gameRules;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
-
     private boolean isActive;
-//    private Field field;
-//
+//    private FieldDto field;
+
 //    private final Map<GroupType, Group> groupMap = new HashMap<>();
 //    private final Set<Photo> photoSet = new HashSet<>();
 

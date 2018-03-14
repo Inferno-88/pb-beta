@@ -27,9 +27,9 @@ public class MediatorImpl implements Mediator {
     private final UserRepository userRepository;
 
     @Override
-    public <T extends CrudRepository, R> T getRepository(Class<R> clazz) {
+    public <T extends CrudRepository, R> T getRepository(Class<R> serviceName) {
 
-        switch (clazz.getSimpleName()) {
+        switch (serviceName.getSimpleName()) {
             case "EventService" :
             return (T) eventRepository;
 
