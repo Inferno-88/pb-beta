@@ -5,7 +5,7 @@ class EventDescription extends React.Component {
 
 
 	render () {
-		const ev = this.props.event ? this.props.event.description : '' ;
+		const ev = JSON.stringify(this.props.event);
 
 		return (
 			<div>
