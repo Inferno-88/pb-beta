@@ -13,7 +13,7 @@ public class EventDto {
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private boolean isActive;
-//    private FieldDto field;
+    private FieldDto fieldDto;
 
 //    private final Map<GroupType, Group> groupMap = new HashMap<>();
 //    private final Set<Photo> photoSet = new HashSet<>();
