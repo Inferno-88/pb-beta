@@ -64,6 +64,7 @@ public class EventServiceImpl implements EventService {
         Event event1 = Event.builder()
                 .name("Some Event")
                 .eventInfo("Info about event")
+                .capacity(888)
                 .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
                 .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))
                 .build();

@@ -1,8 +1,9 @@
 package com.octopus.pb.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,11 @@ public class EventPreviewDto {
 
     private int id;
     private String name;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime date;
+
     private int peopleCount;
     private String snippet;
     private String field;

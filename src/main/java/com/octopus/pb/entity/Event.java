@@ -26,6 +26,7 @@ public class Event {
     private String name;
     private String eventInfo;
     private String gameRules;
+    private int capacity;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private boolean isActive;

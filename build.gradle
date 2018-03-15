@@ -4,14 +4,12 @@ version '0.3'
 buildscript {
     ext {
         springBootVersion = "1.5.10.RELEASE"
-//        aptVersion = "0.15"
     }
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-//        classpath "net.ltgt.gradle:gradle-apt-plugin:${aptVersion}"
     }
 }
 
@@ -36,6 +34,7 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
     compile group: 'org.mapstruct', name: 'mapstruct-jdk8', version: '1.2.0.Final'
     compile group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.2.0.Final'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.4'
     compile("org.projectlombok:lombok:+")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")

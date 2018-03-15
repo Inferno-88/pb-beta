@@ -15,8 +15,8 @@ public class EventPreviewMapperImpl implements EventPreviewMapper {
                 .id(eventEntity.getId())
                 .name(eventEntity.getName())
                 .date(eventEntity.getBeginDate())
-                .peopleCount(800) //TODO Add field to Event entity
-                .snippet(eventEntity.getEventInfo()) //TODO Add field to Event entity. Perhaps event details class?
+                .peopleCount(eventEntity.getCapacity())
+                .snippet(eventEntity.getEventInfo()) //TODO Add field to Event entity
                 .field("Какое-то поле в лесу")
                 .build();
     }

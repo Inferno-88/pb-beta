@@ -9,9 +9,10 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-#    properties:
-#      hibernate:
-#        default_schema: public
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
 server:
   port: 8181
 logging:
