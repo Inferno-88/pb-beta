@@ -1,82 +1,47 @@
 package com.octopus.pb.controller;
 
 import com.octopus.pb.dto.EventPreviewDto;
-import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.entity.Event;
-import com.octopus.pb.entity.Field;
-import com.octopus.pb.entity.Group;
 import com.octopus.pb.service.EventService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+
+@RestController
 @RequestMapping("/event")
 public class EventController {
 
     @Autowired
-    EventService eventService;
+    private EventService eventService;
 
-
-//    @GetMapping("/test/{id}")
-//    public @ResponseBody List<?> test(@PathVariable("id") int id) {
-//
-//        Field field1 = Field.builder()
-//                .name("Field1")
-//                .fieldInfo("Info about field1")
-//                .address("City, Street, Building")
-//                .capacity(100)
-//                .build();
-//
-//        Group redGroup = new Group(GroupType.RED);
-//        Group blueGroup = new Group(GroupType.BLUE);
-//
-//        Event event1 = Event.builder()
-//                .name("Event1")
-//                .eventInfo("Info about event1")
-//                .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
-//                .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))
-//                .build();
-//        event1.addField(field1);
-//        event1.addGroup(redGroup);
-//        event1.addGroup(blueGroup);
-//
-//        List<Object> responseList = new ArrayList<>();
-//        responseList.add("You entered ID: " + id);
-//        responseList.add(redGroup);
-//        responseList.add(blueGroup);
-//
-//        return responseList;
-//    }
 
     @GetMapping("/create")
-    public @ResponseBody int createEvent() {
+    public int createEvent() {
         return eventService.buildEvent().getId();
     }
 
     @GetMapping("/getPreview/{id}")
-    public @ResponseBody EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
+    public EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
         return eventService.getEventPreview(id);
     }
 
     @GetMapping("/getAllPreview")
-    public @ResponseBody List<EventPreviewDto> getEventPreviewList() {
+    public List<EventPreviewDto> getEventPreviewList() {
         return eventService.getEventPreviewList();
     }
 
     @GetMapping("/get/{id}")
-    public @ResponseBody Event getEvent(@PathVariable("id") int id) {
+    public Event getEvent(@PathVariable("id") int id) {
         return eventService.getEvent(id);
     }
 
     @GetMapping("/getAll")
-    public @ResponseBody List<Event> getEventList() {
+    public List<Event> getEventList() {
         return eventService.getEventList();
     }
 
