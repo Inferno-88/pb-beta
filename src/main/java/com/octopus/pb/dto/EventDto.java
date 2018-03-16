@@ -1,5 +1,6 @@
 package com.octopus.pb.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.octopus.pb.entity.Group;
 import com.octopus.pb.entity.Photo;
 import com.octopus.pb.enums.GroupType;
@@ -25,7 +26,8 @@ public class EventDto {
     private boolean isActive;
     private FieldDto field;
 
+//    @JsonIgnore
     private Map<GroupType, Group> groupMap;
-    private Set<Photo> photoSet;
+//    private Set<Photo> photoSet;
 
 }
