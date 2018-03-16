@@ -24,7 +24,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String eventInfo;
+    private String info;
+    private String shortInfo;
     private String gameRules;
     private int capacity;
     private LocalDateTime beginDate;

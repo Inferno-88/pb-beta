@@ -1,5 +1,6 @@
 package com.octopus.pb.controller;
 
+import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.entity.Event;
 import com.octopus.pb.service.EventService;
@@ -41,7 +42,12 @@ public class EventController {
     }
 
     @GetMapping("/getAll")
-    public List<Event> getEventList() {
+    public List<EventDto> getEventList() {
+        return eventService.getEventDtoList();
+    }
+
+    @GetMapping("/getAll2")
+    public List<Event> getEventList2() {
         return eventService.getEventList();
     }
 

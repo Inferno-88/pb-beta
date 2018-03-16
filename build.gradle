@@ -19,7 +19,6 @@ mainClassName = 'com.octopus.pb.Application'
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
-//apply plugin: "net.ltgt.apt"
 
 sourceCompatibility = 1.8
 

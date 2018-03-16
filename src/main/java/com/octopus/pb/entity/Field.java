@@ -7,13 +7,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Builder
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
 @Entity
 @Table(name = "fields")
-@Builder
 public class Field {
 
     @Id
@@ -21,9 +21,11 @@ public class Field {
     private int id;
 
     private String name;
-    private String fieldInfo; //TODO fieldDetails object with fieldInfo, capacity, size, type, etc.
-    private String address;
+    private String info;
+    private String type;
+    private String size;
     private int capacity;
+    private String address;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rating_id", foreignKey = @ForeignKey(name = "fields_to_ratings"))
@@ -43,12 +45,6 @@ public class Field {
 
     public Field(String name) {
         this.name = name;
-    }
-
-    public Field(String name, String address, int capacity) {
-        this.name = name;
-        this.address = address;
-        this.capacity = capacity;
     }
 
     public void addRating(Rating rating) {

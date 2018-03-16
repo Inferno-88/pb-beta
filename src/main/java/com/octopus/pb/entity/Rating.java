@@ -18,10 +18,14 @@ public class Rating {
     private int id;
     private int positive;
     private int negative;
-
-    //TODO
-    //Main parameters with 1 to 5 stars, e.g. surface quality, cover quality, cover amount, shooting distances, field paint quality, price
-    //Sub parameters with 1 to 5 stars, e.g. rental equipment quality, infrastructure, staff
+    private int surfaceQuality;
+    private int coverAmount;
+    private int coverQuality;
+    private int coverPlacement;
+    private int infrastructure;
+    private int staff;
+    private int rentalEquipment;
+    private int prices;
 
     @OneToOne(mappedBy = "rating")
     private Field field;

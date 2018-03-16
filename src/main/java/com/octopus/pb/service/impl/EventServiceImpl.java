@@ -1,17 +1,20 @@
 package com.octopus.pb.service.impl;
 
+import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.entity.Event;
 import com.octopus.pb.entity.Field;
 import com.octopus.pb.entity.Group;
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.manager.Mediator;
+import com.octopus.pb.mapper.CycleAvoidContext;
 import com.octopus.pb.mapper.EventMapper;
 import com.octopus.pb.mapper.EventPreviewMapper;
 import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.Context;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -30,13 +33,13 @@ public class EventServiceImpl implements EventService {
     private final EventMapper eventMapper;
     private final EventPreviewMapper eventPreviewMapper;
     private final EventRepository eventRepository;
+    private final CycleAvoidContext cycleAvoidContext;
 
 
     @PostConstruct
     private void init() {
         log.info("************** Preparing {} **************", EventService.class);
     }
-
 
     public EventPreviewDto getEventPreview(int id) {
         return eventPreviewMapper.entityToDto(getEvent(id));
@@ -48,12 +51,18 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
+    public List<EventDto> getEventDtoList() {
+        return getEventList().stream()
+                .map(e -> eventMapper.entityToDto(e, cycleAvoidContext))
+                .collect(Collectors.toList());
+    }
+
     //Custom methods
     public Event buildEvent() {
 
         Field field1 = Field.builder()
                 .name("Field1")
-                .fieldInfo("Info about field1")
+                .info("Info about field1")
                 .address("City, Street, Building")
                 .capacity(100)
                 .build();
@@ -63,7 +72,7 @@ public class EventServiceImpl implements EventService {
 
         Event event1 = Event.builder()
                 .name("Some Event")
-                .eventInfo("Info about event")
+                .info("Info about event")
                 .capacity(888)
                 .beginDate(LocalDateTime.of(2018, Month.MAY, 20, 10, 0))
                 .endDate(LocalDateTime.of(2018, Month.MAY, 20, 18, 0))
