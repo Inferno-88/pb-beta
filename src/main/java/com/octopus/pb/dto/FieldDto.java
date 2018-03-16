@@ -2,11 +2,9 @@ package com.octopus.pb.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -21,7 +19,7 @@ public class FieldDto {
     private String size;
     private int capacity;
     private String address;
-    private RatingDto ratingDto;
+    private RatingDto rating;
 
     @JsonIgnore
     private Set<EventDto> eventSet;

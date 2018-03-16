@@ -13,8 +13,9 @@ import java.util.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 @AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 @Entity
 @Table(name = "events")
 @Builder
@@ -47,18 +48,8 @@ public class Event {
     @ManyToMany(mappedBy = "eventSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
 
-    public Event() {
-    }
-
     public Event(String name) {
         this.name = name;
-    }
-
-    public Event(String name, LocalDateTime beginDate, LocalDateTime endDate, boolean isActive) {
-        this.name = name;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.isActive = isActive;
     }
 
     public void addGroup(Group group) {

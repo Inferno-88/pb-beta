@@ -12,9 +12,9 @@ public interface EventService {
     Event buildEvent();
 
     //DTO methods
-    EventPreviewDto getEventPreview(int id);
+    EventPreviewDto getEventPreviewDto(int id);
 
-    List<EventPreviewDto> getEventPreviewList();
+    List<EventPreviewDto> getEventPreviewDtoList();
 
     List<EventDto> getEventDtoList();
 

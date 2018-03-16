@@ -22,12 +22,15 @@ public class EventMapperTest {
     @Autowired
     private EventMapper eventMapper;
 
+    @Autowired
+    private CycleAvoidContext cycleAvoidContext;
+
     @Test
     public void givenEventEntityToEventDto_whenMaps_thenCorrect() {
         Event eventEntity = new Event();
         eventEntity.setName("BPM");
 
-        EventDto eventDto = eventMapper.entityToDto(eventEntity);
+        EventDto eventDto = eventMapper.entityToDto(eventEntity, cycleAvoidContext);
 
         assertEquals("EventEntity name does not match EventDto name", eventEntity.getName(), eventDto.getName());
     }
@@ -37,7 +40,7 @@ public class EventMapperTest {
         EventDto eventDto = new EventDto();
         eventDto.setName("BattleShip");
 
-        Event eventEntity = eventMapper.dtoToEntity(eventDto);
+        Event eventEntity = eventMapper.dtoToEntity(eventDto, cycleAvoidContext);
 
         assertEquals("EventDto name does not match EventEntity name", eventDto.getName(), eventEntity.getName());
     }

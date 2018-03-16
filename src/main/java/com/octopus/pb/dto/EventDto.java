@@ -1,10 +1,14 @@
 package com.octopus.pb.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.octopus.pb.entity.Group;
+import com.octopus.pb.entity.Photo;
+import com.octopus.pb.enums.GroupType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,10 +23,9 @@ public class EventDto {
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private boolean isActive;
-
     private FieldDto field;
 
-//    private final Map<GroupType, Group> groupMap = new HashMap<>();
-//    private final Set<Photo> photoSet = new HashSet<>();
+    private Map<GroupType, Group> groupMap;
+    private Set<Photo> photoSet;
 
 }

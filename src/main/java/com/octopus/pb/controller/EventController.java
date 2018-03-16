@@ -28,12 +28,12 @@ public class EventController {
 
     @GetMapping("/getPreview/{id}")
     public EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
-        return eventService.getEventPreview(id);
+        return eventService.getEventPreviewDto(id);
     }
 
     @GetMapping("/getAllPreview")
     public List<EventPreviewDto> getEventPreviewList() {
-        return eventService.getEventPreviewList();
+        return eventService.getEventPreviewDtoList();
     }
 
     @GetMapping("/get/{id}")

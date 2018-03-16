@@ -5,6 +5,7 @@ import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.entity.Event;
 import com.octopus.pb.entity.Field;
 import com.octopus.pb.entity.Group;
+import com.octopus.pb.entity.Rating;
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.mapper.CycleAvoidContext;
@@ -14,7 +15,6 @@ import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapstruct.Context;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -41,11 +41,12 @@ public class EventServiceImpl implements EventService {
         log.info("************** Preparing {} **************", EventService.class);
     }
 
-    public EventPreviewDto getEventPreview(int id) {
+
+    public EventPreviewDto getEventPreviewDto(int id) {
         return eventPreviewMapper.entityToDto(getEvent(id));
     }
 
-    public List<EventPreviewDto> getEventPreviewList() {
+    public List<EventPreviewDto> getEventPreviewDtoList() {
         return getEventList().stream()
                 .map(e -> eventPreviewMapper.entityToDto(e))
                 .collect(Collectors.toList());
@@ -60,11 +61,16 @@ public class EventServiceImpl implements EventService {
     //Custom methods
     public Event buildEvent() {
 
+        Rating rating1 = new Rating();
+        rating1.setPositive(10);
+        rating1.setNegative(5);
+
         Field field1 = Field.builder()
                 .name("Field1")
                 .info("Info about field1")
                 .address("City, Street, Building")
                 .capacity(100)
+                .rating(rating1)
                 .build();
 
         Group redGroup = new Group(GroupType.RED);

@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
 @Entity
 @Table(name = "fields")
@@ -38,10 +39,6 @@ public class Field {
     @JsonIgnore
     @ManyToMany(mappedBy = "fieldSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
-
-    public Field() {
-
-    }
 
     public Field(String name) {
         this.name = name;
