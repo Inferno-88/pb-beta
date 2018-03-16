@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,7 +19,6 @@ import java.util.*;
 @EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 @Entity
 @Table(name = "events")
-@Builder
 public class Event {
 
     @Id
@@ -37,7 +37,6 @@ public class Event {
     @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     @MapKey(name="groupType")
     @MapKeyEnumerated(EnumType.STRING)

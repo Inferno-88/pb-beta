@@ -2,14 +2,15 @@ package com.octopus.pb.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
 public class FieldDto {
 
     private int id;

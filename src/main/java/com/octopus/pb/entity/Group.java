@@ -26,6 +26,7 @@ public class Group {
     @Enumerated(EnumType.STRING)
     private GroupType groupType;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "groups_to_events"))
     private Event event;

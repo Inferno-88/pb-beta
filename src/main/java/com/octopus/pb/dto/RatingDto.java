@@ -2,11 +2,12 @@ package com.octopus.pb.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "field")
 public class RatingDto {
 
     private int id;

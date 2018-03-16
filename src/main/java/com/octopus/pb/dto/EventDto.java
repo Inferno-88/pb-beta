@@ -1,15 +1,17 @@
 package com.octopus.pb.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.octopus.pb.entity.Group;
 import com.octopus.pb.enums.GroupType;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 public class EventDto {
 
     private int id;
@@ -22,8 +24,8 @@ public class EventDto {
     private LocalDateTime endDate;
     private boolean isActive;
     private FieldDto field;
-
     private Map<GroupType, GroupDto> groupMap;
+
 //    private Set<Photo> photoSet;
 
 }
