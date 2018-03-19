@@ -1,14 +1,8 @@
 package com.octopus.pb.mapper;
 
 
-import com.octopus.pb.dto.EventDto;
-import com.octopus.pb.dto.FieldDto;
-import com.octopus.pb.dto.GroupDto;
-import com.octopus.pb.dto.RatingDto;
-import com.octopus.pb.entity.Event;
-import com.octopus.pb.entity.Field;
-import com.octopus.pb.entity.Group;
-import com.octopus.pb.entity.Rating;
+import com.octopus.pb.dto.*;
+import com.octopus.pb.entity.*;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 
@@ -28,4 +22,13 @@ public interface EventMapper {
     GroupDto entityToDto(Group group, @Context CycleAvoidContext context);
     Group dtoToEntity(GroupDto groupDto, @Context CycleAvoidContext context);
 
+    PlayerDto entityToDto(Player player, @Context CycleAvoidContext context);
+    Player dtoToEntity(PlayerDto playerDto, @Context CycleAvoidContext context);
+
+    RankDto entityToDto(Rank rank, @Context CycleAvoidContext context);
+    Rank dtoToEntity(RankDto rankDto, @Context CycleAvoidContext context);
+
+    TeamDto entityToDto(Team team, @Context CycleAvoidContext context);
+    Team dtoToEntity(TeamDto teamDto, @Context CycleAvoidContext context);
+    
 }

@@ -5,7 +5,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,9 +25,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
-
-    public User() {
-    }
 
     public User(String login, String password, String email) {
         this.login = login;

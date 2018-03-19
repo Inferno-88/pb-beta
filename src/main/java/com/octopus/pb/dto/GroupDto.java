@@ -2,11 +2,17 @@ package com.octopus.pb.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.octopus.pb.enums.GroupType;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+import java.util.Set;
+
+@Getter
+@Setter
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "playerSet")
 public class GroupDto {
 
     private int id;
@@ -15,6 +21,6 @@ public class GroupDto {
     @JsonIgnore
     private EventDto event;
 
-//    private final Set<PlayerDto> playerSet;
+    private Set<PlayerDto> playerSet;
 
 }

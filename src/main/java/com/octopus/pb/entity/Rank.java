@@ -3,6 +3,7 @@ package com.octopus.pb.entity;
 import com.octopus.pb.enums.RankType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"playerSet", "teamSet"})
 @Entity
 @Table(name = "ranks")
@@ -29,10 +31,6 @@ public class Rank {
 
     @OneToMany(mappedBy = "rank")
     private final Set<Team> teamSet = new HashSet<>();
-
-    public Rank() {
-
-    }
 
     public Rank(String name, RankType rankType) {
         this.name = name;

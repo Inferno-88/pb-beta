@@ -2,10 +2,7 @@ package com.octopus.pb.service.impl;
 
 import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
-import com.octopus.pb.entity.Event;
-import com.octopus.pb.entity.Field;
-import com.octopus.pb.entity.Group;
-import com.octopus.pb.entity.Rating;
+import com.octopus.pb.entity.*;
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.mapper.CycleAvoidContext;
@@ -75,6 +72,12 @@ public class EventServiceImpl implements EventService {
 
         Group redGroup = new Group(GroupType.RED);
         Group blueGroup = new Group(GroupType.BLUE);
+
+        Player player1 = new Player("dmz");
+        Player player2 = new Player("mu8d");
+
+        redGroup.addPlayer(player1);
+        blueGroup.addPlayer(player2);
 
         Event event1 = Event.builder()
                 .name("Some Event")

@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"user", "groupSet", "photoSet"})
 @Entity
 @Table(name = "players")
@@ -34,9 +35,6 @@ public class Player {
 
     @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
-
-    public Player() {
-    }
 
     public Player(String name) {
         this.name = name;

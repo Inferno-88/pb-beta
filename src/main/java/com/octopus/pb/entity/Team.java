@@ -3,6 +3,7 @@ package com.octopus.pb.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"playerSet", "photoSet"})
 @Entity
 @Table(name = "teams")
@@ -32,9 +34,6 @@ public class Team {
 
     @ManyToMany(mappedBy = "teamSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
-
-    public Team() {
-    }
 
     public Team(String name) {
         this.name = name;

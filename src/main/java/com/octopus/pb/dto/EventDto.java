@@ -1,9 +1,10 @@
 package com.octopus.pb.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.octopus.pb.entity.Group;
 import com.octopus.pb.enums.GroupType;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Map;
