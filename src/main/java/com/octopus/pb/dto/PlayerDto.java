@@ -21,6 +21,7 @@ public class PlayerDto {
 
     @JsonIgnore
     private Set<GroupDto> groupSet;
-//    private final Set<PhotoDto> photoSet = new HashSet<>();
+    @JsonIgnore
+    private Set<PhotoDto> photoSet;
 
 }

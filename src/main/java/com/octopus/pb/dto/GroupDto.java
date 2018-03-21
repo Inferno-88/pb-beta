@@ -20,7 +20,6 @@ public class GroupDto {
 
     @JsonIgnore
     private EventDto event;
-
     private Set<PlayerDto> playerSet;
 
 }

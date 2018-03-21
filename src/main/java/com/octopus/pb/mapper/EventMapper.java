@@ -30,5 +30,9 @@ public interface EventMapper {
 
     TeamDto entityToDto(Team team, @Context CycleAvoidContext context);
     Team dtoToEntity(TeamDto teamDto, @Context CycleAvoidContext context);
+
+    PhotoDto entityToDto(Photo photo, @Context CycleAvoidContext context);
+    Photo dtoToEntity(PhotoDto photoDto, @Context CycleAvoidContext context);
+
     
 }

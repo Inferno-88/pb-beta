@@ -45,9 +45,6 @@ public class EventController {
 
     @GetMapping("/getAll")
     public List<EventDto> getEventList() {
-        List<EventDto> eventDtoList = eventService.getEventDtoList();
-        eventDtoList.forEach(e -> log.info(e.toString()));
-
         return eventService.getEventDtoList();
     }
 

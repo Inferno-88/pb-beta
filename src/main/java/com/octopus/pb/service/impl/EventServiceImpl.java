@@ -4,6 +4,7 @@ import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.entity.*;
 import com.octopus.pb.enums.GroupType;
+import com.octopus.pb.enums.RankType;
 import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.mapper.CycleAvoidContext;
 import com.octopus.pb.mapper.EventMapper;
@@ -62,6 +63,11 @@ public class EventServiceImpl implements EventService {
         rating1.setPositive(10);
         rating1.setNegative(5);
 
+        Rank rank1 = new Rank("Captain", RankType.PLAYER);
+        Rank rank2 = new Rank("Regular", RankType.PLAYER);
+        Rank rank3 = new Rank("9", RankType.TEAM);
+        Rank rank4 = new Rank("11", RankType.TEAM);
+
         Field field1 = Field.builder()
                 .name("Field1")
                 .info("Info about field1")
@@ -75,6 +81,15 @@ public class EventServiceImpl implements EventService {
 
         Player player1 = new Player("dmz");
         Player player2 = new Player("mu8d");
+
+        player1.setRankAddPlayer(rank1);
+        player2.setRankAddPlayer(rank2);
+
+        Team team1 = new Team("Irish");
+        team1.addPlayer(player1);
+        team1.addPlayer(player2);
+        team1.setRankAddTeam(rank3);
+        team1.setRankAddTeam(rank4);
 
         redGroup.addPlayer(player1);
         blueGroup.addPlayer(player2);

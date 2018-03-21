@@ -53,7 +53,7 @@ public class Team {
         rank.addTeam(this);
     }
 
-    public void removeRankRemovePlayer() {
+    public void unsetRankRemovePlayer() {
         this.rank.getTeamSet().remove(this);
         setRank(null);
     }
