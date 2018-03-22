@@ -45,6 +45,7 @@ public class EventController {
 
     @GetMapping("/getAll")
     public List<EventDto> getEventList() {
+        eventService.buildEvent();
         return eventService.getEventDtoList();
     }
 
