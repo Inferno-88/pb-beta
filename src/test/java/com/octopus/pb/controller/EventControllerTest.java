@@ -21,6 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Slf4j
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
+@Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
 public class EventControllerTest {
 
     @Autowired
@@ -33,11 +35,9 @@ public class EventControllerTest {
 
 
     @Test
-    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/player-repository-data.sql")
-    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
     public void testGetAll() throws Exception {
 
-        final String actual = "[{\"id\":1,\"name\":\"Some Event\",\"info\":\"Info about event\",\"shortInfo\":null,\"gameRules\":null,\"capacity\":888,\"beginDate\":\"2018-05-20T10:00:00\",\"endDate\":\"2018-05-20T18:00:00\",\"field\":{\"id\":1,\"name\":\"Field1\",\"info\":\"Info about field1\",\"type\":null,\"size\":null,\"capacity\":100,\"address\":\"City, Street, Building\",\"rating\":{\"id\":1,\"positive\":10,\"negative\":5,\"surfaceQuality\":0,\"coverAmount\":0,\"coverQuality\":0,\"coverPlacement\":0,\"infrastructure\":0,\"staff\":0,\"rentalEquipment\":0,\"prices\":0}},\"groupMap\":{\"RED\":{\"id\":1,\"groupType\":\"RED\",\"playerSet\":[{\"id\":5,\"name\":\"dmz\",\"rank\":{\"id\":1,\"name\":\"Captain\",\"rankType\":\"PLAYER\"},\"team\":{\"id\":1,\"name\":\"Irish\",\"shortName\":null,\"teamInfo\":null,\"rank\":{\"id\":2,\"name\":\"11\",\"rankType\":\"TEAM\"}}}]},\"BLUE\":{\"id\":2,\"groupType\":\"BLUE\",\"playerSet\":[{\"id\":4,\"name\":\"mu8d\",\"rank\":{\"id\":3,\"name\":\"Regular\",\"rankType\":\"PLAYER\"},\"team\":{\"id\":1,\"name\":\"Irish\",\"shortName\":null,\"teamInfo\":null,\"rank\":{\"id\":2,\"name\":\"11\",\"rankType\":\"TEAM\"}}}]}},\"active\":false}]";
+        final String actual = "[{\"id\":1,\"name\":\"Some Event\",\"info\":\"Info about event\",\"shortInfo\":null,\"gameRules\":null,\"capacity\":888,\"beginDate\":\"2018-05-20T10:00:00\",\"endDate\":\"2018-05-20T18:00:00\",\"field\":{\"id\":1,\"name\":\"Field1\",\"info\":\"Info about field1\",\"type\":null,\"size\":null,\"capacity\":100,\"address\":\"City, Street, Building\",\"rating\":{\"id\":1,\"positive\":10,\"negative\":5,\"surfaceQuality\":0,\"coverAmount\":0,\"coverQuality\":0,\"coverPlacement\":0,\"infrastructure\":0,\"staff\":0,\"rentalEquipment\":0,\"prices\":0}},\"groupMap\":{\"RED\":{\"id\":1,\"groupType\":\"RED\",\"playerSet\":[{\"id\":2,\"name\":\"dmz\",\"rank\":{\"id\":1,\"name\":\"Captain\",\"rankType\":\"PLAYER\"},\"team\":{\"id\":1,\"name\":\"Irish\",\"shortName\":null,\"teamInfo\":null,\"rank\":{\"id\":2,\"name\":\"11\",\"rankType\":\"TEAM\"}}}]},\"BLUE\":{\"id\":2,\"groupType\":\"BLUE\",\"playerSet\":[{\"id\":1,\"name\":\"mu8d\",\"rank\":{\"id\":3,\"name\":\"Regular\",\"rankType\":\"PLAYER\"},\"team\":{\"id\":1,\"name\":\"Irish\",\"shortName\":null,\"teamInfo\":null,\"rank\":{\"id\":2,\"name\":\"11\",\"rankType\":\"TEAM\"}}}]}},\"active\":false}]";
 
         mockMvc.perform(get("/event/create"));
 
@@ -45,8 +45,9 @@ public class EventControllerTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
+        log.info(response);
 
-        JSONAssert.assertEquals(response, actual, true);
+        JSONAssert.assertEquals(actual, response, true);
     }
 
 }

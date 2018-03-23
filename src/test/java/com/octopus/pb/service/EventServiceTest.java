@@ -18,6 +18,8 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @Slf4j
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
+@Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
 public class EventServiceTest {
 
     @Autowired
@@ -25,12 +27,10 @@ public class EventServiceTest {
 
 
     @Test
-    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
-    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
     public void testEventService() {
 
         Event event = eventService.buildEvent();
-        EventPreviewDto eventPreviewDto1 = eventService.getEventPreviewDto(3);
+        EventPreviewDto eventPreviewDto1 = eventService.getEventPreviewDto(1);
         assertEquals("EventPreviewDto1 name does not match", eventPreviewDto1.getName(), "Some Event");
     }
 
