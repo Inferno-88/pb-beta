@@ -9,13 +9,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface RankMapper {
 
-    RankDto entityToDto(Rank rank);
-
     RankDto entityToDto(Rank rank, @Context CycleAvoidContext context);
 
-    Rank dtoToEntity(RankDto rankDto);
-
     Rank dtoToEntity(RankDto rankDto, @Context CycleAvoidContext context);
-
 
 }

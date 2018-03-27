@@ -23,10 +23,10 @@ public class RankServiceImpl implements RankService {
     @Override
     public RankDto createRankDto(RankDto rankDto) {
 
-        Rank rankEntity = rankMapper.dtoToEntity(rankDto);
+        Rank rankEntity = rankMapper.dtoToEntity(rankDto, cycleAvoidContext);
         rankEntity = rankRepository.save(rankEntity);
 
-        return rankMapper.entityToDto(rankEntity);
+        return rankMapper.entityToDto(rankEntity, cycleAvoidContext);
     }
 
     @Override

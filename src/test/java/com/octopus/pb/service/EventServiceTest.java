@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 @ActiveProfiles("test")
 @Slf4j
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
-@Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
 public class EventServiceTest {
 
     @Autowired

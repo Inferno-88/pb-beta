@@ -21,7 +21,7 @@ public class PlayerDto {
 
     @JsonIgnore
     private Set<GroupDto> groupSet;
-    @JsonIgnore
-    private Set<PhotoDto> photoSet;
+//    @JsonIgnore
+//    private Set<PhotoDto> photoSet;
 
 }
