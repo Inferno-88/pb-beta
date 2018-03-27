@@ -50,6 +50,7 @@ public class Team {
     }
 
     public void setRankAddTeam(Rank rank) {
+        setRank(rank);
         rank.addTeam(this);
     }
 

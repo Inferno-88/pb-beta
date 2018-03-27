@@ -4,7 +4,7 @@ package com.octopus.pb.service.impl;
 import com.octopus.pb.dto.RankDto;
 import com.octopus.pb.entity.Rank;
 import com.octopus.pb.mapper.CycleAvoidContext;
-import com.octopus.pb.mapper.RankMapper;
+import com.octopus.pb.mapper.DtoMapper;
 import com.octopus.pb.repository.RankRepository;
 import com.octopus.pb.service.RankService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 public class RankServiceImpl implements RankService {
 
     private final RankRepository rankRepository;
-    private final RankMapper rankMapper;
+    private final DtoMapper rankMapper;
     private final CycleAvoidContext cycleAvoidContext;
 
     @Override

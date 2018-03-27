@@ -24,6 +24,6 @@ public class FieldDto {
 
     @JsonIgnore
     private Set<EventDto> eventSet;
-//    private final Set<Photo> photoSet = new HashSet<>();
+//    private Set<PhotoDto> photoSet;
 
 }

@@ -2,6 +2,7 @@ package com.octopus.pb.testdata;
 
 import com.octopus.pb.entity.*;
 import com.octopus.pb.enums.GroupType;
+import com.octopus.pb.enums.PhotoType;
 import com.octopus.pb.enums.RankType;
 import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.repository.GroupRepository;
@@ -79,6 +80,11 @@ public class BuildData {
         event1.addField(field1);
         event1.addGroup(redGroup);
         event1.addGroup(blueGroup);
+
+        Photo photo1 = new Photo("http://picture.com/picture1", PhotoType.DEFAULT);
+
+        player1.addPhoto(photo1);
+        player2.addPhoto(photo1);
 
         return eventRepository.save(event1);
     }

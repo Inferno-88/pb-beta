@@ -3,11 +3,9 @@ package com.octopus.pb.service.impl;
 import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.entity.*;
-import com.octopus.pb.enums.GroupType;
-import com.octopus.pb.enums.RankType;
 import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.mapper.CycleAvoidContext;
-import com.octopus.pb.mapper.EventMapper;
+import com.octopus.pb.mapper.DtoMapper;
 import com.octopus.pb.mapper.EventPreviewMapper;
 import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.service.EventService;
@@ -16,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +24,7 @@ import java.util.stream.Collectors;
 public class EventServiceImpl implements EventService {
 
     private final Mediator mediator;
-    private final EventMapper eventMapper;
+    private final DtoMapper eventMapper;
     private final EventPreviewMapper eventPreviewMapper;
     private final EventRepository eventRepository;
     private final CycleAvoidContext cycleAvoidContext;

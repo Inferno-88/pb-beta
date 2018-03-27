@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 
 
 @Mapper(componentModel = "spring")
-public interface EventMapper {
+public interface DtoMapper {
 
     EventDto entityToDto(Event event, @Context CycleAvoidContext context);
     Event dtoToEntity(EventDto eventDto, @Context CycleAvoidContext context);

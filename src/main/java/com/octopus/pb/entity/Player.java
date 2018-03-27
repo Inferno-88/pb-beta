@@ -51,12 +51,23 @@ public class Player {
     }
 
     public void setRankAddPlayer(Rank rank) {
+        setRank(rank);
         rank.addPlayer(this);
     }
 
     public void unsetRankRemovePlayer() {
         this.rank.getPlayerSet().remove(this);
         setRank(null);
+    }
+
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getPlayerSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getPlayerSet().remove(this);
+        photoSet.remove(photo);
     }
 
 }

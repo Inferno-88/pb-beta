@@ -6,5 +6,6 @@ public enum PhotoType {
     FIELD,
     PLAYER,
     EVENT,
-    TEAM
+    TEAM,
+    DEFAULT
 }

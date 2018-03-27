@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 public class EventMapperTest {
 
     @Autowired
-    private EventMapper eventMapper;
+    private DtoMapper eventMapper;
 
     @Autowired
     private EventPreviewMapper eventPreviewMapper;

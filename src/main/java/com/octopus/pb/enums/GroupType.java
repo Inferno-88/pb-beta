@@ -5,6 +5,6 @@ public enum GroupType {
     RED,
     BLUE,
     YELLOW,
-    OTHER
+    DEFAULT
 
 }

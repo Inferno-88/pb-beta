@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,6 +28,6 @@ public class EventDto {
     private FieldDto field;
     private Map<GroupType, GroupDto> groupMap;
 
-//    private Set<Photo> photoSet;
+//    private Set<PhotoDto> photoSet;
 
 }
