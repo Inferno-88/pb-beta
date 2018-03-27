@@ -23,17 +23,12 @@ public class EventController {
     private EventService eventService;
 
 
-    @GetMapping("/create")
-    public int createEvent() {
-        return eventService.buildEvent().getId();
-    }
-
     @GetMapping("/getPreview/{id}")
     public EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
         return eventService.getEventPreviewDto(id);
     }
 
-    @GetMapping("/getAllPreview")
+    @GetMapping("/getPreviewList")
     public List<EventPreviewDto> getEventPreviewList() {
         return eventService.getEventPreviewDtoList();
     }

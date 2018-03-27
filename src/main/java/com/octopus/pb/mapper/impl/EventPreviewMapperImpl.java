@@ -16,7 +16,7 @@ public class EventPreviewMapperImpl implements EventPreviewMapper {
                 .name(eventEntity.getName())
                 .date(eventEntity.getBeginDate())
                 .peopleCount(eventEntity.getCapacity())
-                .snippet(eventEntity.getShortInfo())
+                .shortInfo(eventEntity.getShortInfo())
                 .fieldName(eventEntity.getField().getName())
                 .build();
     }

@@ -1,21 +1,20 @@
 package com.octopus.pb.service;
 
 
+import com.octopus.pb.dto.RankDto;
 import com.octopus.pb.entity.Rank;
 import java.util.List;
 
 public interface RankService {
 
-    //Core methods
-
+    //DTO methods
+    RankDto createRankDto(RankDto rankDto);
 
     //Repository methods
     Rank saveRank(Rank rank);
 
-    Rank getRank(String rankId);
+    Rank getRank(int rankId);
 
     List<Rank> getRankList();
-
-    int setNameForRank(String rankId, String name);
 
 }

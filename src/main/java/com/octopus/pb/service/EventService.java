@@ -8,9 +8,6 @@ import java.util.List;
 
 public interface EventService {
 
-    //Core methods
-    Event buildEvent();
-
     //DTO methods
     EventPreviewDto getEventPreviewDto(int id);
 
@@ -20,6 +17,8 @@ public interface EventService {
 
     //Repository methods
     Event saveEvent(Event event);
+
+    void delete(Event event);
 
     Event getEvent(int id);
 
