@@ -59,4 +59,14 @@ public class Team {
         setRank(null);
     }
 
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getTeamSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getTeamSet().remove(this);
+        photoSet.remove(photo);
+    }
+
 }

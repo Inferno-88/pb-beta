@@ -54,4 +54,14 @@ public class Field {
         rating.setField(null);
     }
 
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getFieldSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getFieldSet().remove(this);
+        photoSet.remove(photo);
+    }
+
 }

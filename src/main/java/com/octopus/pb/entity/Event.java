@@ -78,4 +78,14 @@ public class Event {
         field.getEventSet().remove(this);
     }
 
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getEventSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getPlayerSet().remove(this);
+        photoSet.remove(photo);
+    }
+
 }
