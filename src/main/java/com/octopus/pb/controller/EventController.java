@@ -2,16 +2,20 @@ package com.octopus.pb.controller;
 
 import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
+import com.octopus.pb.dto.GroupDto;
+import com.octopus.pb.dto.PlayerDto;
 import com.octopus.pb.entity.Event;
 import com.octopus.pb.service.EventService;
+import com.octopus.pb.service.GroupService;
+import com.octopus.pb.service.PlayerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -21,6 +25,10 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private GroupService groupService;
+
 
 
     @GetMapping("/getPreview/{id}")
@@ -43,9 +51,7 @@ public class EventController {
         return eventService.getEventDtoList();
     }
 
-    @GetMapping("/getAll2")
-    public List<Event> getEventList2() {
-        return eventService.getEventList();
-    }
+    //Main Controller methods
+
 
 }

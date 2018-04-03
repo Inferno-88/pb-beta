@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("rankService")
+@Service
 @RequiredArgsConstructor
 public class RankServiceImpl implements RankService {
 

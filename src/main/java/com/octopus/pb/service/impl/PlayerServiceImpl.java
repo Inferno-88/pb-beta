@@ -2,9 +2,12 @@ package com.octopus.pb.service.impl;
 
 import com.octopus.pb.entity.Player;
 import com.octopus.pb.service.PlayerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public class PlayerServiceImpl implements PlayerService {
 
     @Override

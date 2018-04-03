@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Service("eventService")
+@Service
 @RequiredArgsConstructor
 @Slf4j
 public class EventServiceImpl implements EventService {
 
     private final Mediator mediator;
-    private final DtoMapper eventMapper;
+    private final DtoMapper dtoMapper;
     private final EventPreviewMapper eventPreviewMapper;
     private final EventRepository eventRepository;
     private final CycleAvoidContext cycleAvoidContext;
@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService {
 
     public List<EventDto> getEventDtoList() {
         return getEventList().stream()
-                .map(e -> eventMapper.entityToDto(e, cycleAvoidContext))
+                .map(e -> dtoMapper.entityToDto(e, cycleAvoidContext))
                 .collect(Collectors.toList());
     }
 

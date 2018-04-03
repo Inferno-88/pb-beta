@@ -1,13 +1,14 @@
 package com.octopus.pb.controller;
 
 
-import com.octopus.pb.entity.Player;
+import com.octopus.pb.dto.GroupDto;
+import com.octopus.pb.dto.PlayerDto;
 import com.octopus.pb.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Set;
 
 
 @RestController
@@ -18,23 +19,21 @@ public class GroupController {
     GroupService groupService;
 
 
-    @PostMapping("/addplayer")
-    public String addPlayer(@RequestParam String json) {
-        String response = "Added player: ??";
-
-        //TODO needs logic
-
-        return response;
+    @GetMapping("/groups/{groupId}")
+    public Set<PlayerDto> getGroupPlayerList(@RequestParam("groupId") int groupId) {
+        return groupService.getPlayersFromGroup(groupId);
     }
 
-    @GetMapping("/getplayers")
-    public List<Player> getPlayerList(@RequestParam String json) {
+    @PostMapping("/groups/{groupId}/players/{playerId}")
+    public GroupDto addPlayerToGroup(@RequestParam("groupId") int groupId, @RequestParam("playerId") int playerId, HttpServletResponse httpServletResponse) {
+        groupService.putPlayerToGroup(groupId, playerId);
+        return new GroupDto();
+    }
 
-        List<Player> playerList = new ArrayList<>();
-
-        //TODO something
-
-        return playerList;
+    @DeleteMapping("/groups/{groupId}/players/{playerId}")
+    public GroupDto removePlayerFromGroup(@RequestParam("groupId") int groupId, @RequestParam("playerId") int playerId) {
+        groupService.removePlayerFromGroup(groupId, playerId);
+        return new GroupDto();
     }
 
 }
