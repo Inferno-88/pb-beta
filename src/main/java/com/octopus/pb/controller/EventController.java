@@ -22,9 +22,6 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    @Autowired
-    private GroupService groupService;
-
 
     @GetMapping("/previews/{id}")
     public EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
