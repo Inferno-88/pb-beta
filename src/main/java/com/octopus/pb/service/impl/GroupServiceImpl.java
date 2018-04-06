@@ -8,16 +8,14 @@ import com.octopus.pb.entity.Player;
 import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.mapper.CycleAvoidContext;
 import com.octopus.pb.mapper.DtoMapper;
-import com.octopus.pb.repository.GroupRepository;
-import com.octopus.pb.repository.PlayerRepository;
 import com.octopus.pb.service.GroupService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 @Service("groupAssemblerService")
 @RequiredArgsConstructor
@@ -60,7 +58,6 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public boolean deleteGroup(Group group) {
-
         return false;
     }
 
@@ -82,5 +79,4 @@ public class GroupServiceImpl implements GroupService {
     }
 
 }
-
 

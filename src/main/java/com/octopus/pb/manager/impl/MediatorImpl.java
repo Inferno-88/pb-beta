@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+
 
 @Component
 @RequiredArgsConstructor
@@ -28,9 +30,9 @@ public class MediatorImpl implements Mediator {
 
 
     @Override
-    public <T extends CrudRepository, R> T getRepo(String repoName) {
+    public <T extends CrudRepository, R> T getRepo(String repo) {
 
-        switch (repoName) {
+        switch (repo) {
             case "Event" :
                 return (T) eventRepository;
 

@@ -7,7 +7,6 @@ import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.mapper.CycleAvoidContext;
 import com.octopus.pb.mapper.DtoMapper;
 import com.octopus.pb.mapper.EventPreviewMapper;
-import com.octopus.pb.repository.EventRepository;
 import com.octopus.pb.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,6 @@ public class EventServiceImpl implements EventService {
     private final Mediator mediator;
     private final DtoMapper dtoMapper;
     private final EventPreviewMapper eventPreviewMapper;
-    private final EventRepository eventRepository;
     private final CycleAvoidContext cycleAvoidContext;
 
     @PostConstruct
@@ -44,6 +42,10 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
+    public EventDto getEventDto(int id) {
+        return dtoMapper.entityToDto(getEvent(id), cycleAvoidContext);
+    }
+
     public List<EventDto> getEventDtoList() {
         return getEventList().stream()
                 .map(e -> dtoMapper.entityToDto(e, cycleAvoidContext))
@@ -52,24 +54,22 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event saveEvent(Event event) {
-        return eventRepository.save(event);
+        return (Event) mediator.getRepo("Event").save(event);
     }
 
     @Override
     public void delete(Event event) {
-        eventRepository.delete(event);
+        mediator.getRepo("Event").delete(event);
     }
 
     @Override
     public Event getEvent(int id) {
-        return eventRepository.findOne(id);
+        return (Event) mediator.getRepo("Event").findOne(id);
     }
 
     @Override
     public List<Event> getEventList() {
-        return eventRepository.findAll();
+        return (List<Event>) mediator.getRepo("Event").findAll();
     }
-
-
 
 }

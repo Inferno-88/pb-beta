@@ -13,6 +13,8 @@ public interface EventService {
 
     List<EventPreviewDto> getEventPreviewDtoList();
 
+    EventDto getEventDto(int id);
+
     List<EventDto> getEventDtoList();
 
     //Repository methods

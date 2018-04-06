@@ -20,18 +20,21 @@ public class GroupController {
 
 
     @GetMapping("/groups/{groupId}")
-    public Set<PlayerDto> getGroupPlayerList(@RequestParam("groupId") int groupId) {
+    public Set<PlayerDto> getGroupPlayerList(@RequestParam("groupId") int groupId,
+                                             HttpServletResponse httpServletResponse) {
         return groupService.getPlayersFromGroup(groupId);
     }
 
     @PostMapping("/groups/{groupId}/players/{playerId}")
-    public GroupDto addPlayerToGroup(@RequestParam("groupId") int groupId, @RequestParam("playerId") int playerId, HttpServletResponse httpServletResponse) {
+    public GroupDto addPlayerToGroup(@RequestParam("groupId") int groupId, @RequestParam("playerId") int playerId,
+                                     HttpServletResponse httpServletResponse) {
         groupService.putPlayerToGroup(groupId, playerId);
         return new GroupDto();
     }
 
     @DeleteMapping("/groups/{groupId}/players/{playerId}")
-    public GroupDto removePlayerFromGroup(@RequestParam("groupId") int groupId, @RequestParam("playerId") int playerId) {
+    public GroupDto removePlayerFromGroup(@RequestParam("groupId") int groupId, @RequestParam("playerId") int playerId,
+                                          HttpServletResponse httpServletResponse) {
         groupService.removePlayerFromGroup(groupId, playerId);
         return new GroupDto();
     }
