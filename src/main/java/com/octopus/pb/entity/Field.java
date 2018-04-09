@@ -1,6 +1,7 @@
 package com.octopus.pb.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.octopus.pb.enums.FieldType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,7 +24,10 @@ public class Field {
 
     private String name;
     private String info;
-    private String type;
+
+    @Enumerated(EnumType.STRING)
+    private FieldType type;
+
     private String size;
     private int capacity;
     private String address;
