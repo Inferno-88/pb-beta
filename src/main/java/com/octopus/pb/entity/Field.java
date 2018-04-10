@@ -23,6 +23,7 @@ public class Field {
     private int id;
 
     private String name;
+    @Column(length = 10485760)
     private String info;
 
     @Enumerated(EnumType.STRING)

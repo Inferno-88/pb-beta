@@ -11,6 +11,7 @@ import com.octopus.pb.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.Month;
 
@@ -18,7 +19,6 @@ import java.time.Month;
 @Service
 @RequiredArgsConstructor
 public class InitDataBuilder {
-
 
     private final EventRepository eventRepository;
     private final GroupRepository groupRepository;
@@ -30,10 +30,8 @@ public class InitDataBuilder {
     private final PhotoRepository photoRepository;
 
 
+    @Transactional
     public void buildData() {
-
-        Rating rating1 = new Rating();
-        Rating rating2 = new Rating();
 
         Field pkZarnica = Field.builder()
                 .name("ПК ЗарницаКлаб")
@@ -45,10 +43,9 @@ public class InitDataBuilder {
                         "Есть природные площадки – поля с деревьями, кустарниками, оврагами. " +
                         "Более сложные – двухэтажные дома с запутанными коридорами, темными подвалами, укромными комнатками.")
                 .type(FieldType.FOREST)
-                .capacity(400)
+                .capacity(500)
                 .build();
-
-        pkZarnica.addRating(rating1);
+        pkZarnica.addRating(new Rating());
 
         Field pkGvardiya = Field.builder()
                 .name("ПК Гвардия")
@@ -66,11 +63,30 @@ public class InitDataBuilder {
                 .type(FieldType.FOREST)
                 .rating(new Rating())
                 .build();
+        pkGvardiya.addRating(new Rating());
 
-        pkGvardiya.addRating(rating2);
+        pkZarnica = fieldRepository.save(pkZarnica);
+        pkGvardiya = fieldRepository.save(pkGvardiya);
 
-        Group group1 = new Group(GroupType.RED);
-        Group group2 = new Group(GroupType.BLUE);
+        Event fallout = Event.builder()
+                .name("Фолаут ХI - Дорога Ярости")
+                .info("\"Запретная Зона\" и пейнтбольный клуб \"Пейнтленд\" собщают, что 14.04.2018 мы планируем провести " +
+                        "пейнтбольную постапоклаптичсекую традиционную масштабную ежегодную игру, по мотивам мира  Фолаут, " +
+                        "данная игра станет уже 11 в серии, и мы проведем ее в лучших традициях игр данной серии.\n" +
+                        "\n" +
+                        "Как всегда вас ожидают \"фирменные\" сценарные отличия, 2 основных стороны со штабами и небольшая группа " +
+                        "отмороженных \"нейтралов\", квесты для любителей \"не просто играть\", возможность проявить " +
+                        "творчество и продемонстрировать традиционный для Fallout антураж, адреналин и пейнтбол - всё, как вы любите!")
+                .shortInfo("19 мая 2018 года под Москвой состоится главное пейнтбольное событие года - " +
+                        "Большие Пейнтбольные Маневры™, самые крупные в Европе.")
+                .capacity(400)
+                .beginDate(LocalDateTime.of(2018, Month.MAY, 14, 8, 0))
+                .endDate(LocalDateTime.of(2018, Month.MAY, 14, 18, 0))
+                .isActive(true)
+                .field(pkZarnica)
+                .build();
+        fallout.addGroup(new Group(GroupType.RED));
+        fallout.addGroup(new Group(GroupType.BLUE));
 
         Event bpm = Event.builder()
                 .name("БПМ-2018: Южный фронт")
@@ -96,11 +112,13 @@ public class InitDataBuilder {
                 .beginDate(LocalDateTime.of(2018, Month.MAY, 19, 7, 0))
                 .endDate(LocalDateTime.of(2018, Month.MAY, 19, 19, 0))
                 .isActive(true)
+                .field(pkGvardiya)
                 .build();
-    }
+        bpm.addGroup(new Group(GroupType.RED));
+        bpm.addGroup(new Group(GroupType.BLUE));
 
-    public void buildPhotos() {
-
+        eventRepository.save(fallout);
+        eventRepository.save(bpm);
     }
 
 }
