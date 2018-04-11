@@ -44,7 +44,7 @@ public class EventControllerTest {
 
         buildData.buildEvent();
 
-        String response = mockMvc.perform(get("/event/getAll"))
+        String response = mockMvc.perform(get("/event/events"))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

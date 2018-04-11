@@ -137,11 +137,11 @@ CREATE TABLE events (
   id         BIGINT NOT NULL,
   name       CHARACTER VARYING(255),
   info       TEXT,
-  short_info CHARACTER VARYING(255),
-  game_rules CHARACTER VARYING(4000),
+  short_info TEXT,
+  game_rules TEXT,
   capacity   BIGINT NOT NULL,
-  begin_date TIMESTAMP WITHOUT TIME ZONE,
-  end_date   TIMESTAMP WITHOUT TIME ZONE,
+  begin_date TIMESTAMP WITH TIME ZONE,
+  end_date   TIMESTAMP WITH TIME ZONE,
   field_id   BIGINT NOT NULL
 );
 
