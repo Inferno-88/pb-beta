@@ -19,7 +19,7 @@ public class EventPreviewDto {
     private LocalDateTime date;
 
     private int peopleCount;
-    private String snippet;
-    private String field;
+    private String shortInfo;
+    private String fieldName;
 
 }

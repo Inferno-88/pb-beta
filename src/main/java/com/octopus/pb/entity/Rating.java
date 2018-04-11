@@ -1,13 +1,16 @@
 package com.octopus.pb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = "field")
 @Entity
 @Table(name = "ratings")
@@ -18,19 +21,17 @@ public class Rating {
     private int id;
     private int positive;
     private int negative;
+    private int surfaceQuality;
+    private int coverAmount;
+    private int coverQuality;
+    private int coverPlacement;
+    private int infrastructure;
+    private int staff;
+    private int rentalEquipment;
+    private int prices;
 
-    //TODO
-    //Main parameters with 1 to 5 stars, e.g. surface quality, cover quality, cover amount, shooting distances, field paint quality, price
-    //Sub parameters with 1 to 5 stars, e.g. rental equipment quality, infrastructure, staff
-
+    @JsonIgnore
     @OneToOne(mappedBy = "rating")
     private Field field;
-
-    public Rating() {
-    }
-
-    public Rating(Field field) {
-        this.field = field;
-    }
 
 }

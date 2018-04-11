@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"user", "groupSet", "photoSet"})
 @Entity
 @Table(name = "players")
@@ -35,9 +36,6 @@ public class Player {
     @ManyToMany(mappedBy = "playerSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
 
-    public Player() {
-    }
-
     public Player(String name) {
         this.name = name;
     }
@@ -53,12 +51,23 @@ public class Player {
     }
 
     public void setRankAddPlayer(Rank rank) {
+        setRank(rank);
         rank.addPlayer(this);
     }
 
     public void unsetRankRemovePlayer() {
         this.rank.getPlayerSet().remove(this);
         setRank(null);
+    }
+
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getPlayerSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getPlayerSet().remove(this);
+        photoSet.remove(photo);
     }
 
 }

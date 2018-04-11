@@ -1,4 +1,3 @@
-
 --Ranks
 CREATE TABLE ranks (
   id   BIGINT NOT NULL,
@@ -21,9 +20,17 @@ ALTER TABLE ONLY ranks
 
 --Ratings
 CREATE TABLE ratings (
-  id       BIGINT NOT NULL,
-  positive BIGINT,
-  negative BIGINT
+  id               BIGINT NOT NULL,
+  positive         BIGINT,
+  negative         BIGINT,
+  surface_quality  BIGINT,
+  cover_amount     BIGINT,
+  cover_quality    BIGINT,
+  cover_placement  BIGINT,
+  infrastructure   BIGINT,
+  staff            BIGINT,
+  rental_equipment BIGINT,
+  prices           BIGINT
 );
 
 CREATE SEQUENCE ratings_id_seq
@@ -44,9 +51,11 @@ ALTER TABLE ONLY ratings
 CREATE TABLE fields (
   id        BIGINT NOT NULL,
   name      CHARACTER VARYING(255),
-  field_info CHARACTER VARYING(4000),
-  address   CHARACTER VARYING(255),
+  info      TEXT,
+  type      CHARACTER VARYING(255),
+  size      CHARACTER VARYING(255),
   capacity  BIGINT NOT NULL,
+  address   CHARACTER VARYING(255),
   rating_id BIGINT,
 
   UNIQUE ("rating_id")
@@ -71,11 +80,11 @@ ALTER TABLE ONLY fields
 
 --Teams
 CREATE TABLE teams (
-  id      BIGINT NOT NULL,
-  name    CHARACTER VARYING(255),
+  id         BIGINT NOT NULL,
+  name       CHARACTER VARYING(255),
   short_name CHARACTER VARYING(5),
-  team_info CHARACTER VARYING(4000),
-  rank_id BIGINT
+  team_info  CHARACTER VARYING(4000),
+  rank_id    BIGINT
 );
 
 CREATE SEQUENCE teams_id_seq
@@ -127,9 +136,10 @@ ALTER TABLE ONLY players
 CREATE TABLE events (
   id         BIGINT NOT NULL,
   name       CHARACTER VARYING(255),
-  event_info CHARACTER VARYING(4000),
+  info       TEXT,
+  short_info CHARACTER VARYING(255),
   game_rules CHARACTER VARYING(4000),
-  capacity BIGINT NOT NULL,
+  capacity   BIGINT NOT NULL,
   begin_date TIMESTAMP WITHOUT TIME ZONE,
   end_date   TIMESTAMP WITHOUT TIME ZONE,
   field_id   BIGINT NOT NULL
@@ -260,7 +270,7 @@ ALTER TABLE ONLY event_photos
 
 --Player_Groups
 CREATE TABLE player_groups (
-  group_id BIGINT,
+  group_id  BIGINT,
   player_id BIGINT
 );
 
@@ -275,12 +285,12 @@ ALTER TABLE ONLY player_groups
 
 --Users
 CREATE TABLE users (
-  id BIGINT,
-  login CHARACTER VARYING(255),
-  password CHARACTER VARYING(255),
-  email CHARACTER VARYING(255),
-  comment CHARACTER VARYING(255),
-  isActive BOOLEAN DEFAULT TRUE,
+  id        BIGINT,
+  login     CHARACTER VARYING(255),
+  password  CHARACTER VARYING(255),
+  email     CHARACTER VARYING(255),
+  comment   CHARACTER VARYING(255),
+  isActive  BOOLEAN DEFAULT TRUE,
   player_id BIGINT,
 
   UNIQUE ("player_id")

@@ -3,6 +3,7 @@ package com.octopus.pb.entity;
 import com.octopus.pb.enums.PhotoType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"playerSet", "teamSet", "fieldSet", "eventSet"})
 @Entity
 @Table(name = "photos")
@@ -59,9 +61,6 @@ public class Photo {
             uniqueConstraints = @UniqueConstraint(name = "event_photos_unique", columnNames = {"event_id", "photo_id"})
     )
     private final Set<Event> eventSet = new HashSet<>();
-
-    public Photo() {
-    }
 
     public Photo(String path, PhotoType photoType) {
         this.path = path;

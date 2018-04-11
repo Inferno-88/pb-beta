@@ -1,23 +1,31 @@
 package com.octopus.pb.service;
 
 
+import com.octopus.pb.dto.GroupDto;
+import com.octopus.pb.dto.PlayerDto;
 import com.octopus.pb.entity.Group;
-import com.octopus.pb.entity.Player;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface GroupService {
 
     //Core methods
-    List<Player> getPlayersFromGroup(Group group);
+    Set<PlayerDto> getPlayersFromGroup(int groupId);
 
-    Group putPlayerToGroup(Player player);
+    GroupDto putPlayerToGroup(int groupId, int playerId);
+
+    GroupDto removePlayerFromGroup(int groupId, int playerId);
+
+//    GroupDto putPlayerToGroup(GroupDto groupDto, PlayerDto playerDto);
+//
+//    GroupDto removePlayerFromGroup(GroupDto groupDto, PlayerDto playerDto);
 
     //Repository methods
     Group saveGroup(Group group);
 
-    void deleteGroup(Group group);
+    boolean deleteGroup(Group group);
 
     Group getGroup(Group group);
 

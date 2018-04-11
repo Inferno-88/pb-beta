@@ -3,6 +3,7 @@ package com.octopus.pb.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"playerSet", "photoSet"})
 @Entity
 @Table(name = "teams")
@@ -33,9 +35,6 @@ public class Team {
     @ManyToMany(mappedBy = "teamSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
 
-    public Team() {
-    }
-
     public Team(String name) {
         this.name = name;
     }
@@ -51,12 +50,23 @@ public class Team {
     }
 
     public void setRankAddTeam(Rank rank) {
+        setRank(rank);
         rank.addTeam(this);
     }
 
-    public void removeRankRemovePlayer() {
+    public void unsetRankRemovePlayer() {
         this.rank.getTeamSet().remove(this);
         setRank(null);
+    }
+
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getTeamSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getTeamSet().remove(this);
+        photoSet.remove(photo);
     }
 
 }

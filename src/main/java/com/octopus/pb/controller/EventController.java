@@ -1,8 +1,10 @@
 package com.octopus.pb.controller;
 
+import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
-import com.octopus.pb.entity.Event;
 import com.octopus.pb.service.EventService;
+import com.octopus.pb.service.GroupService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,35 +16,31 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
+@Slf4j
 public class EventController {
 
     @Autowired
     private EventService eventService;
 
 
-    @GetMapping("/create")
-    public int createEvent() {
-        return eventService.buildEvent().getId();
-    }
-
-    @GetMapping("/getPreview/{id}")
+    @GetMapping("/previews/{id}")
     public EventPreviewDto getEventPreviewList(@PathVariable("id") int id) {
-        return eventService.getEventPreview(id);
+        return eventService.getEventPreviewDto(id);
     }
 
-    @GetMapping("/getAllPreview")
+    @GetMapping("/previews")
     public List<EventPreviewDto> getEventPreviewList() {
-        return eventService.getEventPreviewList();
+        return eventService.getEventPreviewDtoList();
     }
 
-    @GetMapping("/get/{id}")
-    public Event getEvent(@PathVariable("id") int id) {
-        return eventService.getEvent(id);
+    @GetMapping("/events/{id}")
+    public EventDto getEvent(@PathVariable("id") int id) {
+        return eventService.getEventDto(id);
     }
 
-    @GetMapping("/getAll")
-    public List<Event> getEventList() {
-        return eventService.getEventList();
+    @GetMapping("/events")
+    public List<EventDto> getEventList() {
+        return eventService.getEventDtoList();
     }
 
 }

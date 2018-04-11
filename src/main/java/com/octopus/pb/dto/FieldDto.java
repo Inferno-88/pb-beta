@@ -1,21 +1,29 @@
 package com.octopus.pb.dto;
 
 
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
-@Data
-@Builder
+import java.util.Set;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = {"eventSet", "photoSet"})
 public class FieldDto {
 
     private int id;
     private String name;
-    private String fieldInfo; //TODO fieldDetails object with fieldInfo, capacity, size, type, etc.
-    private String address;
+    private String info;
+    private String type;
+    private String size;
     private int capacity;
-    private RatingDto ratingDto;
+    private String address;
+    private RatingDto rating;
 
-//    private final Set<Event> eventSet = new HashSet<>();
-//    private final Set<Photo> photoSet = new HashSet<>();
+    @JsonIgnore
+    private Set<EventDto> eventSet;
+//    private Set<PhotoDto> photoSet;
 
 }

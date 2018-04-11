@@ -11,20 +11,22 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Builder
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 @AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = {"groupMap", "photoSet"})
 @Entity
 @Table(name = "events")
-@Builder
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String eventInfo;
+    private String info;
+    private String shortInfo;
     private String gameRules;
     private int capacity;
     private LocalDateTime beginDate;
@@ -35,7 +37,6 @@ public class Event {
     @JoinColumn(name = "field_id", foreignKey = @ForeignKey(name = "events_to_fields"))
     private Field field;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     @MapKey(name="groupType")
     @MapKeyEnumerated(EnumType.STRING)
@@ -46,18 +47,8 @@ public class Event {
     @ManyToMany(mappedBy = "eventSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<Photo> photoSet = new HashSet<>();
 
-    public Event() {
-    }
-
     public Event(String name) {
         this.name = name;
-    }
-
-    public Event(String name, LocalDateTime beginDate, LocalDateTime endDate, boolean isActive) {
-        this.name = name;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.isActive = isActive;
     }
 
     public void addGroup(Group group) {
@@ -85,6 +76,16 @@ public class Event {
     public void removeField(Field field) {
         setField(null);
         field.getEventSet().remove(this);
+    }
+
+    public void addPhoto(Photo photo) {
+        photoSet.add(photo);
+        photo.getEventSet().add(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photo.getPlayerSet().remove(this);
+        photoSet.remove(photo);
     }
 
 }

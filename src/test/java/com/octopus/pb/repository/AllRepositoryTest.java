@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @Slf4j
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
 public class AllRepositoryTest {
 
     @Autowired
@@ -60,6 +62,22 @@ public class AllRepositoryTest {
     }
 
     @Test
+    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/player-repository.sql")
+    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/db-wipe.sql")
+    public void testPlayerGet() {
+
+        Player player1 = playerRepository.findOne(1);
+        Player player2 = playerRepository.findOne(2);
+        Player player3 = playerRepository.findOne(3);
+        Player player88 = playerRepository.findOne(88);
+
+        assertEquals("Player1 name does not match", player1.getName(), "inserted_player_1");
+        assertEquals("Player2 name does not match", player2.getName(), "inserted_player_2");
+        assertEquals("Player3 name does not match", player3.getName(), "inserted_player_3");
+        assertEquals("Player88 name does not match", player88.getName(), "inserted_player_88");
+    }
+
+    @Test
     public void testPlayerSave() {
 
         List<Player> playerList1 = new ArrayList<>();
@@ -79,20 +97,6 @@ public class AllRepositoryTest {
 
         assertTrue("SavedList1 size is not 3", savedList1.size() == 3);
         assertTrue("SavedList2 size is not 2", savedList2.size() == 2);
-    }
-
-    @Test
-    public void testPlayerGet() {
-
-        Player player1 = playerRepository.findOne(1);
-        Player player2 = playerRepository.findOne(2);
-        Player player3 = playerRepository.findOne(3);
-        Player player88 = playerRepository.findOne(88);
-
-        assertEquals("Player1 name does not match", player1.getName(), "inserted_player_1");
-        assertEquals("Player2 name does not match", player2.getName(), "inserted_player_2");
-        assertEquals("Player3 name does not match", player3.getName(), "inserted_player_3");
-        assertEquals("Player88 name does not match", player88.getName(), "inserted_player_88");
     }
 
     @Test
@@ -254,7 +258,7 @@ public class AllRepositoryTest {
     @Test
     public void testCascadeDelete() {
 
-        //TODO
+        //TODO cascade delete
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = "playerSet")
 @Entity
 @Table(name = "groups")
@@ -25,6 +26,7 @@ public class Group {
     @Enumerated(EnumType.STRING)
     private GroupType groupType;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "groups_to_events"))
     private Event event;
@@ -39,16 +41,8 @@ public class Group {
     )
     private final Set<Player> playerSet = new HashSet<>();
 
-    public Group() {
-    }
-
     public Group(GroupType groupType) {
         this.groupType = groupType;
-    }
-
-    public Group(GroupType groupType, Event event) {
-        this.groupType = groupType;
-        this.event = event;
     }
 
     public void addPlayer(Player player) {

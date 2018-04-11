@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+
 
 @Component
 @RequiredArgsConstructor
@@ -26,18 +28,36 @@ public class MediatorImpl implements Mediator {
     private final RatingRepository ratingRepository;
     private final UserRepository userRepository;
 
+
     @Override
-    public <T extends CrudRepository, R> T getRepository(Class<R> serviceName) {
+    public <T extends CrudRepository, R> T getRepo(String repo) {
 
-        switch (serviceName.getSimpleName()) {
-            case "EventService" :
-            return (T) eventRepository;
+        switch (repo) {
+            case "Event" :
+                return (T) eventRepository;
 
-            case "GroupService" :
-            return (T) groupRepository;
+            case "Group" :
+                return (T) groupRepository;
 
-            default : throw new IllegalArgumentException("Repository not found. Incorrect interface name.");
+            case "Player" :
+                return (T) playerRepository;
+
+            default : throw new IllegalArgumentException("Repository not found. Incorrect repository name.");
         }
     }
+
+//    @Override
+//    public <T extends CrudRepository, R> T getRepository(Class<R> serviceName) {
+//
+//        switch (serviceName.getSimpleName()) {
+//            case "EventService" :
+//                return (T) eventRepository;
+//
+//            case "GroupService" :
+//                return (T) groupRepository;
+//
+//            default : throw new IllegalArgumentException("Repository not found. Incorrect interface name.");
+//        }
+//    }
 
 }
