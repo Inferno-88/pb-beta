@@ -26,6 +26,7 @@ public class InitDataBuilder {
     private final RankRepository rankRepository;
     private final TeamRepository teamRepository;
     private final PhotoRepository photoRepository;
+    private final UserRepository userRepository;
 
 
     @Transactional
@@ -145,6 +146,19 @@ public class InitDataBuilder {
         random2 = playerRepository.save(random2);
         random3 = playerRepository.save(random3);
 
+        User garikUser = new User("garik", "garkik123", "garik@mail.ru");
+        garikUser.addPlayer(garik);
+
+        User infernoUser = new User("inferno", "inferno123", "inferno@mail.ru");
+        infernoUser.addPlayer(inferno);
+
+        User gunterUser = new User("gunter", "gunter123", "gunter@mail.ru");
+        gunterUser.addPlayer(gunter);
+
+        userRepository.save(garikUser);
+        userRepository.save(infernoUser);
+        userRepository.save(gunterUser);
+
         Rank teamFirstRank = new Rank("1", RankType.TEAM);
         Rank teamSecondRank = new Rank("2", RankType.TEAM);
 
@@ -162,9 +176,6 @@ public class InitDataBuilder {
 
         teamRepository.save(sonsOfErin);
         teamRepository.save(randomTeam1);
-
-
-
 
     }
 
