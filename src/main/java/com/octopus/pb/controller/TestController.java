@@ -42,7 +42,7 @@ public class TestController {
     public @ResponseBody String buildData() {
         initDataBuilder.buildData();
 
-        return "Built";
+        return "Data has been built.";
     }
 
 }

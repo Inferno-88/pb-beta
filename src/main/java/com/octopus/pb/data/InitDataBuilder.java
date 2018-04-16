@@ -116,15 +116,13 @@ public class InitDataBuilder {
         bpm.addGroup(new Group(GroupType.RED));
         bpm.addGroup(new Group(GroupType.BLUE));
 
-        fallout = eventRepository.save(fallout);
-        bpm = eventRepository.save(bpm);
+        eventRepository.save(fallout);
+        eventRepository.save(bpm);
 
         //Players, Teams, Ranks
         Rank captainPlayerRank = new Rank("Captain", RankType.PLAYER);
         Rank sergeantPlayerRank = new Rank("Sergeant", RankType.PLAYER);
         Rank regularPlayerRank = new Rank("Regular", RankType.PLAYER);
-        Rank teamFirstRank = new Rank("", RankType.TEAM);
-        Rank teamSecondRank = new Rank("2", RankType.TEAM);
 
         Player garik = new Player("Captain Geek++");
         Player inferno = new Player("INFERNO");
@@ -147,11 +145,26 @@ public class InitDataBuilder {
         random2 = playerRepository.save(random2);
         random3 = playerRepository.save(random3);
 
-//        Team team1 = new Team("Sons Of Erin");
-//        team1.addPlayer(player1);
-//        team1.addPlayer(player2);
-//        team1.setRankAddTeam(rank3);
-//        team1.setRankAddTeam(rank4);
+        Rank teamFirstRank = new Rank("1", RankType.TEAM);
+        Rank teamSecondRank = new Rank("2", RankType.TEAM);
+
+        Team sonsOfErin = new Team("Sons Of Erin");
+        sonsOfErin.addPlayer(garik);
+        sonsOfErin.addPlayer(inferno);
+        sonsOfErin.addPlayer(gunter);
+        sonsOfErin.setRankAddTeam(teamFirstRank);
+
+        Team randomTeam1 = new Team("Random Team1");
+        randomTeam1.addPlayer(random1);
+        randomTeam1.addPlayer(random2);
+        randomTeam1.addPlayer(random3);
+        randomTeam1.setRankAddTeam(teamSecondRank);
+
+        teamRepository.save(sonsOfErin);
+        teamRepository.save(randomTeam1);
+
+
+
 
     }
 
