@@ -11,7 +11,7 @@ class Layout extends React.Component {
 			currentEvent: null,
 			listOfEvents: [],
 		};
-		fetch('http://localhost:8181/event/getAllPreview').then(function (res) {
+		fetch('http://localhost:8181/event/previews').then(function (res) {
 			if (res.status === 200) { //TODO catch
 				return res.json();
 			}
@@ -24,7 +24,7 @@ class Layout extends React.Component {
 
 	hendlerOpenEvent (e) {
 		const id = e.currentTarget.dataset.id;
-		fetch(`http://localhost:8181/event/get/${id}`).then(function (res) {
+		fetch(`http://localhost:8181/event/events/${id}`).then(function (res) {
 			if (res.status === 200) { //TODO catch
 				return res.json();
 			}
