@@ -1,6 +1,5 @@
 .listEvents {
-	width: 30%;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .list {

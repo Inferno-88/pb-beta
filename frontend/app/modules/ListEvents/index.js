@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.css';
+import style from './style.css';
 import ListItem from '../ListItem/index';
 
 class ListEvents extends React.Component {
@@ -10,9 +10,11 @@ class ListEvents extends React.Component {
 			);
 		});
 
+		let classNames = `${style.listEvents} ${this.props.className}`
+
 		return (
-			<div className={styles.listEvents}>
-				<ul className={styles.list}>
+			<div className={classNames}>
+				<ul className={style.list}>
 					{ events }
 				</ul>
 			</div>

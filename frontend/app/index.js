@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-import Layout from './modules/Layout';
+import Layout from './modules/Layout/index';
 
 
 $(document).ready(function() {
