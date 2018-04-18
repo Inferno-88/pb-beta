@@ -25,4 +25,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Override
     List<User> findAll();
 
+    User findByLogin(String login);
+
 }
