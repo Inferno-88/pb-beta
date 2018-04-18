@@ -1,7 +1,8 @@
 import React from 'react';
-import ListOfEvents from './ListOfEvents/index';
+//import ListOfEvents from './ListOfEvents/index';
+import ListEvents from './ListEvents/index';
 import EventDescription from './EventDescription';
-import { listOfEvents, detailOfEvent } from '../mockdata.js';
+//import { listOfEvents, detailOfEvent } from '../mockdata.js';
 
 
 class Layout extends React.Component {
@@ -9,7 +10,7 @@ class Layout extends React.Component {
 		super(props);
 		this.state = {
 			currentEvent: null,
-			listOfEvents: [],
+			listStortEvents: [],
 		};
 		fetch('http://localhost:8181/event/previews').then(function (res) {
 			if (res.status === 200) { //TODO catch
@@ -17,7 +18,7 @@ class Layout extends React.Component {
 			}
 		}).then(function (list) {
 			this.setState({
-				listOfEvents: list,
+				listStortEvents: list,
 			});
 		}.bind(this));
 	}
@@ -38,8 +39,10 @@ class Layout extends React.Component {
 	render () {
 		return (
 			<div>
-				<ListOfEvents events={this.state.listOfEvents} onClick={this.hendlerOpenEvent.bind(this)} />
-				<EventDescription event={this.state.currentEvent} />
+				<ListEvents events={this.state.listStortEvents} onClick={this.hendlerOpenEvent.bind(this)} />
+				{this.state.currentEvent &&
+					<EventDescription event={this.state.currentEvent} />
+				}
 			</div>
 		);
 	}
