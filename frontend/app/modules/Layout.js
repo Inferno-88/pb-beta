@@ -9,20 +9,36 @@ class Layout extends React.Component {
 		super(props);
 		this.state = {
 			currentEvent: null,
+			listOfEvents: [],
 		};
+		fetch('http://localhost:8181/event/previews').then(function (res) {
+			if (res.status === 200) { //TODO catch
+				return res.json();
+			}
+		}).then(function (list) {
+			this.setState({
+				listOfEvents: list,
+			});
+		}.bind(this));
 	}
 
 	hendlerOpenEvent (e) {
-		const discr = detailOfEvent[e.currentTarget.dataset.id];
-		this.setState({
-			currentEvent: discr,
-		});
+		const id = e.currentTarget.dataset.id;
+		fetch(`http://localhost:8181/event/events/${id}`).then(function (res) {
+			if (res.status === 200) { //TODO catch
+				return res.json();
+			}
+		}).then(function (event) {
+			this.setState({
+				currentEvent: event,
+			});
+		}.bind(this));
 	}
 
 	render () {
 		return (
 			<div>
-				<ListOfEvents events={listOfEvents} onClick={this.hendlerOpenEvent.bind(this)} />
+				<ListOfEvents events={this.state.listOfEvents} onClick={this.hendlerOpenEvent.bind(this)} />
 				<EventDescription event={this.state.currentEvent} />
 			</div>
 		);

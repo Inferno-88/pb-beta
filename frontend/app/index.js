@@ -8,12 +8,5 @@ $(document).ready(function() {
 		<Layout />,
 		document.getElementById('main_container')
 	);
-
-	fetch('http://localhost:8181/event/getAllPreview', {
-		method: 'GET',
-        mode: 'cors',
-	}).then(function (res) {
-		console.log(res);
-    })
 });
 

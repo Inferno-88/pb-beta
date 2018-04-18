@@ -10,7 +10,6 @@ class ListOfEvents extends React.Component {
 		super(props);
 		this.state = {
 			showCount: props.showCount ? props.showCount : 4,
-			itemCount: props.events.length,
 			currentPosition: 0,
 		};
 		this.onClickDown = this.onClickDown.bind(this);
@@ -29,7 +28,7 @@ class ListOfEvents extends React.Component {
 
 	onClickDown () {
 		let cur = this.state.currentPosition;
-		if (cur < this.state.itemCount - this.state.showCount) {
+		if (cur < this.props.events.length - this.state.showCount) {
 			cur++;
 		}
 		this.setState({
@@ -45,7 +44,7 @@ class ListOfEvents extends React.Component {
 		});
 
 		const notShowUp = this.state.currentPosition === 0;
-		const notShowDown = this.state.currentPosition === this.state.itemCount - this.state.showCount;
+		const notShowDown = this.state.currentPosition === this.props.events.length - this.state.showCount;
 
 		return (
 			<div className={styles.listEvent}>
