@@ -11,12 +11,12 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "users")
-public class User {
+public class UserApp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String login;
+    private String username;
     private String password;
     private String email;
     private String comment;
@@ -26,8 +26,13 @@ public class User {
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
 
-    public User(String login, String password, String email) {
-        this.login = login;
+    public UserApp(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public UserApp(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }

@@ -286,7 +286,7 @@ ALTER TABLE ONLY player_groups
 --Users
 CREATE TABLE users (
   id        BIGINT,
-  login     CHARACTER VARYING(255),
+  username  CHARACTER VARYING(255),
   password  CHARACTER VARYING(255),
   email     CHARACTER VARYING(255),
   comment   CHARACTER VARYING(255),

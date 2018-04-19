@@ -28,7 +28,7 @@ public class Player {
     private Team team;
 
     @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
-    private User user;
+    private UserApp user;
 
     @ManyToMany(mappedBy = "playerSet")
     private final Set<Group> groupSet = new HashSet<>();

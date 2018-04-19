@@ -146,13 +146,13 @@ public class InitDataBuilder {
         random2 = playerRepository.save(random2);
         random3 = playerRepository.save(random3);
 
-        User garikUser = new User("garik", "garkik123", "garik@mail.ru");
+        UserApp garikUser = new UserApp("garik", "garkik123", "garik@mail.ru");
         garikUser.addPlayer(garik);
 
-        User infernoUser = new User("inferno", "inferno123", "inferno@mail.ru");
+        UserApp infernoUser = new UserApp("inferno", "inferno123", "inferno@mail.ru");
         infernoUser.addPlayer(inferno);
 
-        User gunterUser = new User("gunter", "gunter123", "gunter@mail.ru");
+        UserApp gunterUser = new UserApp("gunter", "gunter123", "gunter@mail.ru");
         gunterUser.addPlayer(gunter);
 
         userRepository.save(garikUser);

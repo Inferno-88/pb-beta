@@ -1,7 +1,7 @@
 package com.octopus.pb.controller;
 
 
-import com.octopus.pb.entity.User;
+import com.octopus.pb.entity.UserApp;
 import com.octopus.pb.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,7 +24,7 @@ public class UserController {
 //    }
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody User user) {
+    public void signUp(@RequestBody UserApp user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

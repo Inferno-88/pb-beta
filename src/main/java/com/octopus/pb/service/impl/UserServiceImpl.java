@@ -1,7 +1,7 @@
 package com.octopus.pb.service.impl;
 
 
-import com.octopus.pb.entity.User;
+import com.octopus.pb.entity.UserApp;
 import com.octopus.pb.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public User createUser() {
+    public UserApp createUser() {
         return null;
     }
 
     @Override
-    public User getUser(int id) {
+    public UserApp getUser(int id) {
         return null;
     }
 

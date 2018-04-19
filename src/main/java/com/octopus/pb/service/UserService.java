@@ -1,13 +1,13 @@
 package com.octopus.pb.service;
 
 
-import com.octopus.pb.entity.User;
+import com.octopus.pb.entity.UserApp;
 
 public interface UserService {
 
-    User createUser();
+    UserApp createUser();
 
-    User getUser(int id);
+    UserApp getUser(int id);
 
     boolean deleteUser(int id);
 

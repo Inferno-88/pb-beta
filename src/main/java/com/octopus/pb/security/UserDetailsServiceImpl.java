@@ -1,8 +1,9 @@
 package com.octopus.pb.security;
 
 
-import com.octopus.pb.entity.User;
+import com.octopus.pb.entity.UserApp;
 import com.octopus.pb.repository.UserRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,13 +23,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User applicationUser = userRepository.findByLogin(username);
+        UserApp userApp = userRepository.findByUsername(username);
 
-        if (applicationUser == null) {
+        if (userApp == null) {
             throw new UsernameNotFoundException(username);
         }
 
-        return new User(applicationUser.getLogin(), applicationUser.getPassword(), emptyList());
+        return new User(userApp.getUsername(), userApp.getPassword(), emptyList());
     }
 
 }
