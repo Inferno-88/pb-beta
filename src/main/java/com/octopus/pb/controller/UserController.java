@@ -2,8 +2,8 @@ package com.octopus.pb.controller;
 
 
 import com.octopus.pb.entity.UserApp;
-import com.octopus.pb.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import com.octopus.pb.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,21 +12,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
 public class UserController {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private UserService userService;
 
-//    public UserController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userRepository = userRepository;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody UserApp user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public String signUp(@RequestBody UserApp userApp) {
+
+        userApp.setPassword(bCryptPasswordEncoder.encode(userApp.getPassword()));
+
+        try {
+            userApp = userService.saveUser(userApp);
+        }
+        catch (IllegalArgumentException e){
+            return e.getMessage();
+        }
+
+        return ("Created user with ID: " + userApp.getId());
     }
 
 }
