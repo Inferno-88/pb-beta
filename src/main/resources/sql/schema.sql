@@ -288,6 +288,7 @@ CREATE TABLE users (
   id        BIGINT,
   username  CHARACTER VARYING(255),
   password  CHARACTER VARYING(255),
+  role      CHARACTER VARYING(255),
   email     CHARACTER VARYING(255),
   comment   CHARACTER VARYING(255),
   isActive  BOOLEAN DEFAULT TRUE,

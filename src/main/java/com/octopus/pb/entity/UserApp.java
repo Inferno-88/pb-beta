@@ -1,6 +1,7 @@
 package com.octopus.pb.entity;
 
 
+import com.octopus.pb.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,6 +19,10 @@ public class UserApp {
     private int id;
     private String username;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private String email;
     private String comment;
     private boolean isActive;
