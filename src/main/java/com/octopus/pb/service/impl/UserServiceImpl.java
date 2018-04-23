@@ -1,8 +1,9 @@
 package com.octopus.pb.service.impl;
 
 
-import com.octopus.pb.entity.UserApp;
-import com.octopus.pb.enums.Role;
+import com.octopus.pb.entity.security.RoleApp;
+import com.octopus.pb.entity.security.UserApp;
+import com.octopus.pb.enums.RoleType;
 import com.octopus.pb.repository.UserRepository;
 import com.octopus.pb.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +29,8 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("User name already exists.");
         }
 
-        if (userApp.getRole() == null) {
-            userApp.setRole(Role.ROLE_USER);
-        }
+        RoleApp roleApp = new RoleApp(RoleType.ROLE_ADMIN);
+        userApp.addRole(roleApp);
 
         return userRepository.save(userApp);
     }

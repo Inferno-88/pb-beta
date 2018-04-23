@@ -314,6 +314,42 @@ ALTER TABLE ONLY users
 ALTER TABLE ONLY users
   ADD CONSTRAINT users_to_players FOREIGN KEY (player_id) REFERENCES players (id) ON DELETE RESTRICT;
 
+--Roles
+CREATE TABLE roles (
+  id        BIGINT,
+  authority CHARACTER VARYING(255)
+);
+
+CREATE SEQUENCE roles_id_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+ALTER SEQUENCE roles_id_seq OWNED BY users.id;
+ALTER TABLE ONLY roles
+  ALTER COLUMN id SET DEFAULT nextval('roles_id_seq' :: REGCLASS);
+
+ALTER TABLE ONLY roles
+  ADD CONSTRAINT roles PRIMARY KEY (id);
+
+--User_roles
+CREATE TABLE user_roles (
+  user_id BIGINT,
+  role_id BIGINT
+);
+
+ALTER TABLE ONLY user_roles
+  ADD CONSTRAINT user_roles_to_users FOREIGN KEY (player_id) REFERENCES users (id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY user_roles
+  ADD CONSTRAINT user_roles_to_roles FOREIGN KEY (photo_id) REFERENCES roles (id) ON DELETE RESTRICT;
+
+ALTER TABLE ONLY user_roles
+  ADD CONSTRAINT user_roles_unique UNIQUE ("user_id", "role_id");
+
+
 
 
 

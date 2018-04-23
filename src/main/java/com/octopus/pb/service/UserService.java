@@ -1,7 +1,7 @@
 package com.octopus.pb.service;
 
 
-import com.octopus.pb.entity.UserApp;
+import com.octopus.pb.entity.security.UserApp;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.octopus.pb.controller;
 
 
-import com.octopus.pb.entity.UserApp;
+import com.octopus.pb.entity.security.UserApp;
 import com.octopus.pb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

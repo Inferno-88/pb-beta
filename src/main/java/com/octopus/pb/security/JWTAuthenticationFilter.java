@@ -1,7 +1,7 @@
 package com.octopus.pb.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.octopus.pb.entity.UserApp;
+import com.octopus.pb.entity.security.UserApp;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,8 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 import static com.octopus.pb.security.SecurityConstants.*;
 
@@ -37,7 +36,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             UserApp creds = new ObjectMapper().readValue(req.getInputStream(), UserApp.class);
 
             return authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(), new ArrayList<>())
+                    new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(), creds.getRoleAppSet())
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -48,8 +47,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
+        User user = (User) auth.getPrincipal();
+
+        Map<String, Object> roles = new HashMap<>();
+        roles.put("role", user.getAuthorities());
+
         String token = Jwts.builder()
-                .setSubject(((User) auth.getPrincipal()).getUsername())
+                .setSubject(user.getUsername())
+                .setClaims(roles)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();

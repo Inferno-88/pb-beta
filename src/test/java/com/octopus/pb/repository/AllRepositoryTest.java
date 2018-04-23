@@ -1,6 +1,7 @@
 package com.octopus.pb.repository;
 
 
+import com.octopus.pb.entity.security.UserApp;
 import com.octopus.pb.enums.*;
 import com.octopus.pb.entity.*;
 

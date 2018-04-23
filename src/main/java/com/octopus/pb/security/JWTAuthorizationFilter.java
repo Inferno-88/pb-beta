@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.octopus.pb.security.SecurityConstants.HEADER_STRING;
 import static com.octopus.pb.security.SecurityConstants.SECRET;
@@ -51,6 +52,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
+
+            //TODO ADD LIST TO MAP PARSER TO GET authorities
+//            Map<String> roles = Jwts.parser()
+//                    .setSigningKey(SECRET.getBytes())
+//                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+//                    .getBody()
+//                    .get("role")
+//                    .
 
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());

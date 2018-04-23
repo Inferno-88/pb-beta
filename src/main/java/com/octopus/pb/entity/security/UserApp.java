@@ -1,15 +1,18 @@
-package com.octopus.pb.entity;
+package com.octopus.pb.entity.security;
 
 
-import com.octopus.pb.enums.Role;
+import com.octopus.pb.entity.Player;
+import com.octopus.pb.enums.RoleType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"roleAppSet"})
 @Entity
 @Table(name = "users")
 public class UserApp {
@@ -19,10 +22,6 @@ public class UserApp {
     private int id;
     private String username;
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
     private String email;
     private String comment;
     private boolean isActive;
@@ -30,6 +29,9 @@ public class UserApp {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
+
+    @ManyToMany(mappedBy = "userAppSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private final Set<RoleApp> roleAppSet = new HashSet<>();
 
     public UserApp(String username, String password) {
         this.username = username;
@@ -50,6 +52,16 @@ public class UserApp {
     public void removePlayer(Player player) {
         setPlayer(null);
         player.setUser(null);
+    }
+
+    public void addRole(RoleApp roleApp) {
+        roleAppSet.add(roleApp);
+        roleApp.getUserAppSet().add(this);
+    }
+
+    public void removeRole(RoleApp roleApp) {
+        roleApp.getUserAppSet().remove(this);
+        roleAppSet.remove(roleApp);
     }
 
 }

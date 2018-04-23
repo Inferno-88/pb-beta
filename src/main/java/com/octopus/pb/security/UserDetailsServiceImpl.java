@@ -1,10 +1,10 @@
 package com.octopus.pb.security;
 
 
-import com.octopus.pb.entity.UserApp;
-import com.octopus.pb.enums.Role;
+import com.octopus.pb.entity.security.RoleApp;
+import com.octopus.pb.entity.security.UserApp;
+import com.octopus.pb.enums.RoleType;
 import com.octopus.pb.repository.UserRepository;
-import netscape.security.Privilege;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,6 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserApp userApp = userRepository.findByUsername(username);
 
@@ -34,53 +36,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-        return new User(userApp.getUsername(), userApp.getPassword(), getAuthorities(Arrays.asList(userApp.getRole())));
+        return new User(userApp.getUsername(), userApp.getPassword(), getAuthorities(userApp.getRoleAppSet()));
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
+    private Collection<? extends GrantedAuthority> getAuthorities(Collection<RoleApp> roles) {
 
-        return getGrantedAuthorities(getPrivileges(roles));
+        return getGrantedAuthorities(roles);
     }
 
-    private List<String> getPrivileges(Collection<Role> roles) {
-
-        List<String> privileges = new ArrayList<>();
-        for (Role role : roles) {
-            privileges.add(role.toString());
-        }
-
-        return privileges;
-    }
-
-    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
-
+    private List<GrantedAuthority> getGrantedAuthorities(Collection<RoleApp> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        for (String privilege : privileges) {
-            authorities.add(new SimpleGrantedAuthority(privilege));
+        for (RoleApp role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
         }
-
         return authorities;
     }
-
-//    private List<String> getPrivileges(Collection<Role> roles) {
-//
-//        List<String> privileges = new ArrayList<>();
-//        List<Privilege> collection = new ArrayList<>();
-//        for (Role role : roles) {
-//            collection.addAll(role.getPrivileges());
-//        }
-//        for (Privilege item : collection) {
-//            privileges.add(item.getName());
-//        }
-//        return privileges;
-//    }
-//
-//    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//        for (String privilege : privileges) {
-//            authorities.add(new SimpleGrantedAuthority(privilege));
-//        }
-//        return authorities;
-//    }
-
+    
 }

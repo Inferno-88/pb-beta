@@ -2,6 +2,7 @@ package com.octopus.pb.data;
 
 
 import com.octopus.pb.entity.*;
+import com.octopus.pb.entity.security.UserApp;
 import com.octopus.pb.enums.FieldType;
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.enums.RankType;

@@ -1,5 +1,6 @@
 package com.octopus.pb.entity;
 
+import com.octopus.pb.entity.security.UserApp;
 import lombok.*;
 
 import javax.persistence.*;
