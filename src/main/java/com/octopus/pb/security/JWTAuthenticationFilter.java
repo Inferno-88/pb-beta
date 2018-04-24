@@ -50,7 +50,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication auth) throws IOException, ServletException {
 
         User user = (User) auth.getPrincipal();
-
         Map<String, Object> roles = new HashMap<>();
         roles.put("role", user.getAuthorities());
 

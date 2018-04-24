@@ -55,7 +55,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getBody()
                     .getSubject();
 
-            //TODO ADD LIST TO MAP PARSER TO GET authorities
             List<Map<String, String>> roleList = (List<Map<String, String>>) Jwts.parser()
                     .setSigningKey(SECRET.getBytes())
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
