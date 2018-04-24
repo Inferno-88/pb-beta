@@ -3,7 +3,6 @@ package com.octopus.pb.security;
 
 import com.octopus.pb.entity.security.RoleApp;
 import com.octopus.pb.entity.security.UserApp;
-import com.octopus.pb.enums.RoleType;
 import com.octopus.pb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 

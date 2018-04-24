@@ -16,7 +16,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.octopus.pb.security.SecurityConstants.*;
 
@@ -53,8 +55,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         roles.put("role", user.getAuthorities());
 
         String token = Jwts.builder()
-                .setSubject(user.getUsername())
                 .setClaims(roles)
+                .setSubject(user.getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();

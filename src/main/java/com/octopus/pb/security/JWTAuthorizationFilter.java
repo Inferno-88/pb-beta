@@ -2,8 +2,10 @@ package com.octopus.pb.security;
 
 
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -14,11 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import static com.octopus.pb.security.SecurityConstants.HEADER_STRING;
-import static com.octopus.pb.security.SecurityConstants.SECRET;
-import static com.octopus.pb.security.SecurityConstants.TOKEN_PREFIX;
+import static com.octopus.pb.security.SecurityConstants.*;
 
+@Slf4j
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
@@ -54,15 +56,18 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             //TODO ADD LIST TO MAP PARSER TO GET authorities
-//            Map<String> roles = Jwts.parser()
-//                    .setSigningKey(SECRET.getBytes())
-//                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-//                    .getBody()
-//                    .get("role")
-//                    .
+            List<Map<String, String>> roleList = (List<Map<String, String>>) Jwts.parser()
+                    .setSigningKey(SECRET.getBytes())
+                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                    .getBody()
+                    .get("role");
+
+            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            roleList.stream()
+                    .forEach(r -> authorities.add(new SimpleGrantedAuthority(r.get("authority"))));
 
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                return new UsernamePasswordAuthenticationToken(user, null, authorities);
             }
             return null;
         }
