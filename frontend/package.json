@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Deadlyfangs/pb-beta#readme",
   "dependencies": {
+    "moment": "^2.22.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-image-gallery": "^0.8.7"

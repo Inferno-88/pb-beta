@@ -5,16 +5,20 @@ class EventHeader extends React.Component {
 	render () {
 
 		return (
-			<div className={style.header}>
+			<div className={style.container}>
 				<h1 className={style.title}>
 					{this.props.name}
 				</h1>
 				<div className={style.additionalInfo}>
 					<div className={style.date}>
 						{this.props.beginDate}
-						{/*TODO <DateTimeDuration />*/}
+						{/*TODO <DateTimeDuration
+							dateTimeBegin={this.props.beginDate}
+							dateTimeEnd={this.props.beginDate}
+						/>*/}
 					</div>
 					<div className={style.capacity}>
+						Армия:
 						{this.props.capacity}
 					</div>
 				</div>
