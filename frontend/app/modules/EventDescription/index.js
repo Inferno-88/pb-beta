@@ -1,5 +1,6 @@
-const React = require('react');
+import React from 'react';
 import style from './style.css';
+import EventHeader from './EventHeader/index';
 
 import ImageGallery from 'react-image-gallery';
 import '!style-loader!css-loader!react-image-gallery/styles/css/image-gallery.css';
@@ -24,10 +25,16 @@ class EventDescription extends React.Component {
 		return (
 			<div className={classNames}>
 				<div className={style.header}>
-					{ev.name}
-					{ev.capacity}
-					{ev.beginDate}
-					{ev.endDate}
+					{/*{ev.name}*/}
+					{/*{ev.capacity}*/}
+					{/*{ev.beginDate}*/}
+					{/*{ev.endDate}*/}
+					<EventHeader
+						name={ev.name}
+						beginDate={ev.beginDate}
+						endDate={ev.endDate}
+						capacity={ev.capacity}
+					/>
 				</div>
 				<div className={style.main}>
 					<div className={style.gallery}>
