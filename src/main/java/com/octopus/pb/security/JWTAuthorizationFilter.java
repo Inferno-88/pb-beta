@@ -1,6 +1,7 @@
 package com.octopus.pb.security;
 
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.octopus.pb.security.SecurityConstants.*;
+
 
 @Slf4j
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
@@ -41,6 +43,17 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(req, res);
+
+        //TODO create custom exception class with custom statuses and stuff
+//        try {
+//            UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
+//
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//        } catch (io.jsonwebtoken.MalformedJwtException ex) {
+//            res.getWriter().append(MyErrorClass)
+//        }
+//        chain.doFilter(req, res);
+
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
@@ -49,21 +62,16 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         if (token != null) {
             // parse the token.
-            String user = Jwts.parser()
+            Claims body = Jwts.parser()
                     .setSigningKey(SECRET.getBytes())
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
+                    .getBody();
 
-            List<Map<String, String>> roleList = (List<Map<String, String>>) Jwts.parser()
-                    .setSigningKey(SECRET.getBytes())
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                    .getBody()
-                    .get("role");
+            String user = body.getSubject();
+            List<Map<String, String>> roleList = (List<Map<String, String>>) body.get("role");
 
             List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            roleList.stream()
-                    .forEach(r -> authorities.add(new SimpleGrantedAuthority(r.get("authority"))));
+            roleList.forEach(r -> authorities.add(new SimpleGrantedAuthority(r.get("authority"))));
 
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, authorities);
