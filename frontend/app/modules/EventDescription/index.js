@@ -1,6 +1,11 @@
 const React = require('react');
 import style from './style.css';
 
+import ImageGallery from 'react-image-gallery';
+import '!style-loader!css-loader!react-image-gallery/styles/css/image-gallery.css';
+
+import { imagesOfEvent } from '../../mockdata';
+
 
 class EventDescription extends React.Component {
 
@@ -8,6 +13,13 @@ class EventDescription extends React.Component {
 	render () {
 		const ev = this.props.event;
 		let classNames = `${style.eventDescription} ${this.props.className}`;
+
+		const images = imagesOfEvent.map((image) => {
+			return {
+				original: image,
+				thumbnail: image,
+			};
+		});
 
 		return (
 			<div className={classNames}>
@@ -19,7 +31,7 @@ class EventDescription extends React.Component {
 				</div>
 				<div className={style.main}>
 					<div className={style.gallery}>
-						<img src="http://topgun.ru/wp-content/uploads/Mira-po-pejntbolu-zavershilsya-CHempion-2014-goda-rossijskaya-pejntbol-naya-komanda-7.jpg" />
+						<ImageGallery items={images} />
 					</div>
 					<div className={style.info}>
 						<div className={style.infoEvent}>

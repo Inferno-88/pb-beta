@@ -1,3 +1,5 @@
+/*@import "../../../node_modules/react-image-gallery/styles/css/image-gallery.css";*/
+
 .eventDescription {
 	display: flex;
 	flex-wrap: wrap;
@@ -17,8 +19,8 @@
 	width: 70%;
 }
 
-.main img {
-	width: 100%;
+.main .gallery {
+
 }
 
 .playersArea {
