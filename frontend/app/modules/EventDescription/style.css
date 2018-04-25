@@ -1,0 +1,27 @@
+
+.eventDescription {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px;
+	overflow: hidden;
+}
+
+.infoField, .infoRules, .infoEvent {
+	border: 1px solid blue;
+}
+
+.header {
+	width: 100%;
+}
+
+.main {
+	width: 70%;
+}
+
+.main .gallery {
+
+}
+
+.playersArea {
+	width: 30%;
+}

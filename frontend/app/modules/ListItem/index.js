@@ -1,6 +1,8 @@
 import React from 'react';
 import style from './style.css';
 
+import moment from 'moment';
+
 class ListItem extends React.Component {
 
 	render () {
@@ -11,7 +13,7 @@ class ListItem extends React.Component {
 				</h3>
 				<div className={style.descriptionRow}>
 					<span className={style.date}>
-						{this.props.date}
+						{moment(this.props.date).format('DD MMMM YYYY')}
 					</span>
 					<span className={style.peopleCount}>
 						{this.props.peopleCount} чел.

@@ -1,0 +1,14 @@
+.layout {
+	display: flex;
+	justify-content: space-between;
+}
+
+.listEvents {
+	width: 30%;
+	margin-right: 10px;
+
+}
+
+.eventDescription {
+	width: 70%;
+}
