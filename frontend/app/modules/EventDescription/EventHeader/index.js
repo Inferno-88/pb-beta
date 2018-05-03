@@ -13,7 +13,6 @@ class EventHeader extends React.Component {
 				</h1>
 				<div className={style.additionalInfo}>
 					<div className={style.date}>
-						{/*{this.props.beginDate}*/}
 						<DateTimeDuration
 							dateTimeBegin={this.props.beginDate}
 							dateTimeEnd={this.props.beginDate}

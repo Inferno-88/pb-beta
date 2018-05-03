@@ -25,10 +25,6 @@ class EventDescription extends React.Component {
 		return (
 			<div className={classNames}>
 				<div className={style.header}>
-					{/*{ev.name}*/}
-					{/*{ev.capacity}*/}
-					{/*{ev.beginDate}*/}
-					{/*{ev.endDate}*/}
 					<EventHeader
 						name={ev.name}
 						beginDate={ev.beginDate}
@@ -41,16 +37,11 @@ class EventDescription extends React.Component {
 						<ImageGallery items={images} />
 					</div>
 					<div className={style.info}>
-						<div className={style.infoEvent}>
-							{ev.info}
-						</div>
-						<div className={style.infoField}>
-							{JSON.stringify(ev.field)}
-						</div>
-						<div className={style.infoRules}>
-							lala
-							{ev.gameRules}
-						</div>
+						<EventInfoTable
+							info={ev.info}
+							field={ev.field}
+							gameRules={ev.gameRules}
+						/>
 					</div>
 				</div>
 				<div className={style.playersArea}>
