@@ -1,6 +1,8 @@
 import React from 'react';
 import style from './style.css';
 
+import DateTimeDuration from '../../DateTimeDuration/index';
+
 class EventHeader extends React.Component {
 	render () {
 
@@ -11,11 +13,11 @@ class EventHeader extends React.Component {
 				</h1>
 				<div className={style.additionalInfo}>
 					<div className={style.date}>
-						{this.props.beginDate}
-						{/*TODO <DateTimeDuration
+						{/*{this.props.beginDate}*/}
+						<DateTimeDuration
 							dateTimeBegin={this.props.beginDate}
 							dateTimeEnd={this.props.beginDate}
-						/>*/}
+						/>
 					</div>
 					<div className={style.capacity}>
 						Армия:
