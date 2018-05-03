@@ -3,14 +3,10 @@ package com.octopus.pb.manager.impl;
 
 import com.octopus.pb.manager.Mediator;
 import com.octopus.pb.repository.*;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.EntityManager;
 
 
 @Component
