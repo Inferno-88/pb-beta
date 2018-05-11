@@ -23,6 +23,6 @@ public class TeamDto {
 
     @JsonIgnore
     private Set<PlayerDto> playerSet;
-//    private Set<PhotoDto> photoSet;
+    private Set<PhotoDto> photoSet;
 
 }

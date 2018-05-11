@@ -43,7 +43,5 @@ public class EventController {
     public EventDto createEvent(EventDto eventDto) {
         return eventService.createEventDto(eventDto);
     }
-
-
-
+    
 }
