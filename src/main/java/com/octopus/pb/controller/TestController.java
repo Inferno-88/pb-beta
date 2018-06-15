@@ -42,6 +42,8 @@ public class TestController {
     public @ResponseBody String buildData() {
         initDataBuilder.buildData();
 
+        initDataBuilder.createRoles();
+
         return "Data has been built.";
     }
 

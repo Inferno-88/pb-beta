@@ -2,8 +2,10 @@ package com.octopus.pb.entity.security;
 
 
 import com.octopus.pb.entity.Player;
-import com.octopus.pb.enums.RoleType;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -30,7 +32,13 @@ public class UserApp {
     @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "users_to_players"))
     private Player player;
 
-    @ManyToMany(mappedBy = "userAppSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_roles_to_users")),
+            inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "user_roles_to_roles")),
+            uniqueConstraints = @UniqueConstraint(name = "user_roles_unique", columnNames = {"user_id", "role_id"})
+    )
     private final Set<RoleApp> roleAppSet = new HashSet<>();
 
     public UserApp(String username, String password) {

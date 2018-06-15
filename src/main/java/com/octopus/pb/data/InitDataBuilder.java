@@ -2,10 +2,12 @@ package com.octopus.pb.data;
 
 
 import com.octopus.pb.entity.*;
+import com.octopus.pb.entity.security.RoleApp;
 import com.octopus.pb.entity.security.UserApp;
 import com.octopus.pb.enums.FieldType;
 import com.octopus.pb.enums.GroupType;
 import com.octopus.pb.enums.RankType;
+import com.octopus.pb.enums.RoleType;
 import com.octopus.pb.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ public class InitDataBuilder {
     private final TeamRepository teamRepository;
     private final PhotoRepository photoRepository;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
 
     @Transactional
@@ -177,7 +180,14 @@ public class InitDataBuilder {
 
         teamRepository.save(sonsOfErin);
         teamRepository.save(randomTeam1);
+    }
 
+    public void createRoles() {
+        RoleApp adminRole = new RoleApp(RoleType.ROLE_ADMIN);
+        RoleApp userRole = new RoleApp(RoleType.ROLE_USER);
+
+        roleRepository.save(adminRole);
+        roleRepository.save(userRole);
     }
 
 }

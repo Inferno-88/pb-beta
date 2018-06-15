@@ -27,13 +27,7 @@ public class RoleApp implements GrantedAuthority {
 
     String authority;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_roles_to_users")),
-            inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "user_roles_to_roles")),
-            uniqueConstraints = @UniqueConstraint(name = "user_roles_unique", columnNames = {"user_id", "role_id"})
-    )
+    @ManyToMany(mappedBy = "roleAppSet", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final Set<UserApp> userAppSet = new HashSet<>();
 
     public RoleApp (RoleType roleType) {

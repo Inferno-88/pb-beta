@@ -23,6 +23,7 @@ public class MediatorImpl implements Mediator {
     private final RankRepository rankRepository;
     private final RatingRepository ratingRepository;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
 
     @Override
