@@ -3,7 +3,6 @@ package com.octopus.pb.service.impl;
 
 import com.octopus.pb.entity.security.RoleApp;
 import com.octopus.pb.entity.security.UserApp;
-import com.octopus.pb.enums.RoleType;
 import com.octopus.pb.repository.RoleRepository;
 import com.octopus.pb.repository.UserRepository;
 import com.octopus.pb.service.UserService;
@@ -11,8 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,9 +28,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserApp saveUser(UserApp userApp) throws IllegalArgumentException {
+        if (checkUserExist(userApp)) {
+            throw new IllegalArgumentException("User name already exists.");
+        }
+        if (!checkCorrectRole(userApp)) {
+            throw new IllegalArgumentException("Specified role does not exist.");
+        }
 
-        checkUserNotExist(userApp);
-        checkCorrectRole(userApp);
+        if (userApp.getRoleAppSet().size() == 0) {
+            throw new IllegalArgumentException("User role was not specified");
+        }
+
+        setRoleSet(userApp);
 
         return userRepository.save(userApp);
     }
@@ -70,36 +79,38 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    private boolean checkUserNotExist(UserApp userApp) {
+    private boolean checkUserExist(UserApp userApp) {
         UserApp byUsername = getUserByUsername(userApp.getUsername());
 
         if (byUsername != null) {
-            throw new IllegalArgumentException("User name already exists.");
+            return true;
+        } else {
+            return false;
         }
-
-        return true;
     }
 
     private boolean checkCorrectRole(UserApp userApp) {
-
         List<String> roleList = roleRepository.findAll().stream()
                 .map(r -> r.getAuthority())
                 .collect(Collectors.toList());
-
-        roleList.forEach(r -> log.info("roleList item {}", r));
 
         List<String> userRoleList = userApp.getRoleAppSet().stream()
                 .map(ur -> ur.getAuthority())
                 .collect(Collectors.toList());
 
         for(String userRoleString : userRoleList) {
-            log.info("useeRoleString {}", userRoleString);
             if (!roleList.contains(userRoleString)) {
-                throw new IllegalArgumentException("Specified role " +userRoleString+ " does not exist.");
+                return false;
             }
         }
 
         return true;
+    }
+
+    private void setRoleSet(UserApp userApp) {
+        userApp.getRoleAppSet().stream()
+//                .forEach(r -> log.info("SET_ROLE_ID: {}", roleRepository.findRoleAppByAuthority(r.getAuthority()).getId()));
+                .peek(r -> r.setId(roleRepository.findRoleAppByAuthority(r.getAuthority()).getId()));
     }
 
 }

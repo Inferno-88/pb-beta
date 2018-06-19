@@ -12,4 +12,6 @@ public interface RoleRepository extends CrudRepository<RoleApp, Integer> {
 
     @Override
     RoleApp save(RoleApp roleApp);
+
+    RoleApp findRoleAppByAuthority(String authority);
 }
