@@ -38,7 +38,8 @@ public class RankControllerTest {
 
         final String actual = "{\"id\":1,\"name\":null,\"rankType\":null}";
 
-        String response = mockMvc.perform(post("/rank/create"))
+        String response = mockMvc
+                .perform(post("/rank/create"))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

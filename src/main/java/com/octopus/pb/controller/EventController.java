@@ -3,7 +3,6 @@ package com.octopus.pb.controller;
 import com.octopus.pb.dto.EventDto;
 import com.octopus.pb.dto.EventPreviewDto;
 import com.octopus.pb.service.EventService;
-import com.octopus.pb.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +40,11 @@ public class EventController {
     @GetMapping("/events")
     public List<EventDto> getEventList() {
         return eventService.getEventDtoList();
+    }
+
+    public EventDto createEvent(EventDto eventDto) {
+
+        return eventService.createEventDto(eventDto);
     }
 
 }

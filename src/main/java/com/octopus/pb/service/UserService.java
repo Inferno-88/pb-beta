@@ -1,13 +1,19 @@
 package com.octopus.pb.service;
 
 
-import com.octopus.pb.entity.User;
+import com.octopus.pb.entity.security.UserApp;
+
+import java.util.List;
 
 public interface UserService {
 
-    User createUser();
+    UserApp saveUser(UserApp userApp);
 
-    User getUser(int id);
+    UserApp getUser(int id);
+
+    List<UserApp> getUserList();
+
+    UserApp getUserByUsername(String username);
 
     boolean deleteUser(int id);
 

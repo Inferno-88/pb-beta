@@ -1,6 +1,7 @@
 package com.octopus.pb.repository;
 
 
+import com.octopus.pb.entity.security.UserApp;
 import com.octopus.pb.enums.*;
 import com.octopus.pb.entity.*;
 
@@ -180,8 +181,8 @@ public class AllRepositoryTest {
         team1.addPlayer(player1);
         team2.addPlayer(player2);
 
-        User user1 = new User("someUser1", "somePassword1", "someemail1@email.com");
-        User user2 = new User("someUser2", "somePassword2", "someemail2@email.com");
+        UserApp user1 = new UserApp("someUser1", "somePassword1", "someemail1@email.com");
+        UserApp user2 = new UserApp("someUser2", "somePassword2", "someemail2@email.com");
         user1.addPlayer(player1);
         user2.addPlayer(player2);
 
@@ -231,7 +232,7 @@ public class AllRepositoryTest {
         assertTrue("SavedPlayerList does not contain player2", savedPlayerList.contains(player2));
         assertFalse("SavedPlayerList contains player3", savedPlayerList.contains(player3));
 
-        List<User> savedUserList = userRepository.findAll();
+        List<UserApp> savedUserList = userRepository.findAll();
         assertTrue("SavedUserList does not contain user1", savedUserList.contains(user1));
         assertTrue("SavedUserList does not contain user2", savedUserList.contains(user2));
 

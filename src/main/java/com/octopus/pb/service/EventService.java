@@ -17,13 +17,15 @@ public interface EventService {
 
     List<EventDto> getEventDtoList();
 
+    EventDto createEventDto(EventDto eventDto);
+
     //Repository methods
-    Event saveEvent(Event event);
+    Event save(Event event);
 
     void delete(Event event);
 
-    Event getEvent(int id);
+    Event get(int id);
 
-    List<Event> getEventList();
+    List<Event> getList();
 
 }

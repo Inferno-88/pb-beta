@@ -1,28 +1,30 @@
 package com.octopus.pb.repository;
 
-import com.octopus.pb.entity.User;
+import com.octopus.pb.entity.security.UserApp;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<UserApp, Integer> {
 
     @Override
-    User save(User user);
+    UserApp save(UserApp user);
 
     @Override
-    <S extends User> List<S> save(Iterable<S> users);
+    <S extends UserApp> List<S> save(Iterable<S> users);
 
     @Override
-    void delete(Iterable<? extends User> users);
+    void delete(Iterable<? extends UserApp> users);
 
     @Override
-    void delete(User user);
+    void delete(UserApp user);
 
     @Override
-    User findOne(Integer id);
+    UserApp findOne(Integer id);
 
     @Override
-    List<User> findAll();
+    List<UserApp> findAll();
+
+    UserApp findByUsername(String username);
 
 }

@@ -31,29 +31,42 @@ public class EventServiceImpl implements EventService {
     private void init() {
         log.info("************** Preparing {} **************", EventService.class);
     }
-    
+
+    @Override
     public EventPreviewDto getEventPreviewDto(int id) {
-        return eventPreviewMapper.entityToDto(getEvent(id));
+        return eventPreviewMapper.entityToDto(get(id));
     }
 
+    @Override
     public List<EventPreviewDto> getEventPreviewDtoList() {
-        return getEventList().stream()
+        return getList().stream()
                 .map(e -> eventPreviewMapper.entityToDto(e))
                 .collect(Collectors.toList());
     }
 
+    @Override
     public EventDto getEventDto(int id) {
-        return dtoMapper.entityToDto(getEvent(id), cycleAvoidContext);
+        return dtoMapper.entityToDto(get(id), cycleAvoidContext);
     }
 
+    @Override
     public List<EventDto> getEventDtoList() {
-        return getEventList().stream()
+        return getList().stream()
                 .map(e -> dtoMapper.entityToDto(e, cycleAvoidContext))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Event saveEvent(Event event) {
+    public EventDto createEventDto(EventDto eventDto) {
+
+        Event event = dtoMapper.dtoToEntity(eventDto, cycleAvoidContext);
+        event = save(event);
+
+        return dtoMapper.entityToDto(event, cycleAvoidContext);
+    }
+
+    @Override
+    public Event save(Event event) {
         return (Event) mediator.getRepo("Event").save(event);
     }
 
@@ -63,12 +76,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEvent(int id) {
+    public Event get(int id) {
         return (Event) mediator.getRepo("Event").findOne(id);
     }
 
     @Override
-    public List<Event> getEventList() {
+    public List<Event> getList() {
         return (List<Event>) mediator.getRepo("Event").findAll();
     }
 
