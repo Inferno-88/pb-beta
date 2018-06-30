@@ -10,7 +10,7 @@ class Layout extends React.Component {
 		super(props);
 		this.state = {
 			currentEvent: null,
-			listStortEvents: [],
+			listShortEvents: [],
 		};
 		fetch('http://localhost:8181/event/previews').then(function (res) {
 			if (res.status === 200) { //TODO catch
@@ -18,7 +18,7 @@ class Layout extends React.Component {
 			}
 		}).then(function (list) {
 			this.setState({
-				listStortEvents: list,
+				listShortEvents: list,
 			});
 		}.bind(this));
 	}
@@ -41,7 +41,7 @@ class Layout extends React.Component {
 			<div className={style.layout}>
 				<ListEvents
 					className={style.listEvents}
-					events={this.state.listStortEvents}
+					events={this.state.listShortEvents}
 					onClick={this.hendlerOpenEvent.bind(this)}
 				/>
 				{this.state.currentEvent &&

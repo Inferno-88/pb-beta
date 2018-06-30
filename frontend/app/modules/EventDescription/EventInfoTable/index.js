@@ -6,19 +6,34 @@ class EventInfoTable extends React.Component {
 
 
 	render () {
-
-
+		const {info, field, gameRules} = this.props;
+// TODO сделать нормальные вкладки
 		return (
-			<div>
-				<div className={style.infoEvent}>
-					{ev.info}
+			<div className={style.eventInfoTable}>
+				<div className={style.tabArea}>
+					<div className={style.tab}>
+						Инфо
+					</div>
+					<div className={style.tabContent}>
+						{info}
+					</div>
 				</div>
-				<div className={style.infoField}>
-					{JSON.stringify(ev.field)}
+				<div className={style.tabArea}>
+					<div className={style.tab}>
+						Field
+					</div>
+					<div className={style.tabContent}>
+						{JSON.stringify(field)}
+					</div>
 				</div>
-				<div className={style.infoRules}>
-					lala
-					{ev.gameRules}
+				<div className={style.tabArea}>
+					<div className={style.tab}>
+						GameRULES
+					</div>
+					<div className={style.tabContent}>
+						lala
+						{gameRules}
+					</div>
 				</div>
 			</div>
 		);

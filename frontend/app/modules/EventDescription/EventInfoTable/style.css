@@ -1,0 +1,7 @@
+.eventInfoTable {
+    position: relative;
+}
+
+.eventInfoTable .tabContent {
+    display: none
+}

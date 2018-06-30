@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './style.css';
 import EventHeader from './EventHeader/index';
+import EventInfoTable from './EventInfoTable/index';
 
 import ImageGallery from 'react-image-gallery';
 import '!style-loader!css-loader!react-image-gallery/styles/css/image-gallery.css';
